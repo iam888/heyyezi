@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+    
+    <entry>
+      <title><![CDATA[Webpack]]></title>
+      <url>https://www.heyyezi.com/2017/03/20/webpack/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>简单介绍一个工具而已<br><a id="more"></a></p>
+</blockquote>
+<p><img src="http://img0.tuicool.com/7ZBJzaF.jpg!web" alt="上图"></p>
+<h2 id="是什么"><a href="#是什么" class="headerlink" title="是什么"></a>是什么</h2><p>  Webpack 是一个JS模块化打包工具。</p>
+<h3 id="需要加工哪些文件"><a href="#需要加工哪些文件" class="headerlink" title="需要加工哪些文件"></a>需要加工哪些文件</h3><p>  Webpack会为当前应用创建一个完整的依赖关系图。依赖解析的入口文件被称为入口点。这个文件会告诉webpack怎么去管理需要依赖的库文件，并且怎么去打包他们。<br>  在webpack中，我们在webpack.config.js中做配置。<br>  <strong>webpack.config.js</strong></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="string">'./app.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<h4 id="如果我们有多个入口文件，如果我们想把入口文件，和vendors文件分开呢"><a href="#如果我们有多个入口文件，如果我们想把入口文件，和vendors文件分开呢" class="headerlink" title="如果我们有多个入口文件，如果我们想把入口文件，和vendors文件分开呢"></a>如果我们有多个入口文件，如果我们想把入口文件，和vendors文件分开呢</h4><p>  用法: entry: string|Array<string><br>  <strong>webpack.config.js</strong></string></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> config = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./app.js'</span>,</div><div class="line">    <span class="attr">vendors</span>: <span class="string">'./vendors.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>  以上，是说把app.js和vendor.js分别独立的所有依赖都处理完成。</p>
+<p>  多页应用<br>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> config = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">pageOne</span>: <span class="string">'./src/pageOne/index.js'</span>,</div><div class="line">    <span class="attr">pageTwo</span>: <span class="string">'./src/pageTwo/index.js'</span>,</div><div class="line">    <span class="attr">pageThree</span>: <span class="string">'./src/pageThree/index.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="加工之后放哪"><a href="#加工之后放哪" class="headerlink" title="加工之后放哪"></a>加工之后放哪</h3><p>  当把所有的依赖都妥善处置好之后，需要配置把这个处理之后的文件放哪。<br>  <strong>webpack.config.js</strong></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./app.js'</span></div><div class="line">  output: &#123;</div><div class="line">    <span class="attr">path</span>: path.reslove(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'my-first-webpack.bundle.js'</span></div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>  output 需要最基本的需要两个配置</p>
+<ul>
+<li><p>output.filename, 编译之后的文件名，比如 main.js || bundle.js || index.js。切记不要写加文件路径，比如../test/main.js</p>
+<ul>
+<li><p>如果只有一个入口文件，</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./src/app.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'bundle.js'</span>,</div><div class="line">    <span class="attr">path</span>: __dirname + <span class="string">'/build'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"><span class="comment">// writes to disk: ./build/bundle.js</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>如果有多个入口文件, 那么你就需要把文件名配置成参数形式:</p>
+<ul>
+<li>[name], 加上名字</li>
+<li>[hash], 加上hash串</li>
+<li>[chunkhash], 同上<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/app.js'</span>,</div><div class="line">    <span class="attr">search</span>: <span class="string">'./src/search.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].[id].js'</span>,<span class="comment">//只要你喜欢，可以拼成[name].[hash].[chunkhash].js</span></div><div class="line">    path: __dirname + <span class="string">'/build'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// writes to disk: ./build/app.js, ./build/search.js</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>output.path, 一个 <strong>绝对路径</strong> 地址，</p>
+<ul>
+<li>如果js使用了cdn的地址，那么<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">output: &#123;</div><div class="line">    <span class="attr">path</span>: <span class="string">"/home/proj/cdn/assets/[hash]"</span>,</div><div class="line">    <span class="attr">publicPath</span>: <span class="string">"http://cdn.example.com/assets/[hash]/"</span></div><div class="line">&#125;</div><div class="line"><span class="comment">// 如果一开始你不知大publicPath, 那么这个为止可以为空，然后在入口文件中写入</span></div><div class="line">__webpack_public_path__ = <span class="string">"http://cdn.example.com/assets/[hash]/"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>其他徐昂想配置有</p>
+</li>
+<li>output.chunkFilename, 按需加载的时候，如果这个文件并没有写入entry中，那么它处理的时候起名方式 <a href="https://github.com/webpack/webpack/tree/webpack-1/examples/named-chunks" target="_blank" rel="external">例子</a><ul>
+<li>[id], 可以用ID拼</li>
+<li>[name], 同上</li>
+<li>[hash], 同上</li>
+<li>[chunkhash], 同上</li>
+</ul>
+</li>
+<li>output.crossOriginLoading, 设置跨域加载块<ul>
+<li>false, 默认，禁止跨域加载。</li>
+<li>anonymous, 开启允许跨域加载。</li>
+<li>use-credentials, 标志启用验证，cookie，SSL，HTTP验证等</li>
+</ul>
+</li>
+<li>output.hotUpdateChunkFilename, 配置热更新chunk文件名, 它包含在output.path里面，<ul>
+<li>[id]</li>
+<li>[hash]</li>
+<li>默认起名： [id].[hash].hot-update.js</li>
+</ul>
+</li>
+<li>output.hotUpdateFunction, 一个异步加载人更新chunk方法，JSONP的方法, 默认是: webpackHotUpdate</li>
+<li>output.hotUpdateMainFilename, 热更新主文件名, 它包含在output.path里面，默认是: [hash].hot-update.json</li>
+<li>output.jsonpFunction, 用于异步加载模块的时候使用JSONP的方法名，默认是：webpackJsonp, 注意两点<ul>
+<li>起一个短一些的名字，能减少网络传输</li>
+<li>如果是单页面程序，那么注意不要命名冲突</li>
+</ul>
+</li>
+<li>output.library, 如果设置了的话名字的话，也就是给库起个名字，比如jquery，那么它可以导出成一个library库，并且可以单独发布它。</li>
+<li>output.libraryTarget, 库的类型<ul>
+<li>var, 默认的，以一个普通变量的形式调用, var Library = xxx</li>
+<li>this, 设置一个属性，this: this[“Library”] = xxx</li>
+<li>commonjs, exports: exports[“Library”] = xxx</li>
+<li>commonjs2, module.exports: module.exports = xxx</li>
+<li>amd, 没用过，欢迎补充</li>
+<li>umd, 没用过，欢迎补充</li>
+</ul>
+</li>
+<li>output.sourceMapFilename, 可以自定义js的sourceMap文件名，默认是是”[file].map”<ul>
+<li>[file]</li>
+<li>[id]</li>
+<li>[hash]</li>
+</ul>
+</li>
+</ul>
+<h3 id="那么，除了JS其他文件类型怎么办"><a href="#那么，除了JS其他文件类型怎么办" class="headerlink" title="那么，除了JS其他文件类型怎么办"></a>那么，除了JS其他文件类型怎么办</h3><p>  Webpack本身只能处理JS的内容，那么如果需要处理css,html,scss,jpg,png等怎么办。这就需要插件，我们加它loader。<br>  不同的loaders处理各自的文件，然后会把各自要处理的文件，放到依赖关系中。<br>  总体来说，它会做两件事:</p>
+<ol>
+<li>确定哪些文件要被哪些loader处理</li>
+<li>处理这些文件，然后把这些文件放到依赖关系中。</li>
+</ol>
+<p><strong>注意</strong>:<br>  -loader其实是可以省略不写的，也就是说css-loader可以写成css<br>  多个loader之间用“!”连接起来，比如style-loader!css-loader</p>
+<p>  <strong>webpack.config.js</strong></p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> config = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./app.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'my-first-webpack.bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;<span class="attr">test</span>: <span class="regexp">/\.(js|jsx)$/</span>, <span class="attr">use</span>: <span class="string">'babel-loader'</span>&#125; <span class="comment">// 把js,jsx文件，扔到babel-loader中处理</span></div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = config;</div></pre></td></tr></table></figure>
+<h4 id="Loaders"><a href="#Loaders" class="headerlink" title="Loaders"></a>Loaders</h4><ol>
+<li><p>如果我们需要过滤css文件，那么我们首先要找到css的loader</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install --save-dev css-loader</div></pre></td></tr></table></figure>
+</li>
+<li><p>我们在webpack.config.js中配置css过滤规则</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;<span class="attr">test</span>: <span class="regexp">/\.css$/</span>, <span class="attr">use</span>: <span class="string">'css-loader'</span>&#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>还有一种更复杂的写法, 用来优雅的处理不同的loader</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>: &#123;</div><div class="line">  <span class="attr">rules</span>: [</div><div class="line">    &#123;</div><div class="line">      <span class="attr">test</span>: <span class="regexp">/\.css$/</span>,</div><div class="line">      <span class="attr">use</span>: [</div><div class="line">        &#123; <span class="attr">loader</span>: <span class="string">'style-loader'</span>&#125;,</div><div class="line">        &#123;</div><div class="line">          <span class="attr">loader</span>: <span class="string">'css-loader'</span>,</div><div class="line">          <span class="attr">options</span>: &#123;</div><div class="line">            <span class="attr">modules</span>: <span class="literal">true</span></div><div class="line">          &#125;</div><div class="line">        &#125;</div><div class="line">      ]</div><div class="line">    &#125;</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>命令行模式调用loader</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ webpack --<span class="built_in">module</span>-bind css-loader --<span class="built_in">module</span>-bind <span class="string">'css=style-loader!css-loader'</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="Resolve配置，不建议修改"><a href="#Resolve配置，不建议修改" class="headerlink" title="Resolve配置，不建议修改"></a>Resolve配置，不建议修改</h3><p> 本模块用来，修改加载模块的方式。一般情况下，不需要你对Webpack的模块加载进行干预，因为它已经很智能了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = &#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/main.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: config.build.assetsRoot,</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span>,</div><div class="line">    <span class="attr">publicPath</span>: process.env.NODE_ENV === <span class="string">'production'</span></div><div class="line">      ? config.build.assetsPublicPath</div><div class="line">      : config.dev.assetsPublicPath</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">resolve</span>: &#123;</div><div class="line">    <span class="attr">extensions</span>: [<span class="string">'.js'</span>, <span class="string">'.vue'</span>, <span class="string">'.json'</span>],</div><div class="line">    <span class="attr">alias</span>: &#123;</div><div class="line">      <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span>,</div><div class="line">      <span class="string">'@'</span>: resolve(<span class="string">'src'</span>),</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  ......</div></pre></td></tr></table></figure></p>
+<h4 id="resolve-alias"><a href="#resolve-alias" class="headerlink" title="resolve.alias"></a>resolve.alias</h4><ol>
+<li>给你的要导入的模块起一个简称，比如 reslove(‘src’) 路径变成 ‘@’ 符号, 那么你需要执行你要引入src中的文件</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> Hello <span class="keyword">from</span> <span class="string">'@/components/Hello'</span></div></pre></td></tr></table></figure>
+<ol>
+<li>‘$’, 符号，一般放在单词后面，比如’vue$’, 标示精确匹配，比如<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">alias: &#123;</div><div class="line">  <span class="string">'vue$'</span>: <span class="string">'vue/dist/vue.esm.js'</span>,</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>那么，当你引入的时候<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 正确的✅</span></div><div class="line"><span class="keyword">import</span> Test1 <span class="keyword">from</span> <span class="string">'vue'</span></div><div class="line"></div><div class="line"><span class="comment">//错误的❌</span></div><div class="line"><span class="keyword">import</span> Test2 <span class="keyword">from</span> <span class="string">'vue/te'</span></div></pre></td></tr></table></figure></p>
+<p><a href="https://webpack.js.org/configuration/resolve/#components/sidebar/sidebar.jsx" target="_blank" rel="external">从官网抄的</a></p>
+<table>
+<thead>
+<tr>
+<th>alias:</th>
+<th>import “xyz”</th>
+<th>import “xyz/file.js”</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>{}</td>
+<td>/abc/node_modules/xyz/index.js</td>
+<td>/abc/node_modules/xyz/file.js</td>
+</tr>
+<tr>
+<td>{ xyz: “/abs/path/to/file.js” }</td>
+<td>/abs/path/to/file.js</td>
+<td>error</td>
+</tr>
+<tr>
+<td>{ xyz$: “/abs/path/to/file.js” }</td>
+<td>/abs/path/to/file.js</td>
+<td>/abc/node_modules/xyz/file.js</td>
+</tr>
+<tr>
+<td>{ xyz: “./dir/file.js” }</td>
+<td>/abc/dir/file.js</td>
+<td>error</td>
+</tr>
+<tr>
+<td>{ xyz$: “./dir/file.js” }</td>
+<td>/abc/dir/file.js</td>
+<td>/abc/node_modules/xyz/file.js</td>
+</tr>
+<tr>
+<td>{ xyz: “/some/dir” }</td>
+<td>/some/dir/index.js</td>
+<td>/some/dir/file.js</td>
+</tr>
+</tbody>
+</table>
+<h4 id="resolve-extensions，没事别修改它"><a href="#resolve-extensions，没事别修改它" class="headerlink" title="resolve.extensions，没事别修改它!"></a>resolve.extensions，没事别修改它!</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">extensions: [<span class="string">".js"</span>, <span class="string">".json"</span>]</div><div class="line"></div><div class="line"><span class="comment">//可能是./extt.json， 也可能是./ext.js</span></div><div class="line"><span class="keyword">import</span> test <span class="keyword">from</span> <span class="string">'./extt'</span></div></pre></td></tr></table></figure>
+<p>默认系统会在寻找 .js. .json的文件</p>
+<p>如果你覆盖的了这个默认的文件类型，就不知道会出什么事了</p>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>   当然，webpack一定是支持插件的，loaders可以处理基础文件，如果有些自一定的处理，比如压缩文件，加入混淆字符串等，就需要plugins。<br>   使用的时候，只要require对应的plugin, 然后new 一个实例姐可以了。这样，更神奇的是，你可以为了不同的目的，使用多次同一个plugin。</p>
+<p>   <strong>webpack.config.js</strong><br>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">'html-webpack-plugin'</span>);</div><div class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"></div><div class="line"><span class="keyword">const</span> config = &#123;</div><div class="line">  <span class="attr">entry</span>: <span class="string">'./app.js'</span>,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'my-first-webpack.bundle.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">module</span>: &#123;</div><div class="line">    <span class="attr">rules</span>: [</div><div class="line">      &#123;<span class="attr">test</span>: <span class="regexp">/\.(js|jsx)$/</span>, <span class="attr">use</span>: <span class="string">'babel-loader'</span>&#125;</div><div class="line">    ]</div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.UglifyJsPlugin(), <span class="comment">// 混淆压缩文件</span></div><div class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">'./src/index.html'</span>&#125;)</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = config;</div></pre></td></tr></table></figure></p>
+<p>   更多plugins，请访问 <a href="https://webpack.js.org/plugins" target="_blank" rel="external">点我</a></p>
+<p>   一个复杂的配置信息例子<br>   <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</div><div class="line"><span class="keyword">var</span> webpack = <span class="built_in">require</span>(<span class="string">'webpack'</span>);</div><div class="line"><span class="keyword">var</span> webpackMerge = <span class="built_in">require</span>(<span class="string">'webpack-merge'</span>);</div><div class="line"></div><div class="line"><span class="keyword">var</span> baseConfig = &#123;</div><div class="line">  <span class="attr">target</span>: <span class="string">'async-node'</span>,</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">entry</span>: <span class="string">'./entry.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist'</span>),</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">plugins</span>: [</div><div class="line">    <span class="keyword">new</span> webpack.optimize.CommonsChunkPlugin(&#123;</div><div class="line">      <span class="attr">name</span>: <span class="string">'inline'</span>,</div><div class="line">      <span class="attr">filename</span>: <span class="string">'inline.js'</span>,</div><div class="line">      <span class="attr">minChunks</span>: <span class="literal">Infinity</span></div><div class="line">    &#125;),</div><div class="line">    <span class="keyword">new</span> webpack.optimize.AggressiveSplittingPlugin(&#123;</div><div class="line">        <span class="attr">minSize</span>: <span class="number">5000</span>,</div><div class="line">        <span class="attr">maxSize</span>: <span class="number">10000</span></div><div class="line">    &#125;),</div><div class="line">  ]</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="keyword">let</span> targets = [<span class="string">'web'</span>, <span class="string">'webworker'</span>, <span class="string">'node'</span>, <span class="string">'async-node'</span>, <span class="string">'node-webkit'</span>, <span class="string">'electron-main'</span>].map(<span class="function">(<span class="params">target</span>) =&gt;</span> &#123;</div><div class="line">  <span class="keyword">let</span> base = webpackMerge(baseConfig, &#123;</div><div class="line">    <span class="attr">target</span>: target,</div><div class="line">    <span class="attr">output</span>: &#123;</div><div class="line">      <span class="attr">path</span>: path.resolve(__dirname, <span class="string">'dist/'</span> + target),</div><div class="line">      <span class="attr">filename</span>: <span class="string">'[name].'</span> + target + <span class="string">'.js'</span></div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">  <span class="keyword">return</span> base;</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="built_in">module</span>.exports = targets;</div></pre></td></tr></table></figure></p>
+<h3 id="JS语法规则"><a href="#JS语法规则" class="headerlink" title="JS语法规则"></a>JS语法规则</h3><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">$ babel-preset-es2015</div><div class="line"></div><div class="line"># react转码规则</div><div class="line">$ babel-preset-react</div><div class="line"></div><div class="line"># ES7不同阶段</div><div class="line">$ babel-preset-stage-0</div><div class="line">$ babel-preset-stage-1</div><div class="line">$ babel-preset-stage-2</div><div class="line">$ babel-preset-stage-3</div></pre></td></tr></table></figure>
+<h2 id="VUE-LOADER"><a href="#VUE-LOADER" class="headerlink" title="VUE-LOADER"></a>VUE-LOADER</h2><h3 id="是什么-1"><a href="#是什么-1" class="headerlink" title="是什么"></a>是什么</h3><p>  过滤编译vuejs为普通JS的模块</p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Javascriipt </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Git简介]]></title>
+      <url>https://www.heyyezi.com/2017/03/12/gitintro/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>简单介绍一下GIT, 用作培训，不用点进来看了<br><a id="more"></a></p>
+</blockquote>
+<h2 id="GIT-和-SVN"><a href="#GIT-和-SVN" class="headerlink" title="GIT 和 SVN"></a>GIT 和 SVN</h2><h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><p>  我一开始用的是svn，那就先从svn说起，svn就是典型的集中式是管理，也就是所有操作必须与代码服务器通信。总体来说还是比较好用的，因为比起上一代CVS，它可以创建分支，虽然它的分支是真的把整个目录拷出来一份(比较挫), 而且离开网络什么也干不了, 当你在紧急情况下，diff文件的时候，网络却以几b的速度。。。。。。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="https://git-scm.com/book/en/v2/images/distributed.png"></p>
+<h3 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h3><p>  GIT起源与维护Linux核心库维护工作, 被认为是分布式的版本管理工具,每一个客户端都会有一份完整的版本记录(所以目录会比较大),所有的操作都会是在本地进行, 你的每次提交，它都会在本地做一次快照，只是<strong>存储本次修改的数据</strong>。他的特点基本如下</p>
+<ul>
+<li>GIT关注的是数据，svn关注的是文件，比如svn，举个例子，你在git和svn中创建一个空文件夹试试上传代码。</li>
+<li>GIT几乎所有的操作都是在本地</li>
+<li>简单分支创建，切换</li>
+<li>离线操作，缓存本地的提交，git会保留你所有的提交记录，然后在联网之后，与其他伙伴合并代码</li>
+<li>先进的存储模式。</li>
+</ul>
+<h3 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h3><p>这是正题，git有三种状态</p>
+<ul>
+<li>Committed, 已经安全提交到了版本库</li>
+<li>Modified, 文件已经修改了，但是未提交</li>
+<li>Staged, 对那些需要提交到版本库的Modified的文件，做标记，等待提交操作</li>
+</ul>
+<div id="sequence-0"></div>
+
+<p>所以.git文件就是当前项目的版本数据库，它包含了，这个项目的一切信息。</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>我一般会给git常用命令设置别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.co checkout</div><div class="line">$ git config --global alias.br branch</div><div class="line">$ git config --global alias.ci commit</div><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
+<p>这样</p>
+<ul>
+<li>git checkout == git co</li>
+<li>git branch  == git br</li>
+<li>git commit == git ci</li>
+<li>git status = git st</li>
+</ul>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>推荐大家使用Source Tree,很好用</p>
+<ul>
+<li>首先设置自己<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;John Doe&quot;</div><div class="line">$ git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="clone-代码"><a href="#clone-代码" class="headerlink" title="clone 代码"></a>clone 代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git@github.com:php-ai/php-ml.git</div><div class="line"># 如果你只想要最新的代码，当前的网络又特别慢的时候，你可以指定要下载哪几次提交的代码(尤其在公司的时候下载github代码)</div><div class="line">$ git clone git@github.com:php-ai/php-ml.git --depth 1 //可以试试，有惊喜</div></pre></td></tr></table></figure>
+<h4 id="设置自己编辑器-默认是vim"><a href="#设置自己编辑器-默认是vim" class="headerlink" title="设置自己编辑器, 默认是vim"></a>设置自己编辑器, 默认是vim</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global core.editor atom</div><div class="line"># 设置忽略大小写引起的改动那么</div><div class="line"># 默认是false</div><div class="line">$ git config --global core.ignorecase true</div></pre></td></tr></table></figure>
+<h4 id="查看配置文件"><a href="#查看配置文件" class="headerlink" title="查看配置文件"></a>查看配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git config --list</div><div class="line">  user.name=John Doe</div><div class="line">  user.email=johndoe@example.com</div><div class="line">  color.status=auto</div><div class="line">  color.branch=auto</div><div class="line">  color.interactive=auto</div><div class="line">  color.diff=auto</div></pre></td></tr></table></figure>
+<ul>
+<li>文件状态变化</li>
+</ul>
+<div id="sequence-1"></div>
+
+<h4 id="查看git状态-git-status"><a href="#查看git状态-git-status" class="headerlink" title="查看git状态, git status"></a>查看git状态, git status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master # 目前在master分支上</div><div class="line">nothing to commit, working directory clean # 这个目录是干净的</div></pre></td></tr></table></figure>
+<h5 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;test git&apos; &gt; test_git.txt</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Untracked files: # 当前这些文件状态是Untracked</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed) # 推荐你进行这些操作</div><div class="line">	test_git.txt # 这些文件没有被版本追踪</div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div><div class="line"></div><div class="line">$ git add test_git.txt # 如果是多个文件git add * , 把这些文件放在Staged中</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Changes to be committed: # Staged状态,</div><div class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</div><div class="line">	new file:   test_git.txt # 这个文件暂存</div><div class="line">$ git commit -m &quot;这是要写理由&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>简洁的输出, git status -s<ul>
+<li>新添加的未跟踪文件前面有 ?? 标记，</li>
+<li>新添加到暂存区中的文件前面有 A 标记，</li>
+<li>修改过的文件前面有 M 标记<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status -s #推荐使用这个命令，比较简洁</div><div class="line">M  test_git.txt # 说明这个文件修改过了</div><div class="line">?? test.md # 这个文件是没有被追踪的</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="忽略文件-gitignore"><a href="#忽略文件-gitignore" class="headerlink" title="忽略文件, .gitignore"></a>忽略文件, .gitignore</h4><ul>
+<li># 和 空行，都会被忽略</li>
+<li>支持正则匹配</li>
+<li>匹配模式以(/)开始，以(/)结束</li>
+<li>要忽略制定模式意外的文件, 加(!)</li>
+<li>匹配任意目录<code>d/**/d1</code>, 可以匹配<code>d/d2/d1</code>, <code>d/d2/d3/d1</code>等, 一个<code>*</code>,匹配任何文件;<code>.</code>没有其他意义<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> # 忽略当前目录里面的文件 TEST</div><div class="line">/TEST</div><div class="line"> # 这个才是忽略TEST目录以及下面的文件</div><div class="line">TEST/</div><div class="line"># 忽略test目录所有后缀是.pyc的文件</div><div class="line">test/**/*.pyc</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>diff 文件，暂存区，是只还没有commit的文件<ul>
+<li>git diff, 如果要对比未放入暂存区的文件，直接输入</li>
+<li>git diff –staged, 如果要对比已经进入暂存区文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="提交文件-git-commit"><a href="#提交文件-git-commit" class="headerlink" title="提交文件 git commit"></a>提交文件 git commit</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git commit # 提交文件</div><div class="line">$ git commit -a -m &apos;此处输入理由&apos; # 这个可以直接跳过暂存区进行暂存</div></pre></td></tr></table></figure>
+<h4 id="暂存修改，提交代码"><a href="#暂存修改，提交代码" class="headerlink" title="暂存修改，提交代码"></a>暂存修改，提交代码</h4><p>如果，本地有没修改玩的代码，但是这个时候又需要合并别的人代码，那么这个时候就需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash</div><div class="line">$ git pull origin master</div></pre></td></tr></table></figure>
+<p>当把别人的代码合并了之后，需要把之前的暂存代码拉出来这个时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash pop # 把最近一次的暂存文件拿出来</div><div class="line">$ git stash</div></pre></td></tr></table></figure></p>
+<h5 id="当我们觉得刚才输入的-m-写的不好，我们可以进行后悔重新写"><a href="#当我们觉得刚才输入的-m-写的不好，我们可以进行后悔重新写" class="headerlink" title="当我们觉得刚才输入的 -m 写的不好，我们可以进行后悔重新写"></a>当我们觉得刚才输入的 -m 写的不好，我们可以进行后悔重新写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend -m &apos;这次写的炫酷的理由&apos;</div></pre></td></tr></table></figure>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><ul>
+<li>git rm<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git rm a.t # 删除a.t，真的就没有这个文件了</div><div class="line">$ git status -s # 查看状态</div><div class="line">D  a.t</div><div class="line"></div><div class="line">$ git rm a.t --cached # 只是删除了缓存区内的文件，但是并不会删除文件</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="查看历史"><a href="#查看历史" class="headerlink" title="查看历史"></a>查看历史</h4><h5 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">commit ef80dd6875bfea55723a280caa9f5ad5ecc87a74</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line">commit 60202107a4292ff2fb375f64099b841f7bb639ac</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:39:28 2017 +0800</div></pre></td></tr></table></figure>
+<h5 id="git-log-p-2"><a href="#git-log-p-2" class="headerlink" title="git log -p -2"></a>git log -p -2</h5><p>查看版本差异，-p 后面的数字，表示最近几个版本的差异，比如-2，代表最近两个版本差异<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">commit 52c661dcca23764c0ed24d32215ab7ca961af31d</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line">diff --git a/a.t b/a.t</div><div class="line">deleted file mode 100644</div><div class="line">index 5d308e1..0000000</div><div class="line">--- a/a.t</div><div class="line">+++ /dev/null</div><div class="line">@@ -1 +0,0 @@</div><div class="line">-aaaa</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line">diff --git a/a.t b/a.t</div><div class="line">index 304f1bb..5d308e1 100644</div><div class="line">--- a/a.t</div><div class="line">+++ b/a.t</div><div class="line">@@ -1 +1 @@</div><div class="line">-adas</div><div class="line">+aaaa</div></pre></td></tr></table></figure></p>
+<h5 id="git-log-–stat"><a href="#git-log-–stat" class="headerlink" title="git log –stat"></a>git log –stat</h5><p>这个是简单的统计信息,比如有此次更新有多少修改，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">commit 23a4d911feb212e50d5f5d32f802b460c2ca01c8</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 20:10:28 2017 +0800</div><div class="line"></div><div class="line">    ttttttt</div><div class="line"></div><div class="line"> a.t | 2 ++</div><div class="line"> 1 file changed, 2 insertions(+)</div><div class="line"></div><div class="line">commit 52c661dcca23764c0ed24d32215ab7ca961af31d</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line"> a.t | 1 -</div><div class="line"> 1 file changed, 1 deletion(-)</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line"> a.t | 2 +-</div><div class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</div></pre></td></tr></table></figure>
+<h5 id="git-log-–pretty"><a href="#git-log-–pretty" class="headerlink" title="git log –pretty"></a>git log –pretty</h5><p>美化日志输出:</p>
+<ul>
+<li><p>oneline， 简化为1行输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">d3373c97e1bd4fceb0687d2e289998bccda514f1 Fix old reference to _sheetIndex in HTML Writer</div><div class="line">1c8c2379ccf5ab9dd7cb46be965821d22173bcf4 Fix to Radar and Scatter chart examples</div><div class="line">900325d0c809bc9cc4263fe67881d7627bb0b7f3 Minor updates to composer</div><div class="line">e487f5c11a4b62376015d1e7da27420be0932275 Fix for multiple worksheets, all with merge cells, in HTML Writer</div><div class="line">fcc5c6585574054bd2dce530d5fb3f5da745bc49 Fix to 01simple.php example after mis-commit</div><div class="line">650d2d099c293794cbaa9f41c332cf90078a4428 Merge branch &apos;develop&apos; into 1.8</div><div class="line">b2029564e5fe1f7e8a154defe20604666c7192a3 Fix for XML settings, together with unit tests</div><div class="line">b0ce48fd92e15a874b8246d645072ad817b68114 Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f74a2162574d6fa128b26381a6299d084e Update 01-Getting-Started.md</div><div class="line">8af620f97b8b1c8a677d90b3d7203fa562050db1 GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div></pre></td></tr></table></figure>
+</li>
+<li><p>shor, full, fuller 这三个可以试试，有惊喜</p>
+</li>
+<li>format, 可以自定义输出显示内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git log --pretty=%h\ \ %s //只显示简短commit号和提交信息</div><div class="line">d3373c9  Fix old reference to _sheetIndex in HTML Writer</div><div class="line">1c8c237  Fix to Radar and Scatter chart examples</div><div class="line">900325d  Minor updates to composer</div><div class="line">e487f5c  Fix for multiple worksheets, all with merge cells, in HTML Writer</div><div class="line">fcc5c65  Fix to 01simple.php example after mis-commit</div><div class="line">650d2d0  Merge branch &apos;develop&apos; into 1.8</div><div class="line">b202956  Fix for XML settings, together with unit tests</div><div class="line">b0ce48f  Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f  Update 01-Getting-Started.md</div><div class="line">8af620f  GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div><div class="line">c4782b6  General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f  Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>以下表格，摘自的是官网内容</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%H</td>
+<td>提交对象（commit）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>提交对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%an</td>
+<td>作者（author）的名字</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>提交说明</td>
+</tr>
+<tr>
+<td>%cr</td>
+<td>提交日期，按多久以前的方式显示</td>
+</tr>
+</tbody>
+</table>
+<p>常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>按补丁格式显示每个更新之间的差异。</td>
+</tr>
+<tr>
+<td>–stat</td>
+<td>显示每次更新的文件修改统计信息。</td>
+</tr>
+<tr>
+<td>–shortstat</td>
+<td>只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+<tr>
+<td>–name-only</td>
+<td>仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+<tr>
+<td>–name-status</td>
+<td>显示新增、修改、删除的文件清单。</td>
+</tr>
+<tr>
+<td>–relative-date</td>
+<td>使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+<tr>
+<td>–graph</td>
+<td>显示 ASCII 图形表示的分支合并历史。<strong>这个很好用</strong></td>
+</tr>
+<tr>
+<td>–pretty</td>
+<td>使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="git-log-其他一些好用的方法"><a href="#git-log-其他一些好用的方法" class="headerlink" title="git log 其他一些好用的方法"></a>git log 其他一些好用的方法</h5><ul>
+<li>git log –since=2017-03-10 –after=2017-03-11， 从2017-03-10开始之后的到2017-03-11日之前提交显示</li>
+<li>git log –until=2017-03-10，–before=2017-03-09， 在2017-03-09之后到2017-03-10之前的提交, 由于本人英语没过六级，所以更牛逼的语法，我也不会写</li>
+<li>git log –author=MarkBaker, 查询MarkBaker提交的记录显示</li>
+<li>git log –grep=test，显示包含test的提交</li>
+<li>git log -Stest, 显示包含删除，或者新增的包含test的文件</li>
+</ul>
+<h3 id="GIT数据恢复-危险，一般别用，后果自负"><a href="#GIT数据恢复-危险，一般别用，后果自负" class="headerlink" title="GIT数据恢复 (危险，一般别用，后果自负)"></a>GIT数据恢复 (危险，一般别用，后果自负)</h3><ul>
+<li>当你不小心删除了一个分支之后</li>
+<li><p>先让我们认为造几个删除分支的情况</p>
+<ul>
+<li>git reset –soft HEAD~2 和 git reset –hard HEAD~2 区别是soft 只是向下走两个指针，hard却会删除那两个提交<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ git log --oneline# 查看分支</div><div class="line">b0ce48f Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f Update 01-Getting-Started.md</div><div class="line">8af620f GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div><div class="line">c4782b6 General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div><div class="line"></div><div class="line">$ git reset --hard HEAD^^ #(注意HEAD^^，它表示，向前三个版本删掉)</div><div class="line">$ git log --oneline</div><div class="line">c4782b6 General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div><div class="line">1a23757 Merge pull request #869 from vitalyrepin/1.8</div><div class="line">4491898 Bug fix: c:max and c:min elements must not be inside c:orientation elements. They shall be inside c:scaling elements. Otherwise they are ignored by Excel and Libreoffice</div><div class="line"></div><div class="line">$ git reset --hard HEAD~2 # (注意，这个，标示前两个版本删除)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>然后，让我们发现删除错了, 需要恢复文件的时候, 我建议你自己新建一个分支，用来做恢复使用</p>
+</li>
+</ul>
+<ol>
+<li><strong>切记不要在当前分支恢复</strong></li>
+<li><strong>切记不要在当前分支恢复</strong></li>
+<li><strong>切记不要在当前分支恢复</strong></li>
+</ol>
+<ul>
+<li><p>接下来，我们进行恢复操作</p>
+</li>
+<li><p>如果我们要恢复之前删除，可以使用命令git reflog 工具，它忠实的记录我们每次操作的日志，如果你发现你的操作这里也没有，那么就说明，你可以放弃了恢复了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div><div class="line">c4782b6 HEAD@&#123;0&#125;: reset: moving to HEAD^^ # 这是之前的操作</div><div class="line"># 如果想看详细的自己操作记录</div><div class="line">$ git log -g</div><div class="line">commit c4782b660619be139a64d96a545f6a422ca74c20</div><div class="line">Reflog: HEAD@&#123;0&#125; (t &lt;t@playcrab.com&gt;)</div><div class="line">Reflog message: reset: moving to HEAD^^</div><div class="line">Author: MarkBaker &lt;mark@lange.demon.co.uk&gt;</div><div class="line">Date:   Thu Mar 31 23:50:44 2016 +0100</div><div class="line"></div><div class="line">    General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line"></div><div class="line"># 我们开始恢复到一个新分支(recover)中</div><div class="line">$ git branch recover c4782b660619be139a64d96a545f6a422ca74c20</div></pre></td></tr></table></figure>
+</li>
+<li><p>git fsck –full, 终极大招，如果实在找不到，那么就执行这个</p>
+</li>
+</ul>
+<h3 id="GIT最牛技能，分支"><a href="#GIT最牛技能，分支" class="headerlink" title="GIT最牛技能，分支"></a>GIT最牛技能，分支</h3><ul>
+<li>我们使用的git分支模型, 请参考<a href="http://www.ituring.com.cn/article/56870" target="_blank" rel="external">GitFlow</a></li>
+<li><p>git checkout -b work 新建一个分支, 并且切换到分支work<br>分支的合并 merge –no-ff<br>TODO</p>
+</li>
+<li><p>git branch -d work 删除分支work<br>TODO</p>
+</li>
+<li><p>git clone –bare 下载纯净代码</p>
+</li>
+<li><p>GIT 变基….<br>TODO</p>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="git"><a href="#git" class="headerlink" title=".git"></a>.git</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">COMMIT_EDITMSG</div><div class="line">HEAD # 重要，指向当前所在的分支</div><div class="line">ORIG_HEAD</div><div class="line">branches/</div><div class="line">config # 可以覆盖全局的git config --global</div><div class="line">description # 没啥用</div><div class="line">hooks/ # 文件提供了回调函数, 比如自定义，提交之前做什么，提交之后做什么，更新之后做什么</div><div class="line">index # 当前暂存区的信息</div><div class="line">info/</div><div class="line">logs/</div><div class="line">objects/ # 重要，存储所有数据内容</div><div class="line">refs/ # 重要，存储各分支，tag当前指向的引用</div></pre></td></tr></table></figure>
+<p>查看提交信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git cat-file -p 1c8c2379ccf5ab9dd7cb46be965821d22173bcf4</div></pre></td></tr></table></figure></p>
+<h4 id="git-add-i-交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔"><a href="#git-add-i-交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔" class="headerlink" title="git add -i # 交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔"></a>git add -i # 交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔</h4><h3 id="git-调试代码"><a href="#git-调试代码" class="headerlink" title="git 调试代码"></a>git 调试代码</h3><h4 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a>git blame</h4><ul>
+<li>我要分析文件 Classes/PHPExcel/Shared/Date.php 第80 到 85行到底什么时候添加的代码，为毛写的这么挫(举例而已，人家写的很好)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git blame -C -L 84,90:Classes/PHPExcel/Shared/Date.php</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 84)     public static function setExcelCalendar($baseDate)</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 85)     &#123;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 86)         if (($baseDate == self::CALENDAR_WINDOWS_1900) ||</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 87)             ($baseDate == self::CALENDAR_MAC_1904)) &#123;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 88)             self::$excelBaseDate = $baseDate;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 89)             return true;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 90)         &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="git-bisect"><a href="#git-bisect" class="headerlink" title="git bisect"></a>git bisect</h4><ul>
+<li>我们要查找一个bug，但是不知道bug出在哪里，这个时候，我们可以告诉git哪一个版本的时候还是正常的，到哪一个版本之后就错误了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git bisect start # 我们要开始查找错误了</div><div class="line">$ git bisect bad # 从这里开始就错误了</div><div class="line">$ git bisect good f94dcb9852debe2f1068b828f4c27c7fddc92c7b # 这个版本的时候还是好的</div><div class="line">Bisecting: 44 revisions left to test after this (roughly 6 steps)</div><div class="line">[e7c7a6eb53e05daec307fa380bdf84bdb35f9363] Merge branch &apos;1.8&apos; of https://github.com/PHPOffice/PHPExcel into 1.8</div><div class="line">$ git bisect bad # 如果你这个时候，还是不行，那么它就会继续查找</div><div class="line">$ git bisect bad  # 这次会继续尝试</div><div class="line">$ git bisect good  # 直到找到问题的根源，输入good标示, 这样查找结束</div><div class="line">$ git bisect reset # 一定要记住，reset回原始状态，否则你就会停留在一个奇怪的提交树</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Git </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[PonyOrm之初体验]]></title>
+      <url>https://www.heyyezi.com/2017/03/07/python-ponyorm/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>这是一个很好用的python ORM库所以推荐一下,顺便安利一个工具<br><a id="more"></a></p>
+</blockquote>
+<h3 id="先来安利一个工具Pipenv"><a href="#先来安利一个工具Pipenv" class="headerlink" title="先来安利一个工具Pipenv"></a>先来安利一个工具Pipenv</h3><p>  大家都用过virtualenv吧，这货把Pipfile, pip, virtualenv这三个工具集合到了一起，完美的结合到了一起。</p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pipenv</div></pre></td></tr></table></figure>
+<p>  警告⚠️:<br>    <strong>如果你的默认环境小于版本python2.7.10，安装的时候出现任何问题，概不负责</strong></p>
+<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  初始化python2.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --two # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python2)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
+<p>  初始化python3.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --three # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python3)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
+<p>  初始化完成后，如果并不想进入虚拟环境, 执行python命令，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pipenv run python # 这个时候python，是虚拟环境中的python</div><div class="line">$ pienv run pip install ansible # 此时是向虚拟环境中安装ansible</div></pre></td></tr></table></figure></p>
+<p>  创建自己的依赖文件, 下次你只要把Pipfile文件，拿到别的地方，执行pipenv install 那么机会自动把环境包装好<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pipenv shell</div><div class="line">(your_dir)(your_dir) pipenv install requests # 这时候，你会发现你的Pipfile中多了一个包的</div><div class="line">(your_dir)(your_dir) pipenv lock --dev # 锁定版本</div></pre></td></tr></table></figure></p>
+<p>  如果你当前环境已经有一个虚拟环境，那么再创建一个的时候，会覆盖之前的。</p>
+<p><img src="https://camo.githubusercontent.com/2287c881cb3a045f4f70f20f0326ec4ef1474ccd/687474703a2f2f6d656469612e6b656e6e657468726569747a2e636f6d2e73332e616d617a6f6e6177732e636f6d2f706970656e762e676966" alt="Pipenv图片"></p>
+<h3 id="切入正题-PonyOrm"><a href="#切入正题-PonyOrm" class="headerlink" title="切入正题, PonyOrm"></a>切入正题, PonyOrm</h3><p>  <a href="https://ponyorm.com/" target="_blank" rel="external">PonyOrm</a>, 它是一个关系型数据库对象ROM工具(mysql,sqlit),可以方便的写做表的联合等，尤其是数据导入，导出的时候很方便。<br>特点：</p>
+<ul>
+<li>简单的查询语法</li>
+<li>自动优化查询</li>
+<li>对于N+1的问题解决方案(orm总会多查询一次，用来缓存数据，具体请自行百度)</li>
+<li>又一个在线编辑工具 <a href="https://editor.ponyorm.com/" target="_blank" rel="external">查看</a>（不好用）</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+  
+  
+</search>

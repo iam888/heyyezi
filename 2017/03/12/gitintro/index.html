@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!-- 
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.0 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Git简介 | 
+        
+        黑白之院
+    </title>
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="A Man Has No Name">
+    <meta name="description" content="Valar Morghulis">
+    <meta name="keywords" content="null,Git">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="黑白之院">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://www.heyyezi.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Git简介 | 黑白之院">
+    <meta property="og:description" content="Valar Morghulis">
+    <meta property="og:article:tag" content="Git"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS -->
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/style.min.css">
+    <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/queue.js"></script>
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#GIT-和-SVN"><span class="post-toc-number">1.</span> <span class="post-toc-text">GIT 和 SVN</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#SVN"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">SVN</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GIT"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">GIT</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#三种状态"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">三种状态</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#别名"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">别名</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用命令"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">常用命令</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#clone-代码"><span class="post-toc-number">1.5.1.</span> <span class="post-toc-text">clone 代码</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#设置自己编辑器-默认是vim"><span class="post-toc-number">1.5.2.</span> <span class="post-toc-text">设置自己编辑器, 默认是vim</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看配置文件"><span class="post-toc-number">1.5.3.</span> <span class="post-toc-text">查看配置文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看git状态-git-status"><span class="post-toc-number">1.5.4.</span> <span class="post-toc-text">查看git状态, git status</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#创建新文件"><span class="post-toc-number">1.5.4.1.</span> <span class="post-toc-text">创建新文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#忽略文件-gitignore"><span class="post-toc-number">1.5.5.</span> <span class="post-toc-text">忽略文件, .gitignore</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#提交文件-git-commit"><span class="post-toc-number">1.5.6.</span> <span class="post-toc-text">提交文件 git commit</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#暂存修改，提交代码"><span class="post-toc-number">1.5.7.</span> <span class="post-toc-text">暂存修改，提交代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#当我们觉得刚才输入的-m-写的不好，我们可以进行后悔重新写"><span class="post-toc-number">1.5.7.1.</span> <span class="post-toc-text">当我们觉得刚才输入的 -m 写的不好，我们可以进行后悔重新写</span></a></li></ol></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#删除文件"><span class="post-toc-number">1.5.8.</span> <span class="post-toc-text">删除文件</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#查看历史"><span class="post-toc-number">1.5.9.</span> <span class="post-toc-text">查看历史</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#git-log"><span class="post-toc-number">1.5.9.1.</span> <span class="post-toc-text">git log</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#git-log-p-2"><span class="post-toc-number">1.5.9.2.</span> <span class="post-toc-text">git log -p -2</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#git-log-–stat"><span class="post-toc-number">1.5.9.3.</span> <span class="post-toc-text">git log –stat</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#git-log-–pretty"><span class="post-toc-number">1.5.9.4.</span> <span class="post-toc-text">git log –pretty</span></a></li><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#git-log-其他一些好用的方法"><span class="post-toc-number">1.5.9.5.</span> <span class="post-toc-text">git log 其他一些好用的方法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GIT数据恢复-危险，一般别用，后果自负"><span class="post-toc-number">1.6.</span> <span class="post-toc-text">GIT数据恢复 (危险，一般别用，后果自负)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#GIT最牛技能，分支"><span class="post-toc-number">1.7.</span> <span class="post-toc-text">GIT最牛技能，分支</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他"><span class="post-toc-number">1.8.</span> <span class="post-toc-text">其他</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#git"><span class="post-toc-number">1.8.1.</span> <span class="post-toc-text">.git</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#git-add-i-交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔"><span class="post-toc-number">1.8.2.</span> <span class="post-toc-text">git add -i # 交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#git-调试代码"><span class="post-toc-number">1.9.</span> <span class="post-toc-text">git 调试代码</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#git-blame"><span class="post-toc-number">1.9.1.</span> <span class="post-toc-text">git blame</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#git-bisect"><span class="post-toc-number">1.9.2.</span> <span class="post-toc-text">git bisect</span></a></li></ol></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Git简介
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>A Man Has No Name</strong>
+        <span>3月 12, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACb0lEQVR42u3aUW7CMBAFQO5/6fYACPftrm0omnxVkDiZVPKa5338fPXxwMPDw8PDw8PD+zDeIz7WVz1/ntzl+ZwNz4aHh4d3hffHVPvinFew9e2TFzF5Njw8PLybvPV0v56+k2/Xd1yPljwbHh4e3n/kJYB1kcDDw8P7Vl41XEiuqo6Ah4eH9wm85Ad/L26oRhJvy1rw8PDwYl6+yXT/76v7e3h4eHgBr9zSFCxqk2k9LzCjpis8PDy8A7z59n+yGTaJcasvAg8PD+8Or/mzvxjITppc83KCh4eHd4eXDNfbAOvFxKMyg4eHh3eF14sYelHvpLUrWujj4eHhXeT1ls5J01UvdMhbEPDw8PBu8vIFbnVLrLzlXyxOzdYBPDw8vDGvWhjyDa28EaEK+ONaPDw8vMO8aqTbm8QnTQPlMfHw8PAO85KBqptk1fi111jwsozh4eHhXeElU39v06sX4PYCXzw8PLybvOoCetIikG+eVdsa8PDw8O7wkgfNg9c82uiVk3JhwMPDwzvGS4abNA3sehHRmXh4eHiHedVYoRdkVNm9V4OHh4d3kzdvIEhI+UI8Ob/QU4aHh4d3mNdrKeh9OzmahQEPDw9vK2/XFn45eI2vjf4xeHh4eId51SOPJ/KweLKYLqTUeHh4eJt4ze354GZ5CJs3fkWvGA8PD+8KLy8G1ZA3Ga3aplBousLDw8M7zMsn6KRsVD/vBRmjrAUPDw/vOi9vsZrc8W2FAQ8PD28rrxfvVh86YR8pDHh4eHhbc87Nm1WDwoCHh4f3Xt6uqbnagFVdgkef4+Hh4R3mfd+Bh4eHh4eHh4f3AccvW/MA/PyPyK0AAAAASUVORK5CYII=">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Git/">Git</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Git简介&url=https://www.heyyezi.com//2017/03/12/gitintro/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Git简介&url=https://www.heyyezi.com//2017/03/12/gitintro/index.html&via=A Man Has No Name" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/12/gitintro/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/12/gitintro/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <blockquote>
+<p>简单介绍一下GIT, 用作培训，不用点进来看了<br><a id="more"></a></p>
+</blockquote>
+<h2 id="GIT-和-SVN"><a href="#GIT-和-SVN" class="headerlink" title="GIT 和 SVN"></a>GIT 和 SVN</h2><h3 id="SVN"><a href="#SVN" class="headerlink" title="SVN"></a>SVN</h3><p>  我一开始用的是svn，那就先从svn说起，svn就是典型的集中式是管理，也就是所有操作必须与代码服务器通信。总体来说还是比较好用的，因为比起上一代CVS，它可以创建分支，虽然它的分支是真的把整个目录拷出来一份(比较挫), 而且离开网络什么也干不了, 当你在紧急情况下，diff文件的时候，网络却以几b的速度。。。。。。</p>
+<p><img src="https://git-scm.com/book/en/v2/images/distributed.png" alt="https://git-scm.com/book/en/v2/images/distributed.png"></p>
+<h3 id="GIT"><a href="#GIT" class="headerlink" title="GIT"></a>GIT</h3><p>  GIT起源与维护Linux核心库维护工作, 被认为是分布式的版本管理工具,每一个客户端都会有一份完整的版本记录(所以目录会比较大),所有的操作都会是在本地进行, 你的每次提交，它都会在本地做一次快照，只是<strong>存储本次修改的数据</strong>。他的特点基本如下</p>
+<ul>
+<li>GIT关注的是数据，svn关注的是文件，比如svn，举个例子，你在git和svn中创建一个空文件夹试试上传代码。</li>
+<li>GIT几乎所有的操作都是在本地</li>
+<li>简单分支创建，切换</li>
+<li>离线操作，缓存本地的提交，git会保留你所有的提交记录，然后在联网之后，与其他伙伴合并代码</li>
+<li>先进的存储模式。</li>
+</ul>
+<h3 id="三种状态"><a href="#三种状态" class="headerlink" title="三种状态"></a>三种状态</h3><p>这是正题，git有三种状态</p>
+<ul>
+<li>Committed, 已经安全提交到了版本库</li>
+<li>Modified, 文件已经修改了，但是未提交</li>
+<li>Staged, 对那些需要提交到版本库的Modified的文件，做标记，等待提交操作</li>
+</ul>
+<div id="sequence-0"></div>
+
+<p>所以.git文件就是当前项目的版本数据库，它包含了，这个项目的一切信息。</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>我一般会给git常用命令设置别名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.co checkout</div><div class="line">$ git config --global alias.br branch</div><div class="line">$ git config --global alias.ci commit</div><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
+<p>这样</p>
+<ul>
+<li>git checkout == git co</li>
+<li>git branch  == git br</li>
+<li>git commit == git ci</li>
+<li>git status = git st</li>
+</ul>
+<h3 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h3><p>推荐大家使用Source Tree,很好用</p>
+<ul>
+<li>首先设置自己<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;John Doe&quot;</div><div class="line">$ git config --global user.email johndoe@example.com</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="clone-代码"><a href="#clone-代码" class="headerlink" title="clone 代码"></a>clone 代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git clone git@github.com:php-ai/php-ml.git</div><div class="line"># 如果你只想要最新的代码，当前的网络又特别慢的时候，你可以指定要下载哪几次提交的代码(尤其在公司的时候下载github代码)</div><div class="line">$ git clone git@github.com:php-ai/php-ml.git --depth 1 //可以试试，有惊喜</div></pre></td></tr></table></figure>
+<h4 id="设置自己编辑器-默认是vim"><a href="#设置自己编辑器-默认是vim" class="headerlink" title="设置自己编辑器, 默认是vim"></a>设置自己编辑器, 默认是vim</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global core.editor atom</div><div class="line"># 设置忽略大小写引起的改动那么</div><div class="line"># 默认是false</div><div class="line">$ git config --global core.ignorecase true</div></pre></td></tr></table></figure>
+<h4 id="查看配置文件"><a href="#查看配置文件" class="headerlink" title="查看配置文件"></a>查看配置文件</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ git config --list</div><div class="line">  user.name=John Doe</div><div class="line">  user.email=johndoe@example.com</div><div class="line">  color.status=auto</div><div class="line">  color.branch=auto</div><div class="line">  color.interactive=auto</div><div class="line">  color.diff=auto</div></pre></td></tr></table></figure>
+<ul>
+<li>文件状态变化</li>
+</ul>
+<div id="sequence-1"></div>
+
+<h4 id="查看git状态-git-status"><a href="#查看git状态-git-status" class="headerlink" title="查看git状态, git status"></a>查看git状态, git status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master # 目前在master分支上</div><div class="line">nothing to commit, working directory clean # 这个目录是干净的</div></pre></td></tr></table></figure>
+<h5 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;test git&apos; &gt; test_git.txt</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Untracked files: # 当前这些文件状态是Untracked</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed) # 推荐你进行这些操作</div><div class="line">	test_git.txt # 这些文件没有被版本追踪</div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div><div class="line"></div><div class="line">$ git add test_git.txt # 如果是多个文件git add * , 把这些文件放在Staged中</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Changes to be committed: # Staged状态,</div><div class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</div><div class="line">	new file:   test_git.txt # 这个文件暂存</div><div class="line">$ git commit -m &quot;这是要写理由&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>简洁的输出, git status -s<ul>
+<li>新添加的未跟踪文件前面有 ?? 标记，</li>
+<li>新添加到暂存区中的文件前面有 A 标记，</li>
+<li>修改过的文件前面有 M 标记<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status -s #推荐使用这个命令，比较简洁</div><div class="line">M  test_git.txt # 说明这个文件修改过了</div><div class="line">?? test.md # 这个文件是没有被追踪的</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="忽略文件-gitignore"><a href="#忽略文件-gitignore" class="headerlink" title="忽略文件, .gitignore"></a>忽略文件, .gitignore</h4><ul>
+<li># 和 空行，都会被忽略</li>
+<li>支持正则匹配</li>
+<li>匹配模式以(/)开始，以(/)结束</li>
+<li>要忽略制定模式意外的文件, 加(!)</li>
+<li>匹配任意目录<code>d/**/d1</code>, 可以匹配<code>d/d2/d1</code>, <code>d/d2/d3/d1</code>等, 一个<code>*</code>,匹配任何文件;<code>.</code>没有其他意义<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> # 忽略当前目录里面的文件 TEST</div><div class="line">/TEST</div><div class="line"> # 这个才是忽略TEST目录以及下面的文件</div><div class="line">TEST/</div><div class="line"># 忽略test目录所有后缀是.pyc的文件</div><div class="line">test/**/*.pyc</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>diff 文件，暂存区，是只还没有commit的文件<ul>
+<li>git diff, 如果要对比未放入暂存区的文件，直接输入</li>
+<li>git diff –staged, 如果要对比已经进入暂存区文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="提交文件-git-commit"><a href="#提交文件-git-commit" class="headerlink" title="提交文件 git commit"></a>提交文件 git commit</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git commit # 提交文件</div><div class="line">$ git commit -a -m &apos;此处输入理由&apos; # 这个可以直接跳过暂存区进行暂存</div></pre></td></tr></table></figure>
+<h4 id="暂存修改，提交代码"><a href="#暂存修改，提交代码" class="headerlink" title="暂存修改，提交代码"></a>暂存修改，提交代码</h4><p>如果，本地有没修改玩的代码，但是这个时候又需要合并别的人代码，那么这个时候就需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash</div><div class="line">$ git pull origin master</div></pre></td></tr></table></figure>
+<p>当把别人的代码合并了之后，需要把之前的暂存代码拉出来这个时候<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git stash pop # 把最近一次的暂存文件拿出来</div><div class="line">$ git stash</div></pre></td></tr></table></figure></p>
+<h5 id="当我们觉得刚才输入的-m-写的不好，我们可以进行后悔重新写"><a href="#当我们觉得刚才输入的-m-写的不好，我们可以进行后悔重新写" class="headerlink" title="当我们觉得刚才输入的 -m 写的不好，我们可以进行后悔重新写"></a>当我们觉得刚才输入的 -m 写的不好，我们可以进行后悔重新写</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git commit --amend -m &apos;这次写的炫酷的理由&apos;</div></pre></td></tr></table></figure>
+<h4 id="删除文件"><a href="#删除文件" class="headerlink" title="删除文件"></a>删除文件</h4><ul>
+<li>git rm<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ git rm a.t # 删除a.t，真的就没有这个文件了</div><div class="line">$ git status -s # 查看状态</div><div class="line">D  a.t</div><div class="line"></div><div class="line">$ git rm a.t --cached # 只是删除了缓存区内的文件，但是并不会删除文件</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="查看历史"><a href="#查看历史" class="headerlink" title="查看历史"></a>查看历史</h4><h5 id="git-log"><a href="#git-log" class="headerlink" title="git log"></a>git log</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">commit ef80dd6875bfea55723a280caa9f5ad5ecc87a74</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line">commit 60202107a4292ff2fb375f64099b841f7bb639ac</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:39:28 2017 +0800</div></pre></td></tr></table></figure>
+<h5 id="git-log-p-2"><a href="#git-log-p-2" class="headerlink" title="git log -p -2"></a>git log -p -2</h5><p>查看版本差异，-p 后面的数字，表示最近几个版本的差异，比如-2，代表最近两个版本差异<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">commit 52c661dcca23764c0ed24d32215ab7ca961af31d</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line">diff --git a/a.t b/a.t</div><div class="line">deleted file mode 100644</div><div class="line">index 5d308e1..0000000</div><div class="line">--- a/a.t</div><div class="line">+++ /dev/null</div><div class="line">@@ -1 +0,0 @@</div><div class="line">-aaaa</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line">diff --git a/a.t b/a.t</div><div class="line">index 304f1bb..5d308e1 100644</div><div class="line">--- a/a.t</div><div class="line">+++ b/a.t</div><div class="line">@@ -1 +1 @@</div><div class="line">-adas</div><div class="line">+aaaa</div></pre></td></tr></table></figure></p>
+<h5 id="git-log-–stat"><a href="#git-log-–stat" class="headerlink" title="git log –stat"></a>git log –stat</h5><p>这个是简单的统计信息,比如有此次更新有多少修改，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">commit 23a4d911feb212e50d5f5d32f802b460c2ca01c8</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 20:10:28 2017 +0800</div><div class="line"></div><div class="line">    ttttttt</div><div class="line"></div><div class="line"> a.t | 2 ++</div><div class="line"> 1 file changed, 2 insertions(+)</div><div class="line"></div><div class="line">commit 52c661dcca23764c0ed24d32215ab7ca961af31d</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:46:09 2017 +0800</div><div class="line"></div><div class="line">    asdasd</div><div class="line"></div><div class="line"> a.t | 1 -</div><div class="line"> 1 file changed, 1 deletion(-)</div><div class="line"></div><div class="line">commit 5c9e8df22d8b3d46833619caffd56655e9a0c6ed</div><div class="line">Author: t &lt;t@playcrab.com&gt;</div><div class="line">Date:   Sun Mar 12 19:42:37 2017 +0800</div><div class="line"></div><div class="line">    dd</div><div class="line"></div><div class="line"> a.t | 2 +-</div><div class="line"> 1 file changed, 1 insertion(+), 1 deletion(-)</div></pre></td></tr></table></figure>
+<h5 id="git-log-–pretty"><a href="#git-log-–pretty" class="headerlink" title="git log –pretty"></a>git log –pretty</h5><p>美化日志输出:</p>
+<ul>
+<li><p>oneline， 简化为1行输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">d3373c97e1bd4fceb0687d2e289998bccda514f1 Fix old reference to _sheetIndex in HTML Writer</div><div class="line">1c8c2379ccf5ab9dd7cb46be965821d22173bcf4 Fix to Radar and Scatter chart examples</div><div class="line">900325d0c809bc9cc4263fe67881d7627bb0b7f3 Minor updates to composer</div><div class="line">e487f5c11a4b62376015d1e7da27420be0932275 Fix for multiple worksheets, all with merge cells, in HTML Writer</div><div class="line">fcc5c6585574054bd2dce530d5fb3f5da745bc49 Fix to 01simple.php example after mis-commit</div><div class="line">650d2d099c293794cbaa9f41c332cf90078a4428 Merge branch &apos;develop&apos; into 1.8</div><div class="line">b2029564e5fe1f7e8a154defe20604666c7192a3 Fix for XML settings, together with unit tests</div><div class="line">b0ce48fd92e15a874b8246d645072ad817b68114 Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f74a2162574d6fa128b26381a6299d084e Update 01-Getting-Started.md</div><div class="line">8af620f97b8b1c8a677d90b3d7203fa562050db1 GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div></pre></td></tr></table></figure>
+</li>
+<li><p>shor, full, fuller 这三个可以试试，有惊喜</p>
+</li>
+<li>format, 可以自定义输出显示内容<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">$ git log --pretty=%h\ \ %s //只显示简短commit号和提交信息</div><div class="line">d3373c9  Fix old reference to _sheetIndex in HTML Writer</div><div class="line">1c8c237  Fix to Radar and Scatter chart examples</div><div class="line">900325d  Minor updates to composer</div><div class="line">e487f5c  Fix for multiple worksheets, all with merge cells, in HTML Writer</div><div class="line">fcc5c65  Fix to 01simple.php example after mis-commit</div><div class="line">650d2d0  Merge branch &apos;develop&apos; into 1.8</div><div class="line">b202956  Fix for XML settings, together with unit tests</div><div class="line">b0ce48f  Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f  Update 01-Getting-Started.md</div><div class="line">8af620f  GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div><div class="line">c4782b6  General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f  Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>以下表格，摘自的是官网内容</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%H</td>
+<td>提交对象（commit）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>提交对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%an</td>
+<td>作者（author）的名字</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>提交说明</td>
+</tr>
+<tr>
+<td>%cr</td>
+<td>提交日期，按多久以前的方式显示</td>
+</tr>
+</tbody>
+</table>
+<p>常用的选项</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>按补丁格式显示每个更新之间的差异。</td>
+</tr>
+<tr>
+<td>–stat</td>
+<td>显示每次更新的文件修改统计信息。</td>
+</tr>
+<tr>
+<td>–shortstat</td>
+<td>只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+<tr>
+<td>–name-only</td>
+<td>仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+<tr>
+<td>–name-status</td>
+<td>显示新增、修改、删除的文件清单。</td>
+</tr>
+<tr>
+<td>–relative-date</td>
+<td>使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+<tr>
+<td>–graph</td>
+<td>显示 ASCII 图形表示的分支合并历史。<strong>这个很好用</strong></td>
+</tr>
+<tr>
+<td>–pretty</td>
+<td>使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+</tbody>
+</table>
+<h5 id="git-log-其他一些好用的方法"><a href="#git-log-其他一些好用的方法" class="headerlink" title="git log 其他一些好用的方法"></a>git log 其他一些好用的方法</h5><ul>
+<li>git log –since=2017-03-10 –after=2017-03-11， 从2017-03-10开始之后的到2017-03-11日之前提交显示</li>
+<li>git log –until=2017-03-10，–before=2017-03-09， 在2017-03-09之后到2017-03-10之前的提交, 由于本人英语没过六级，所以更牛逼的语法，我也不会写</li>
+<li>git log –author=MarkBaker, 查询MarkBaker提交的记录显示</li>
+<li>git log –grep=test，显示包含test的提交</li>
+<li>git log -Stest, 显示包含删除，或者新增的包含test的文件</li>
+</ul>
+<h3 id="GIT数据恢复-危险，一般别用，后果自负"><a href="#GIT数据恢复-危险，一般别用，后果自负" class="headerlink" title="GIT数据恢复 (危险，一般别用，后果自负)"></a>GIT数据恢复 (危险，一般别用，后果自负)</h3><ul>
+<li>当你不小心删除了一个分支之后</li>
+<li><p>先让我们认为造几个删除分支的情况</p>
+<ul>
+<li>git reset –soft HEAD~2 和 git reset –hard HEAD~2 区别是soft 只是向下走两个指针，hard却会删除那两个提交<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">$ git log --oneline# 查看分支</div><div class="line">b0ce48f Merge pull request #895 from psirus0588/patch-1</div><div class="line">772e66f Update 01-Getting-Started.md</div><div class="line">8af620f GH-879 Bug in file PHPExcel/Reader/CSV.php Code logic identifying a defined separator when no separator is explicitly defined Case-insensitive check when separator is explicitly defined</div><div class="line">c4782b6 General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div><div class="line"></div><div class="line">$ git reset --hard HEAD^^ #(注意HEAD^^，它表示，向前三个版本删掉)</div><div class="line">$ git log --oneline</div><div class="line">c4782b6 General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line">a1dee8f Bugfix: (vitalyrepin) Pull Request 869 - c:max and c:min elements shall NOT be inside c:orientation elements</div><div class="line">1a23757 Merge pull request #869 from vitalyrepin/1.8</div><div class="line">4491898 Bug fix: c:max and c:min elements must not be inside c:orientation elements. They shall be inside c:scaling elements. Otherwise they are ignored by Excel and Libreoffice</div><div class="line"></div><div class="line">$ git reset --hard HEAD~2 # (注意，这个，标示前两个版本删除)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>然后，让我们发现删除错了, 需要恢复文件的时候, 我建议你自己新建一个分支，用来做恢复使用</p>
+</li>
+</ul>
+<ol>
+<li><strong>切记不要在当前分支恢复</strong></li>
+<li><strong>切记不要在当前分支恢复</strong></li>
+<li><strong>切记不要在当前分支恢复</strong></li>
+</ol>
+<ul>
+<li><p>接下来，我们进行恢复操作</p>
+</li>
+<li><p>如果我们要恢复之前删除，可以使用命令git reflog 工具，它忠实的记录我们每次操作的日志，如果你发现你的操作这里也没有，那么就说明，你可以放弃了恢复了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div><div class="line">c4782b6 HEAD@&#123;0&#125;: reset: moving to HEAD^^ # 这是之前的操作</div><div class="line"># 如果想看详细的自己操作记录</div><div class="line">$ git log -g</div><div class="line">commit c4782b660619be139a64d96a545f6a422ca74c20</div><div class="line">Reflog: HEAD@&#123;0&#125; (t &lt;t@playcrab.com&gt;)</div><div class="line">Reflog message: reset: moving to HEAD^^</div><div class="line">Author: MarkBaker &lt;mark@lange.demon.co.uk&gt;</div><div class="line">Date:   Thu Mar 31 23:50:44 2016 +0100</div><div class="line"></div><div class="line">    General: (sim642) Pull Request 489 - Implement actual timezone adjustment into PHPExcel_Shared_Date::PHPToExcel</div><div class="line"></div><div class="line"># 我们开始恢复到一个新分支(recover)中</div><div class="line">$ git branch recover c4782b660619be139a64d96a545f6a422ca74c20</div></pre></td></tr></table></figure>
+</li>
+<li><p>git fsck –full, 终极大招，如果实在找不到，那么就执行这个</p>
+</li>
+</ul>
+<h3 id="GIT最牛技能，分支"><a href="#GIT最牛技能，分支" class="headerlink" title="GIT最牛技能，分支"></a>GIT最牛技能，分支</h3><ul>
+<li>我们使用的git分支模型, 请参考<a href="http://www.ituring.com.cn/article/56870" target="_blank" rel="external">GitFlow</a></li>
+<li><p>git checkout -b work 新建一个分支, 并且切换到分支work<br>分支的合并 merge –no-ff<br>TODO</p>
+</li>
+<li><p>git branch -d work 删除分支work<br>TODO</p>
+</li>
+<li><p>git clone –bare 下载纯净代码</p>
+</li>
+<li><p>GIT 变基….<br>TODO</p>
+</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><h4 id="git"><a href="#git" class="headerlink" title=".git"></a>.git</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">COMMIT_EDITMSG</div><div class="line">HEAD # 重要，指向当前所在的分支</div><div class="line">ORIG_HEAD</div><div class="line">branches/</div><div class="line">config # 可以覆盖全局的git config --global</div><div class="line">description # 没啥用</div><div class="line">hooks/ # 文件提供了回调函数, 比如自定义，提交之前做什么，提交之后做什么，更新之后做什么</div><div class="line">index # 当前暂存区的信息</div><div class="line">info/</div><div class="line">logs/</div><div class="line">objects/ # 重要，存储所有数据内容</div><div class="line">refs/ # 重要，存储各分支，tag当前指向的引用</div></pre></td></tr></table></figure>
+<p>查看提交信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git cat-file -p 1c8c2379ccf5ab9dd7cb46be965821d22173bcf4</div></pre></td></tr></table></figure></p>
+<h4 id="git-add-i-交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔"><a href="#git-add-i-交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔" class="headerlink" title="git add -i # 交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔"></a>git add -i # 交互式的提交方式，这个很哔，使用起来，比一般的GUI工具要牛哔</h4><h3 id="git-调试代码"><a href="#git-调试代码" class="headerlink" title="git 调试代码"></a>git 调试代码</h3><h4 id="git-blame"><a href="#git-blame" class="headerlink" title="git blame"></a>git blame</h4><ul>
+<li>我要分析文件 Classes/PHPExcel/Shared/Date.php 第80 到 85行到底什么时候添加的代码，为毛写的这么挫(举例而已，人家写的很好)<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ git blame -C -L 84,90:Classes/PHPExcel/Shared/Date.php</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 84)     public static function setExcelCalendar($baseDate)</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 85)     &#123;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 86)         if (($baseDate == self::CALENDAR_WINDOWS_1900) ||</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 87)             ($baseDate == self::CALENDAR_MAC_1904)) &#123;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 88)             self::$excelBaseDate = $baseDate;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 89)             return true;</div><div class="line">f7296f58 (MarkBaker 2015-05-13 00:40:55 +0100 90)         &#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h4 id="git-bisect"><a href="#git-bisect" class="headerlink" title="git bisect"></a>git bisect</h4><ul>
+<li>我们要查找一个bug，但是不知道bug出在哪里，这个时候，我们可以告诉git哪一个版本的时候还是正常的，到哪一个版本之后就错误了</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ git bisect start # 我们要开始查找错误了</div><div class="line">$ git bisect bad # 从这里开始就错误了</div><div class="line">$ git bisect good f94dcb9852debe2f1068b828f4c27c7fddc92c7b # 这个版本的时候还是好的</div><div class="line">Bisecting: 44 revisions left to test after this (roughly 6 steps)</div><div class="line">[e7c7a6eb53e05daec307fa380bdf84bdb35f9363] Merge branch &apos;1.8&apos; of https://github.com/PHPOffice/PHPExcel into 1.8</div><div class="line">$ git bisect bad # 如果你这个时候，还是不行，那么它就会继续查找</div><div class="line">$ git bisect bad  # 这次会继续尝试</div><div class="line">$ git bisect good  # 直到找到问题的根源，输入good标示, 这样查找结束</div><div class="line">$ git bisect reset # 一定要记住，reset回原始状态，否则你就会停留在一个奇怪的提交树</div></pre></td></tr></table></figure>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+    <!-- 使用多说评论 -->
+    <link rel="stylesheet" href="/css/duoshuo.min.css">
+<style>
+    #ds-thread #ds-reset .ds-post-button{
+        background-color: #0097A7 !important;
+    }
+    #ds-wrapper #ds-reset .ds-icons-32{
+        background-color: #0097A7 !important;
+    }
+    #ds-reset .ds-highlight {
+        color: #0097A7 !important;
+    }
+</style>
+<div id="comments">
+    <!-- 多说评论框 start -->
+    <div class="ds-thread"
+        data-thread-key="2017/03/12/gitintro/"
+        data-url="https://www.heyyezi.com/2017/03/12/gitintro/"
+        data-title="Git简介">
+    </div>
+    <!-- 多说评论框 end -->
+</div>
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2017/03/20/webpack/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/03/07/python-ponyorm/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="A Man Has No Name's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        hi@heyyezi.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="/links/" target="_blank" title="一群疯子">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        一群疯子
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/coding/">coding<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="Tags">
+                
+                    <i class="material-icons sidebar-material-icons">card_giftcard</i>
+                
+                Tags
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="Links">
+                
+                    <i class="material-icons sidebar-material-icons">people</i>
+                
+                Links
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">3</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.png);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.png);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.png);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;黑白之院
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+<script src="/js/lazyload.min.js"></script>
+<script src="/js/js.min.js"></script>
+<script src="/js/nprogress.js"></script>
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    <!-- 多说公共 js 代码 start -->
+    <script type="text/javascript">
+        queue.offer(function(){
+            (function() {
+                var ds = document.createElement('script');
+                ds.type = 'text/javascript';
+                ds.async = true;
+                ds.src = 'https://static.duoshuo.com/embed.js';
+                ds.charset = 'UTF-8';
+                duoshuoQuery = { short_name: 'heyyezi' };
+                (document.getElementsByTagName('head')[0]
+                 || document.getElementsByTagName('body')[0]).appendChild(ds);
+
+            })();
+        });
+    </script>
+    <!-- 多说公共 js 代码 end -->
+
+
+
+
+
+<!-- Swiftye -->
+
+
+<!-- Local Search-->
+
+    <script>
+    var searchFunc = function(path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: 'xml',
+            success: function( xmlResponse ) {
+                // get the contents from search data
+                var datas = $( 'entry', xmlResponse ).map(function() {
+                    return {
+                        title: $( 'title', this ).text(),
+                        content: $('content',this).text(),
+                        url: $( 'url' , this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function() {
+                    var str='<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = '';
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function(data) {
+                        var isMatch = true;
+                        var content_index = [];
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g,'').toLowerCase();
+                        var data_url = data.url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if(data_title !== '' && data_content !== '') {
+                            keywords.forEach(function(keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if( index_title < 0 && index_content < 0 ) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += '<li><a href="'+ data_url +'" class="search-result-title" target="_blank">'+ data_title;
+                            var content = data.content.trim().replace(/<[^>]+>/g, '');
+                            if (first_occur >= 0) {
+                                // cut out characters
+                                var start = first_occur - 6;
+                                var end = first_occur + 6;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 10;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function(keyword) {
+                                    var regS = new RegExp(keyword, 'gi');
+                                    match_content = match_content.replace(regS, '<em class="search-keyword">'+keyword+'</em>');
+                                })
+                                str += '<p class="search-result">' + match_content + '...</p>' +'</a>';
+                            }
+                        }
+                    });
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    }
+</script>
+
+
+    <script>
+        var inputArea = document.querySelector('#search');
+        var getSearchFile = function() {
+            var path = 'search.xml';
+            searchFunc(path, 'search', 'local-search-result');
+        }
+
+        if(inputArea) {
+            inputArea.onfocus = function() {
+                getSearchFile();
+            }
+        }
+    </script>
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+
+                </main>
+            </div>
+        </body>
+    
+</html>
