@@ -421,6 +421,7 @@
 </ul>
 <div id="sequence-0"></div>
 
+
 <p>所以.git文件就是当前项目的版本数据库，它包含了，这个项目的一切信息。</p>
 <h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>我一般会给git常用命令设置别名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.co checkout</div><div class="line">$ git config --global alias.br branch</div><div class="line">$ git config --global alias.ci commit</div><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
@@ -443,6 +444,7 @@
 <li>文件状态变化</li>
 </ul>
 <div id="sequence-1"></div>
+
 
 <h4 id="查看git状态-git-status"><a href="#查看git状态-git-status" class="headerlink" title="查看git状态, git status"></a>查看git状态, git status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master # 目前在master分支上</div><div class="line">nothing to commit, working directory clean # 这个目录是干净的</div></pre></td></tr></table></figure>
 <h5 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;test git&apos; &gt; test_git.txt</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Untracked files: # 当前这些文件状态是Untracked</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed) # 推荐你进行这些操作</div><div class="line">	test_git.txt # 这些文件没有被版本追踪</div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div><div class="line"></div><div class="line">$ git add test_git.txt # 如果是多个文件git add * , 把这些文件放在Staged中</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Changes to be committed: # Staged状态,</div><div class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</div><div class="line">	new file:   test_git.txt # 这个文件暂存</div><div class="line">$ git commit -m &quot;这是要写理由&quot;</div></pre></td></tr></table></figure>
@@ -773,7 +775,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">4</span></a>
             </ul>
         </li>
         
@@ -791,7 +793,7 @@
             </a>
             <ul class="dropdown-menu">
                 <li>
-                <a class="sidebar_archives-link" href="/categories/coding/">coding<span class="sidebar_archives-count">3</span></a>
+                <a class="sidebar_archives-link" href="/categories/coding/">coding<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding-JavaScript/">coding JavaScript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding-Node/">coding Node<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding-Python/">coding Python<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
@@ -827,7 +829,7 @@
         <li>
             <a href="/archives">
                 文章总数
-                <span class="sidebar-badge">3</span>
+                <span class="sidebar-badge">4</span>
             </a>
         </li>
         

@@ -10,7 +10,7 @@
     
     <title>
         
-            PonyOrm之初体验 | 
+            koa | 
         
         黑白之院
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,Python">
+    <meta name="keywords" content="null,JavaScript">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="PonyOrm之初体验 | 黑白之院">
+    <meta property="og:title" content="koa | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="Python"> 
+    <meta property="og:article:tag" content="JavaScript"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -234,7 +234,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先来安利一个工具Pipenv"><span class="post-toc-number">1.</span> <span class="post-toc-text">先来安利一个工具Pipenv</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#切入正题-PonyOrm"><span class="post-toc-number">2.</span> <span class="post-toc-text">切入正题, PonyOrm</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Koa-2"><span class="post-toc-number">1.</span> <span class="post-toc-text">Koa 2</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Koa-Router"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Koa Router</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Koa-Body"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Koa Body</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Koa-Render"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">Koa Render</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mongoose"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">Mongoose</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#更新一条数据"><span class="post-toc-number"></span> <span class="post-toc-text">更新一条数据</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Cherrio"><span class="post-toc-number">0.1.</span> <span class="post-toc-text">Cherrio</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Fs-extra"><span class="post-toc-number">0.2.</span> <span class="post-toc-text">Fs-extra</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Strongloop"><span class="post-toc-number">0.3.</span> <span class="post-toc-text">Strongloop</span></a></li></ol></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -270,7 +270,7 @@
         
     
             <p class="article-headline-p">
-                PonyOrm之初体验
+                koa
             </p>
         </div>
 
@@ -289,7 +289,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>3月 07, 2017</span>
+        <span>3月 27, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -310,7 +310,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aMXLDMAwEQP//00mbIlIOAEk5nlXl0cgylwUJH/H6+ujrhYeHh4eHh4eH92a8V3z98qIf9/Pnr565ulMdGx4eHt4Z3h9L7e0z98h8au4/52PDw8PDO8m7GtbVM8mA8u8m1OgNeHh4eP+Kl99JSm08PDy8T+JdUauldh5P4OHh4b0nL48berz7LaEaguDh4eE9y8uX7POfj57v4eHh4QW8cktTsSCuNgQsbrrCw8PD28DLF+Jq8JqX1/dvq04EHh4e3m7e7gC3yrjfWpolNR4eHt5SXn74lMDyiDZpMshbu/Dw8PCe5VUHNC+g84lo/mPAw8PDW8rrhQI5YwKuwvDw8PDO8HoRbS8+yIv43kTg4eHhneRVA9PetyaNBXkkgYeHh7ebly/K1UOsasSQF9DN1gE8PDy8RbxqW1Xv8Cxp4epN06h1AA8PD2/MywOIPLTNv5scjC0II/Dw8PAW8apRbG9TWXsktuAADA8PD2/AS47ke4v45LAtv/Dw8PBO8vKh5yHvpBxfsF3h4eHhbeb1lvUkeM2nbM7Gw8PDO8/Lt4rJ/byUr248eHh4eE/xepFE3gRQbSbIS3w8PDy8p3jVRqhqAT3BjMIIPDw8vKW86pVTk8lKhltuO8DDw8PbzJsv5RN2b+KaTVd4eHh4S3nJDyfLdx5DVN886inDw8PD28ZLjq/mwWse/lYDXDw8PLz35+WbxLxoTsaJh4eH9395eVQxiUIe2xjw8PDwimFEtQhuLu7BdODh4eE9y+tFCXnTwOSd5V/Ew8PD28z7vAsPDw8PDw8PD+8Nrm9Z/CnFDcWO6wAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACcUlEQVR42u3aUW4CMQwFQO5/6fYAlOXZTsJSTb4QXS2eVIoj24+ff70eeHh4eHh4eHh4N+M94vXq+ee3Xb//j4Auv89jw8PDwzvJe3PUPvGSn79+/vqbXmx4eHh453mTEF/9NQku4SWx4eHh4d2Tl4e4I0ng4eHhfSMvLygkSeK6nIGHh4d3f14eRLUI23v+A7UWPDw8vJhXbYCd/PyB/h4eHh7eJa852FQMqPe2BUNXeHh4eBt4yZjUqsGpvBmWFCmaQ1d4eHh4Y17v0O+1wSYjVoWNxsPDw9vMy5tMeQpZtR1J2ljW38PDw8OLeUkLf9VBXwixeL3Gw8PDO8mbjEb12mPVYnF5NAEPDw/vCG9fyXU+oFD+Z+Dh4eFt5uXH/ZxdLsj2YsDDw8PbzMsP9+p2JEd89RK/rBiBh4eHN+BVW1k5qVqqqF67C3kPDw8PbwOv2rxPDvReiJPtw8PDwzvDqyaDQiNqnCryLcPDw8M7z3sVaJIe8vZVtfyRJwM8PDy887y8WZUgqwMBvQLuqEqNh4eHN+blxdxqkyxpg/W2eJT38PDw8Bbx8utvUsDtFWqrm1tIDHh4eHgbePkxnZQhklJsL5I3EeLh4eEd4fVKAAmm9868tNGsteDh4eENeNU1aV9V00zzSTw8PLzNvN5xnA8TVK/dk0s5Hh4e3kletUSbp4Fky3pDDHh4eHh34OVHeQ6eD2zlV208PDy8+/NWjUxV08zi0QE8PDy8zby8yJu3uBLqxqErPDw8vAEvKUZUj/Ve86xaaMbDw8M7z5s0wBJGtZGWX9m39/fw8PDwxkNX9194eHh4eHh4eHg3WL9RB6WBR+uhvQAAAABJRU5ErkJggg==">
         </ul>
     
 
@@ -322,7 +322,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Python/">Python</a>
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a>
     </ul>
     
 
@@ -349,7 +349,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=koa&url=https://www.heyyezi.com//2017/03/27/koa/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -358,7 +358,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=koa&url=https://www.heyyezi.com//2017/03/27/koa/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -367,7 +367,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/27/koa/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/27/koa/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -401,25 +401,65 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>这是一个很好用的python ORM库所以推荐一下,顺便安利一个工具<br><a id="more"></a></p>
+<p>一个简单框架，用于自己记录的。缘起一个想由后端进行，自定义组装的项目；然而，研究之后发现，实现并不简单，坑很多。。。虽然如此，但是此过程却可以记录一下，警示后人。<br><a id="more"></a></p>
 </blockquote>
-<h3 id="先来安利一个工具Pipenv"><a href="#先来安利一个工具Pipenv" class="headerlink" title="先来安利一个工具Pipenv"></a>先来安利一个工具Pipenv</h3><p>  大家都用过virtualenv吧，这货把Pipfile, pip, virtualenv这三个工具集合到了一起，完美的结合到了一起。</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pipenv</div></pre></td></tr></table></figure>
-<p>  警告⚠️:<br>    <strong>如果你的默认环境小于版本python2.7.10，安装的时候出现任何问题，概不负责</strong></p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  初始化python2.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --two # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python2)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化python3.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --three # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python3)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化完成后，如果并不想进入虚拟环境, 执行python命令，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pipenv run python # 这个时候python，是虚拟环境中的python</div><div class="line">$ pienv run pip install ansible # 此时是向虚拟环境中安装ansible</div></pre></td></tr></table></figure></p>
-<p>  创建自己的依赖文件, 下次你只要把Pipfile文件，拿到别的地方，执行pipenv install 那么机会自动把环境包装好<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pipenv shell</div><div class="line">(your_dir)(your_dir) pipenv install requests # 这时候，你会发现你的Pipfile中多了一个包的</div><div class="line">(your_dir)(your_dir) pipenv lock --dev # 锁定版本</div></pre></td></tr></table></figure></p>
-<p>  如果你当前环境已经有一个虚拟环境，那么再创建一个的时候，会覆盖之前的。</p>
-<p><img src="https://camo.githubusercontent.com/2287c881cb3a045f4f70f20f0326ec4ef1474ccd/687474703a2f2f6d656469612e6b656e6e657468726569747a2e636f6d2e73332e616d617a6f6e6177732e636f6d2f706970656e762e676966" alt="Pipenv图片"></p>
-<h3 id="切入正题-PonyOrm"><a href="#切入正题-PonyOrm" class="headerlink" title="切入正题, PonyOrm"></a>切入正题, PonyOrm</h3><p>  <a href="https://ponyorm.com/" target="_blank" rel="external">PonyOrm</a>, 它是一个关系型数据库对象ROM工具(mysql,sqlit),可以方便的写做表的联合等，尤其是数据导入，导出的时候很方便。<br>特点：</p>
+<h2 id="Koa-2"><a href="#Koa-2" class="headerlink" title="Koa 2"></a>Koa 2</h2><p>  这是一个极其简单的的Web框架，核心框架就几个文件。它需要的环境必须大于等于Node V7(另一种方式我觉得就不要试了)，因为它使用了原生的Async/Await方法，这些都可以有效的避免回调地狱的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">application.js # 核心库</div><div class="line">context.js # 上下文处理，比如toJson(), Error处理，Request和Response处理路由</div><div class="line">request.js # Request 详细处理类</div><div class="line">response.js # Response 详细处理类</div></pre></td></tr></table></figure></p>
+<ol>
+<li>老规矩，Hello World镇楼:</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="params">cxt</span> =&gt;</span> &#123;</div><div class="line">  ctx.body = <span class="string">'Hello World'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<ol>
+<li>当你需要写一些需要回调的方法时候，用Node V7就爽了:</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const Koa = require('koa');</div><div class="line">const app = new Koa();</div><div class="line"></div><div class="line"># 这就是怎么写一个异步的程序，是不是爽。</div><div class="line">app.use(async ctx =&gt; &#123;</div><div class="line">    const start = new Date();</div><div class="line">    await next();</div><div class="line">    const ms = new Date() - start;</div><div class="line">    ctx.set('X-Response-Time', `$&#123;ms&#125;ms`);</div><div class="line">    ctx.body = '哈哈哈';</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ol>
+<li>处理错误以及异常</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.on(<span class="string">'error'</span>, err =&gt;</div><div class="line">  log.error(<span class="string">'server error'</span>, err)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>抛出异常<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ctx.throw(<span class="number">403</span>);</div><div class="line">ctx.throw(<span class="string">'name required'</span>, <span class="number">400</span>);</div><div class="line">ctx.throw(<span class="number">400</span>, <span class="string">'name required'</span>);</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>获取Request信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"># 获取POST信息</div><div class="line">Post: ctx.request.body;</div><div class="line"></div><div class="line"># 获取问号传值的信, 比如?a=b, 那么就可以写成 ctx.request.query.a</div><div class="line">Get: cxt.request.query;</div><div class="line"></div><div class="line">ctx.header</div><div class="line">ctx.headers</div><div class="line">ctx.method</div><div class="line">ctx.method=</div><div class="line">ctx.url</div><div class="line">ctx.url=</div><div class="line">ctx.originalUrl</div><div class="line">ctx.origin</div><div class="line">ctx.href</div><div class="line">ctx.path</div><div class="line">ctx.path=</div><div class="line">ctx.query</div><div class="line">ctx.query=</div><div class="line">ctx.querystring</div><div class="line">ctx.querystring=</div><div class="line">ctx.host</div><div class="line">ctx.hostname</div><div class="line">ctx.fresh</div><div class="line">ctx.stale</div><div class="line">ctx.socket</div><div class="line">ctx.protocol</div><div class="line">ctx.secure</div><div class="line">ctx.ip</div><div class="line">ctx.ips</div><div class="line">ctx.subdomains</div><div class="line">ctx.is()</div><div class="line">ctx.accepts()</div><div class="line">ctx.acceptsEncodings()</div><div class="line">ctx.acceptsCharsets()</div><div class="line">ctx.acceptsLanguages()</div><div class="line">ctx.get()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取Response信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ctx.body</div><div class="line">ctx.body=</div><div class="line">ctx.status</div><div class="line">ctx.status=</div><div class="line">ctx.message</div><div class="line">ctx.message=</div><div class="line">ctx.length=</div><div class="line">ctx.length</div><div class="line">ctx.type=</div><div class="line">ctx.type</div><div class="line">ctx.headerSent</div><div class="line">ctx.redirect()</div><div class="line">ctx.attachment()</div><div class="line">ctx.set()</div><div class="line">ctx.append()</div><div class="line">ctx.remove()</div><div class="line">ctx.lastModified=</div><div class="line">ctx.etag=</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>嗯，就是这么简单。</p>
+<h3 id="Koa-Router"><a href="#Koa-Router" class="headerlink" title="Koa Router"></a>Koa Router</h3><p>毕竟，这个框架太简洁，如果我们要单独处理，http method,大概大家会疯掉的，于是，偷懒一下；引入一个扩展<br>Koa Better Router</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"># 引入router</div><div class="line">let Router = require('koa-better-router');</div><div class="line">let router = Router().loadMthods();</div><div class="line"></div><div class="line"># 可以使用HTTP METHODS的方法</div><div class="line">router.get('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.post('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.put('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.del('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"># 如果想添加一些参数</div><div class="line">router.get('/api/:id/:name,', async ctx =&gt; &#123;</div><div class="line">  # 现在我们取出参数</div><div class="line">  let id = ctx.params.id;</div><div class="line">  let name = ctx.params.name;</div><div class="line">  # 是不是超级方便</div><div class="line">&#125;);</div><div class="line"></div><div class="line"># 加入router扩展, 如果一个警告说你，版本不对，那么直接引入</div><div class="line"># const convert = require('koa-convert'),</div><div class="line"># 然后引入 convert(router.middleware());</div><div class="line">app.use(router.middleware());</div></pre></td></tr></table></figure>
+<h3 id="Koa-Body"><a href="#Koa-Body" class="headerlink" title="Koa Body"></a>Koa Body</h3><p>同样，我觉得原生的对于post的处理很不好(懒)，所以，我决定引入扩展(‘koa-bodyparser), 它可以更友好的处理body的解析。<br>如果，是传递的是Content-Type: application/json, 那么它会自动解析成JS对象。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var bodyParser = require('koa-bodyparser');</div><div class="line">app.use(bodyParser());</div><div class="line">app.use(async ctx =&gt; &#123;</div><div class="line">  # ctx.request.body, 是获取的Request的JS对象.</div><div class="line">  ctx.body = ctx.request.body;</div><div class="line">  #很方便 这时候，你访问url的时候，会自动添加Response: 'Content-Type: application/json'</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Koa-Render"><a href="#Koa-Render" class="headerlink" title="Koa Render"></a>Koa Render</h3><p>呃，主要是用来渲染页面方便</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</div><div class="line"></div><div class="line"><span class="comment">//设置view目录</span></div><div class="line">app.use(views(__dirname + <span class="string">'/views'</span>));</div><div class="line"></div><div class="line">router.get(<span class="string">'/api/'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</div><div class="line">  <span class="comment">// views/user.html , 传递参数为 &#123;user: '哈哈哈哈'&#125;</span></div><div class="line">  <span class="keyword">await</span> ctx.render(<span class="string">'user'</span>, &#123;</div><div class="line">    <span class="attr">user</span>: <span class="string">'哈哈哈哈'</span></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose"></a>Mongoose</h3><p>MongoDB 的ORM扩展, 可以很方便的的查询数据库等等，借助于语言本身天生异步处理，所以可以实现最大化的性能优势。</p>
 <ul>
-<li>简单的查询语法</li>
-<li>自动优化查询</li>
-<li>对于N+1的问题解决方案(orm总会多查询一次，用来缓存数据，具体请自行百度)</li>
-<li>又一个在线编辑工具 <a href="https://editor.ponyorm.com/" target="_blank" rel="external">查看</a>（不好用）</li>
+<li><p>首先，可以创建models的文件, 数据类型如下</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Date</li>
+<li>Boolean</li>
+<li>Mixed (这个有点意思，混合类，由于mongo可以是数组，也可是Object)</li>
+<li>ObjectId , MongoID类型，当然也可以生成的字符串类型的对象ID，new Mongoose.ObjectId, 就会生成的ID（其实一般也没啥用）</li>
+<li>Array<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"># 创建文件App.js</div><div class="line">module.exports = new Schema(</div><div class="line">    &#123;</div><div class="line">        app_name: &#123;</div><div class="line">            type: Schema.Types.String,</div><div class="line">            index: true, // 表示它是索引</div><div class="line">            unique: true,//唯一，不能重复</div><div class="line">            maxlength: 20 //表示最大长度是20，如果输入超过20，数据库会报错，注意，这个错误是程序级别的，不是数据库级别的。</div><div class="line">        &#125;,</div><div class="line">        app_name_hash: &#123;</div><div class="line">            type: Schema.Types.String</div><div class="line">        &#125;,</div><div class="line">        app_version: Schema.Types.String, //版本</div><div class="line">        app_content: Schema.Types.Mixed, // 内容</div><div class="line">        project_info: &#123;</div><div class="line">            project_name: Schema.Types.String, //基础信息中的项目名称</div><div class="line">            project_id: Schema.Types.Number, // 基础信息中的项目ID</div><div class="line">        &#125;,</div><div class="line">        status: &#123;</div><div class="line">            type: Schema.Types.Number,</div><div class="line">            default: 1 //1, 正常; 2, 关闭，</div><div class="line">        &#125;,</div><div class="line">        preview_port: Schema.Types.Number //预览端口</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        collection: 'app_templates'</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
 </ul>
-
+</li>
+<li><p>查询一个</p>
+<ul>
+<li>查询一个App<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 引入model</div><div class="line">let model = require('App');</div><div class="line"># 查询一条数据</div><div class="line">let app_info = App.findOne(&#123;</div><div class="line">  app_name: params.app_name,</div><div class="line">  app_version: params.app_version</div><div class="line">&#125;);</div><div class="line"># 查询多条数据, select表示，保留哪些fields字段</div><div class="line">let app_components = App.find().select(&#123;comp_id: 1, comp_name: 1, comp_desc: 1, _id:0&#125;).exec();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>插入一条数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">let model = require('App');</div><div class="line">let app = new App(</div><div class="line">  &#123;</div><div class="line">      app_name: params.app_name,</div><div class="line">      app_name_hash: app_name_hash,</div><div class="line">      app_version: app_version,</div><div class="line">      app_structure: &#123;&#125;,</div><div class="line">      app_content: &#123;&#125;,</div><div class="line">      project_info:&#123;</div><div class="line">          project_name: params.project_name,</div><div class="line">          project_id: params.project_id</div><div class="line">      &#125;,</div><div class="line">      preview_port: params.preview_port</div><div class="line">  &#125;);</div><div class="line">  # 注意异步的事情，有可能它还没执行完，就去执行下一步了，哈哈哈哈哈，小心哟</div><div class="line">  app.save();</div></pre></td></tr></table></figure>
+<h1 id="更新一条数据"><a href="#更新一条数据" class="headerlink" title="更新一条数据"></a>更新一条数据</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 先查一下, 再更新</div><div class="line">let app_info = App.findOne(&#123;</div><div class="line">  app_name: params.app_name,</div><div class="line">  app_version: params.app_version</div><div class="line">&#125;);</div><div class="line">app_info.app_name = '哈哈哈哈';</div><div class="line">app_info.save();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Cherrio"><a href="#Cherrio" class="headerlink" title="Cherrio"></a>Cherrio</h3><p>用来快速解析HTML</p>
+<h3 id="Fs-extra"><a href="#Fs-extra" class="headerlink" title="Fs-extra"></a>Fs-extra</h3><p>用来扩展FS文件处理。</p>
+<h3 id="Strongloop"><a href="#Strongloop" class="headerlink" title="Strongloop"></a>Strongloop</h3>
     
 
     
@@ -447,9 +487,9 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key="2017/03/07/python-ponyorm/"
-        data-url="https://www.heyyezi.com/2017/03/07/python-ponyorm/"
-        data-title="PonyOrm之初体验">
+        data-thread-key="2017/03/27/koa/"
+        data-url="https://www.heyyezi.com/2017/03/27/koa/"
+        data-title="koa">
     </div>
     <!-- 多说评论框 end -->
 </div>
@@ -466,19 +506,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/12/gitintro/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/03/20/webpack/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

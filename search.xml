@@ -4,6 +4,85 @@
   
     
     <entry>
+      <title><![CDATA[koa]]></title>
+      <url>https://www.heyyezi.com/2017/03/27/koa/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>一个简单框架，用于自己记录的。缘起一个想由后端进行，自定义组装的项目；然而，研究之后发现，实现并不简单，坑很多。。。虽然如此，但是此过程却可以记录一下，警示后人。<br><a id="more"></a></p>
+</blockquote>
+<h2 id="Koa-2"><a href="#Koa-2" class="headerlink" title="Koa 2"></a>Koa 2</h2><p>  这是一个极其简单的的Web框架，核心框架就几个文件。它需要的环境必须大于等于Node V7(另一种方式我觉得就不要试了)，因为它使用了原生的Async/Await方法，这些都可以有效的避免回调地狱的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">application.js # 核心库</div><div class="line">context.js # 上下文处理，比如toJson(), Error处理，Request和Response处理路由</div><div class="line">request.js # Request 详细处理类</div><div class="line">response.js # Response 详细处理类</div></pre></td></tr></table></figure></p>
+<ol>
+<li>老规矩，Hello World镇楼:</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> Koa = <span class="built_in">require</span>(<span class="string">'koa'</span>);</div><div class="line"><span class="keyword">const</span> app = <span class="keyword">new</span> Koa();</div><div class="line"></div><div class="line">app.use(<span class="function"><span class="params">cxt</span> =&gt;</span> &#123;</div><div class="line">  ctx.body = <span class="string">'Hello World'</span>;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">app.listen(<span class="number">3000</span>);</div></pre></td></tr></table></figure>
+<ol>
+<li>当你需要写一些需要回调的方法时候，用Node V7就爽了:</li>
+</ol>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">const Koa = require('koa');</div><div class="line">const app = new Koa();</div><div class="line"></div><div class="line"># 这就是怎么写一个异步的程序，是不是爽。</div><div class="line">app.use(async ctx =&gt; &#123;</div><div class="line">    const start = new Date();</div><div class="line">    await next();</div><div class="line">    const ms = new Date() - start;</div><div class="line">    ctx.set('X-Response-Time', `$&#123;ms&#125;ms`);</div><div class="line">    ctx.body = '哈哈哈';</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ol>
+<li>处理错误以及异常</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">app.on(<span class="string">'error'</span>, err =&gt;</div><div class="line">  log.error(<span class="string">'server error'</span>, err)</div><div class="line">);</div></pre></td></tr></table></figure>
+<p>抛出异常<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ctx.throw(<span class="number">403</span>);</div><div class="line">ctx.throw(<span class="string">'name required'</span>, <span class="number">400</span>);</div><div class="line">ctx.throw(<span class="number">400</span>, <span class="string">'name required'</span>);</div></pre></td></tr></table></figure></p>
+<ol>
+<li><p>获取Request信息</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"># 获取POST信息</div><div class="line">Post: ctx.request.body;</div><div class="line"></div><div class="line"># 获取问号传值的信, 比如?a=b, 那么就可以写成 ctx.request.query.a</div><div class="line">Get: cxt.request.query;</div><div class="line"></div><div class="line">ctx.header</div><div class="line">ctx.headers</div><div class="line">ctx.method</div><div class="line">ctx.method=</div><div class="line">ctx.url</div><div class="line">ctx.url=</div><div class="line">ctx.originalUrl</div><div class="line">ctx.origin</div><div class="line">ctx.href</div><div class="line">ctx.path</div><div class="line">ctx.path=</div><div class="line">ctx.query</div><div class="line">ctx.query=</div><div class="line">ctx.querystring</div><div class="line">ctx.querystring=</div><div class="line">ctx.host</div><div class="line">ctx.hostname</div><div class="line">ctx.fresh</div><div class="line">ctx.stale</div><div class="line">ctx.socket</div><div class="line">ctx.protocol</div><div class="line">ctx.secure</div><div class="line">ctx.ip</div><div class="line">ctx.ips</div><div class="line">ctx.subdomains</div><div class="line">ctx.is()</div><div class="line">ctx.accepts()</div><div class="line">ctx.acceptsEncodings()</div><div class="line">ctx.acceptsCharsets()</div><div class="line">ctx.acceptsLanguages()</div><div class="line">ctx.get()</div></pre></td></tr></table></figure>
+</li>
+<li><p>获取Response信息</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">ctx.body</div><div class="line">ctx.body=</div><div class="line">ctx.status</div><div class="line">ctx.status=</div><div class="line">ctx.message</div><div class="line">ctx.message=</div><div class="line">ctx.length=</div><div class="line">ctx.length</div><div class="line">ctx.type=</div><div class="line">ctx.type</div><div class="line">ctx.headerSent</div><div class="line">ctx.redirect()</div><div class="line">ctx.attachment()</div><div class="line">ctx.set()</div><div class="line">ctx.append()</div><div class="line">ctx.remove()</div><div class="line">ctx.lastModified=</div><div class="line">ctx.etag=</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>嗯，就是这么简单。</p>
+<h3 id="Koa-Router"><a href="#Koa-Router" class="headerlink" title="Koa Router"></a>Koa Router</h3><p>毕竟，这个框架太简洁，如果我们要单独处理，http method,大概大家会疯掉的，于是，偷懒一下；引入一个扩展<br>Koa Better Router</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"># 引入router</div><div class="line">let Router = require('koa-better-router');</div><div class="line">let router = Router().loadMthods();</div><div class="line"></div><div class="line"># 可以使用HTTP METHODS的方法</div><div class="line">router.get('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.post('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.put('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line">router.del('/api/', async ctx =&gt; &#123;</div><div class="line"></div><div class="line">&#125;);</div><div class="line"></div><div class="line"># 如果想添加一些参数</div><div class="line">router.get('/api/:id/:name,', async ctx =&gt; &#123;</div><div class="line">  # 现在我们取出参数</div><div class="line">  let id = ctx.params.id;</div><div class="line">  let name = ctx.params.name;</div><div class="line">  # 是不是超级方便</div><div class="line">&#125;);</div><div class="line"></div><div class="line"># 加入router扩展, 如果一个警告说你，版本不对，那么直接引入</div><div class="line"># const convert = require('koa-convert'),</div><div class="line"># 然后引入 convert(router.middleware());</div><div class="line">app.use(router.middleware());</div></pre></td></tr></table></figure>
+<h3 id="Koa-Body"><a href="#Koa-Body" class="headerlink" title="Koa Body"></a>Koa Body</h3><p>同样，我觉得原生的对于post的处理很不好(懒)，所以，我决定引入扩展(‘koa-bodyparser), 它可以更友好的处理body的解析。<br>如果，是传递的是Content-Type: application/json, 那么它会自动解析成JS对象。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var bodyParser = require('koa-bodyparser');</div><div class="line">app.use(bodyParser());</div><div class="line">app.use(async ctx =&gt; &#123;</div><div class="line">  # ctx.request.body, 是获取的Request的JS对象.</div><div class="line">  ctx.body = ctx.request.body;</div><div class="line">  #很方便 这时候，你访问url的时候，会自动添加Response: 'Content-Type: application/json'</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Koa-Render"><a href="#Koa-Render" class="headerlink" title="Koa Render"></a>Koa Render</h3><p>呃，主要是用来渲染页面方便</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> views = <span class="built_in">require</span>(<span class="string">'koa-views'</span>);</div><div class="line"></div><div class="line"><span class="comment">//设置view目录</span></div><div class="line">app.use(views(__dirname + <span class="string">'/views'</span>));</div><div class="line"></div><div class="line">router.get(<span class="string">'/api/'</span>, <span class="keyword">async</span> ctx =&gt; &#123;</div><div class="line">  <span class="comment">// views/user.html , 传递参数为 &#123;user: '哈哈哈哈'&#125;</span></div><div class="line">  <span class="keyword">await</span> ctx.render(<span class="string">'user'</span>, &#123;</div><div class="line">    <span class="attr">user</span>: <span class="string">'哈哈哈哈'</span></div><div class="line">  &#125;);</div><div class="line"></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h3 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose"></a>Mongoose</h3><p>MongoDB 的ORM扩展, 可以很方便的的查询数据库等等，借助于语言本身天生异步处理，所以可以实现最大化的性能优势。</p>
+<ul>
+<li><p>首先，可以创建models的文件, 数据类型如下</p>
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Date</li>
+<li>Boolean</li>
+<li>Mixed (这个有点意思，混合类，由于mongo可以是数组，也可是Object)</li>
+<li>ObjectId , MongoID类型，当然也可以生成的字符串类型的对象ID，new Mongoose.ObjectId, 就会生成的ID（其实一般也没啥用）</li>
+<li>Array<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"># 创建文件App.js</div><div class="line">module.exports = new Schema(</div><div class="line">    &#123;</div><div class="line">        app_name: &#123;</div><div class="line">            type: Schema.Types.String,</div><div class="line">            index: true, // 表示它是索引</div><div class="line">            unique: true,//唯一，不能重复</div><div class="line">            maxlength: 20 //表示最大长度是20，如果输入超过20，数据库会报错，注意，这个错误是程序级别的，不是数据库级别的。</div><div class="line">        &#125;,</div><div class="line">        app_name_hash: &#123;</div><div class="line">            type: Schema.Types.String</div><div class="line">        &#125;,</div><div class="line">        app_version: Schema.Types.String, //版本</div><div class="line">        app_content: Schema.Types.Mixed, // 内容</div><div class="line">        project_info: &#123;</div><div class="line">            project_name: Schema.Types.String, //基础信息中的项目名称</div><div class="line">            project_id: Schema.Types.Number, // 基础信息中的项目ID</div><div class="line">        &#125;,</div><div class="line">        status: &#123;</div><div class="line">            type: Schema.Types.Number,</div><div class="line">            default: 1 //1, 正常; 2, 关闭，</div><div class="line">        &#125;,</div><div class="line">        preview_port: Schema.Types.Number //预览端口</div><div class="line">    &#125;,</div><div class="line">    &#123;</div><div class="line">        collection: 'app_templates'</div><div class="line">    &#125;</div><div class="line">);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>查询一个</p>
+<ul>
+<li>查询一个App<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"># 引入model</div><div class="line">let model = require('App');</div><div class="line"># 查询一条数据</div><div class="line">let app_info = App.findOne(&#123;</div><div class="line">  app_name: params.app_name,</div><div class="line">  app_version: params.app_version</div><div class="line">&#125;);</div><div class="line"># 查询多条数据, select表示，保留哪些fields字段</div><div class="line">let app_components = App.find().select(&#123;comp_id: 1, comp_name: 1, comp_desc: 1, _id:0&#125;).exec();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>插入一条数据</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">let model = require('App');</div><div class="line">let app = new App(</div><div class="line">  &#123;</div><div class="line">      app_name: params.app_name,</div><div class="line">      app_name_hash: app_name_hash,</div><div class="line">      app_version: app_version,</div><div class="line">      app_structure: &#123;&#125;,</div><div class="line">      app_content: &#123;&#125;,</div><div class="line">      project_info:&#123;</div><div class="line">          project_name: params.project_name,</div><div class="line">          project_id: params.project_id</div><div class="line">      &#125;,</div><div class="line">      preview_port: params.preview_port</div><div class="line">  &#125;);</div><div class="line">  # 注意异步的事情，有可能它还没执行完，就去执行下一步了，哈哈哈哈哈，小心哟</div><div class="line">  app.save();</div></pre></td></tr></table></figure>
+<h1 id="更新一条数据"><a href="#更新一条数据" class="headerlink" title="更新一条数据"></a>更新一条数据</h1><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># 先查一下, 再更新</div><div class="line">let app_info = App.findOne(&#123;</div><div class="line">  app_name: params.app_name,</div><div class="line">  app_version: params.app_version</div><div class="line">&#125;);</div><div class="line">app_info.app_name = '哈哈哈哈';</div><div class="line">app_info.save();</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Cherrio"><a href="#Cherrio" class="headerlink" title="Cherrio"></a>Cherrio</h3><p>用来快速解析HTML</p>
+<h3 id="Fs-extra"><a href="#Fs-extra" class="headerlink" title="Fs-extra"></a>Fs-extra</h3><p>用来扩展FS文件处理。</p>
+<h3 id="Strongloop"><a href="#Strongloop" class="headerlink" title="Strongloop"></a>Strongloop</h3>]]></content>
+      
+        <categories>
+            
+            <category> coding Node </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Webpack]]></title>
       <url>https://www.heyyezi.com/2017/03/20/webpack/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -30,7 +109,7 @@
 <ul>
 <li>[name], 加上名字</li>
 <li>[hash], 加上hash串</li>
-<li>[chunkhash], 同上<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/app.js'</span>,</div><div class="line">    <span class="attr">search</span>: <span class="string">'./src/search.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].[id].js'</span>,<span class="comment">//只要你喜欢，可以拼成[name].[hash].[chunkhash].js</span></div><div class="line">    path: __dirname + <span class="string">'/build'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// writes to disk: ./build/app.js, ./build/search.js</span></div></pre></td></tr></table></figure>
+<li>[chunkhash], [chunkHash:5], 表示保留五位hash,其他同上<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">entry</span>: &#123;</div><div class="line">    <span class="attr">app</span>: <span class="string">'./src/app.js'</span>,</div><div class="line">    <span class="attr">search</span>: <span class="string">'./src/search.js'</span></div><div class="line">  &#125;,</div><div class="line">  <span class="attr">output</span>: &#123;</div><div class="line">    <span class="attr">filename</span>: <span class="string">'[name].[id].js'</span>,<span class="comment">//只要你喜欢，可以拼成[name].[hash].[chunkhash].js</span></div><div class="line">    path: __dirname + <span class="string">'/build'</span></div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// writes to disk: ./build/app.js, ./build/search.js</span></div></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
@@ -173,14 +252,14 @@
       
         <categories>
             
-            <category> coding </category>
+            <category> coding JavaScript </category>
             
         </categories>
         
         
         <tags>
             
-            <tag> Javascriipt </tag>
+            <tag> JavaScript </tag>
             
         </tags>
         
@@ -210,6 +289,7 @@
 </ul>
 <div id="sequence-0"></div>
 
+
 <p>所以.git文件就是当前项目的版本数据库，它包含了，这个项目的一切信息。</p>
 <h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>我一般会给git常用命令设置别名</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git config --global alias.co checkout</div><div class="line">$ git config --global alias.br branch</div><div class="line">$ git config --global alias.ci commit</div><div class="line">$ git config --global alias.st status</div></pre></td></tr></table></figure>
@@ -232,6 +312,7 @@
 <li>文件状态变化</li>
 </ul>
 <div id="sequence-1"></div>
+
 
 <h4 id="查看git状态-git-status"><a href="#查看git状态-git-status" class="headerlink" title="查看git状态, git status"></a>查看git状态, git status</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">On branch master # 目前在master分支上</div><div class="line">nothing to commit, working directory clean # 这个目录是干净的</div></pre></td></tr></table></figure>
 <h5 id="创建新文件"><a href="#创建新文件" class="headerlink" title="创建新文件"></a>创建新文件</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">$ echo &apos;test git&apos; &gt; test_git.txt</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Untracked files: # 当前这些文件状态是Untracked</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed) # 推荐你进行这些操作</div><div class="line">	test_git.txt # 这些文件没有被版本追踪</div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div><div class="line"></div><div class="line">$ git add test_git.txt # 如果是多个文件git add * , 把这些文件放在Staged中</div><div class="line">$ git status</div><div class="line">On branch master</div><div class="line">Initial commit</div><div class="line">Changes to be committed: # Staged状态,</div><div class="line">  (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)</div><div class="line">	new file:   test_git.txt # 这个文件暂存</div><div class="line">$ git commit -m &quot;这是要写理由&quot;</div></pre></td></tr></table></figure>
@@ -452,7 +533,7 @@
       
         <categories>
             
-            <category> coding </category>
+            <category> coding Python </category>
             
         </categories>
         
