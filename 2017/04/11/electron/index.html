@@ -10,7 +10,7 @@
     
     <title>
         
-            PonyOrm之初体验 | 
+            Electron | 
         
         黑白之院
     </title>
@@ -27,7 +27,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,Python">
+    <meta name="keywords" content="null,JavaScript,NodeJS">
 
     <!--iOS -->
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -48,9 +48,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="PonyOrm之初体验 | 黑白之院">
+    <meta property="og:title" content="Electron | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="Python"> 
+    <meta property="og:article:tag" content="JavaScript"> <meta property="og:article:tag" content="NodeJS"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -234,7 +234,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先来安利一个工具Pipenv"><span class="post-toc-number">1.</span> <span class="post-toc-text">先来安利一个工具Pipenv</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#切入正题-PonyOrm"><span class="post-toc-number">2.</span> <span class="post-toc-text">切入正题, PonyOrm</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">简单介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发组件-Devtron"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">开发组件 Devtron</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试组件-Spectron"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">测试组件 Spectron</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用的组成"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">应用的组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包文件"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">打包文件</span></a></li></ol></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -270,7 +270,7 @@
         
     
             <p class="article-headline-p">
-                PonyOrm之初体验
+                Electron
             </p>
         </div>
 
@@ -289,7 +289,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>3月 07, 2017</span>
+        <span>4月 11, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -310,7 +310,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aMXLDMAwEQP//00mbIlIOAEk5nlXl0cgylwUJH/H6+ujrhYeHh4eHh4eH92a8V3z98qIf9/Pnr565ulMdGx4eHt4Z3h9L7e0z98h8au4/52PDw8PDO8m7GtbVM8mA8u8m1OgNeHh4eP+Kl99JSm08PDy8T+JdUauldh5P4OHh4b0nL48berz7LaEaguDh4eE9y8uX7POfj57v4eHh4QW8cktTsSCuNgQsbrrCw8PD28DLF+Jq8JqX1/dvq04EHh4e3m7e7gC3yrjfWpolNR4eHt5SXn74lMDyiDZpMshbu/Dw8PCe5VUHNC+g84lo/mPAw8PDW8rrhQI5YwKuwvDw8PDO8HoRbS8+yIv43kTg4eHhneRVA9PetyaNBXkkgYeHh7ebly/K1UOsasSQF9DN1gE8PDy8RbxqW1Xv8Cxp4epN06h1AA8PD2/MywOIPLTNv5scjC0II/Dw8PAW8apRbG9TWXsktuAADA8PD2/AS47ke4v45LAtv/Dw8PBO8vKh5yHvpBxfsF3h4eHhbeb1lvUkeM2nbM7Gw8PDO8/Lt4rJ/byUr248eHh4eE/xepFE3gRQbSbIS3w8PDy8p3jVRqhqAT3BjMIIPDw8vKW86pVTk8lKhltuO8DDw8PbzJsv5RN2b+KaTVd4eHh4S3nJDyfLdx5DVN886inDw8PD28ZLjq/mwWse/lYDXDw8PLz35+WbxLxoTsaJh4eH9395eVQxiUIe2xjw8PDwimFEtQhuLu7BdODh4eE9y+tFCXnTwOSd5V/Ew8PD28z7vAsPDw8PDw8PD+8Nrm9Z/CnFDcWO6wAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXklEQVR42u3aQXLDIAwF0Nz/0u0BMqVfAitM5nnVSRObxwLwl14/X3298PDw8PDw8PDwLuO94mv9q/fPk6e8f+fA2PDw8PBGeP8stcsHJ0P5655rZHNseHh4eIO89XK/pib/XT9xfbdkbHh4eHg38/LD8Xp72HkuHh4e3jfx8l9Vtxw8PDy823jJC38vbqhGEh/LWvDw8PBiXl5kmv97tL6Hh4eHF/DKLU1BuJAs6/kGM9pThoeHhxfwzpb/87JZHuNWJwIPDw9vhnc2klg3aa0ZyfQ13xjw8PDwjvKS2+VFqf2J630HDw8Pb5JXXax3DtbVBoVy4Q0PDw/vYV7v1r3CfzV0yFsQ8PDw8D7FS2KFPMwtl/wPtXPh4eHhPc2rPjgvaOWNCIWh778x4OHh4W3zdqhPtF71Dut4eHh4k7xeW1US7+5M2VbkgYeHh/cwLw9zq1HsToDbC3zx8PDwZnjVkv86RDgVK1SfjoeHhzfJW8N2SmXVg3j1UF6u7+Hh4eEd5fWG3gsRettA4f54eHh4D/PyQLa6nZRDhO2pwcPDw/sUr1qaykl5E0AekRSyFjw8PLyHeb3iU7UdIT8uF6YYDw8Pb5x3tk1q5275ERwPDw9vkle98qiiFxbvHLLx8PDwZni9Rbk6oN4mVI0h8PDw8CZ5pwpdvYi2OpV4eHh49/DyBbr6Sd4QkG9R5awFDw8P7xpedRFvlrXyeBcPDw/vSl7vUL5f+ho6UuPh4eEdDSMOF6uC4Y5mLXh4eHgPFMDyI3J+FN5vJsDDw8Ob5H3fhYeHh4eHh4eHd8H1C0tPH+vT5fAbAAAAAElFTkSuQmCC">
         </ul>
     
 
@@ -322,7 +322,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Python/">Python</a>
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/NodeJS/">NodeJS</a>
     </ul>
     
 
@@ -349,7 +349,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Electron&url=https://www.heyyezi.com//2017/04/11/electron/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -358,7 +358,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Electron&url=https://www.heyyezi.com//2017/04/11/electron/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -367,7 +367,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/04/11/electron/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/04/11/electron/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -401,24 +401,36 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>这是一个很好用的python ORM库所以推荐一下,顺便安利一个工具<br><a id="more"></a></p>
+<p>简单介绍一个Node 工具<br><a id="more"></a></p>
 </blockquote>
-<h3 id="先来安利一个工具Pipenv"><a href="#先来安利一个工具Pipenv" class="headerlink" title="先来安利一个工具Pipenv"></a>先来安利一个工具Pipenv</h3><p>  大家都用过virtualenv吧，这货把Pipfile, pip, virtualenv这三个工具集合到了一起，完美的结合到了一起。</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pipenv</div></pre></td></tr></table></figure>
-<p>  警告⚠️:<br>    <strong>如果你的默认环境小于版本python2.7.10，安装的时候出现任何问题，概不负责</strong></p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  初始化python2.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --two # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python2)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化python3.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --three # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python3)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化完成后，如果并不想进入虚拟环境, 执行python命令，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pipenv run python # 这个时候python，是虚拟环境中的python</div><div class="line">$ pienv run pip install ansible # 此时是向虚拟环境中安装ansible</div></pre></td></tr></table></figure></p>
-<p>  创建自己的依赖文件, 下次你只要把Pipfile文件，拿到别的地方，执行pipenv install 那么机会自动把环境包装好<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pipenv shell</div><div class="line">(your_dir)(your_dir) pipenv install requests # 这时候，你会发现你的Pipfile中多了一个包的</div><div class="line">(your_dir)(your_dir) pipenv lock --dev # 锁定版本</div></pre></td></tr></table></figure></p>
-<p>  如果你当前环境已经有一个虚拟环境，那么再创建一个的时候，会覆盖之前的。</p>
-<p><img src="https://camo.githubusercontent.com/2287c881cb3a045f4f70f20f0326ec4ef1474ccd/687474703a2f2f6d656469612e6b656e6e657468726569747a2e636f6d2e73332e616d617a6f6e6177732e636f6d2f706970656e762e676966" alt="Pipenv图片"></p>
-<h3 id="切入正题-PonyOrm"><a href="#切入正题-PonyOrm" class="headerlink" title="切入正题, PonyOrm"></a>切入正题, PonyOrm</h3><p>  <a href="https://ponyorm.com/" target="_blank" rel="external">PonyOrm</a>, 它是一个关系型数据库对象ROM工具(mysql,sqlit),可以方便的写做表的联合等，尤其是数据导入，导出的时候很方便。<br>特点：</p>
-<ul>
-<li>简单的查询语法</li>
-<li>自动优化查询</li>
-<li>对于N+1的问题解决方案(orm总会多查询一次，用来缓存数据，具体请自行百度)</li>
-<li>又一个在线编辑工具 <a href="https://editor.ponyorm.com/" target="_blank" rel="external">查看</a>（不好用）</li>
+<p><img src="https://cloud.githubusercontent.com/assets/378023/15172388/b2b81950-1790-11e6-9a7c-ccc39912bb3a.png" alt="Electron"></p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>这货很厉害。</p>
+<h3 id="开发组件-Devtron"><a href="#开发组件-Devtron" class="headerlink" title="开发组件 Devtron"></a>开发组件 Devtron</h3><p>安装 <strong><em>npm install devtron –save</em></strong></p>
+<p>在console中，加载安装模块 <strong><em>require(‘devtron’).install()</em></strong></p>
+<p>它可以监控，每一个组件等等</p>
+<h3 id="测试组件-Spectron"><a href="#测试组件-Spectron" class="headerlink" title="测试组件 Spectron"></a>测试组件 Spectron</h3><p> 用来测试每一个窗口，以及webview</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.client.auditAccessibility().then(<span class="function"><span class="keyword">function</span> (<span class="params">audit</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (audit.failed) &#123;</div><div class="line">    <span class="built_in">console</span>.error(audit.message)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="应用的组成"><a href="#应用的组成" class="headerlink" title="应用的组成"></a>应用的组成</h3><ul>
+<li><p>Mac中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>Windows 和 Linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/resources/app</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+</li>
 </ul>
+<h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><p> 使用<strong>asar</strong>, 进行文件打包, 这样文件目录就变成了<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">└── app.asar</div></pre></td></tr></table></figure></p>
+<ul>
+<li>Windows 和 Linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> electron/resources/app</div><div class="line"> └── app.asar</div><div class="line"></div><div class="line">### 使用到的打包工具</div><div class="line"></div><div class="line">- [electron-builder](https://github.com/electron-userland/electron-builder)</div><div class="line">- [electron-packager](https://github.com/electron-userland/electron-packager)</div><div class="line"></div><div class="line">### 调试</div><div class="line">- 使用devtron工具调试</div><div class="line">-  --debug=[port], 设置调试端口</div><div class="line">-  --debug-brk=[port], 基本跟上面一样，但是它会暂停中断执行</div><div class="line"></div><div class="line">## 程序结构</div><div class="line"></div><div class="line">### 主进程</div><div class="line"> 入口主文件，负责创建界面，管理界面什么的。</div><div class="line"></div><div class="line">### 渲染进程</div><div class="line"> 负责渲染界面，并且可以访问系统资源。</div><div class="line"></div><div class="line">### 主进程 和 渲染进程 的区别</div><div class="line">  `主进程`负责创建窗口`实例什么的，同时每一个`窗口`实例的都会有自己的`渲染进程`. 那么，当`窗口`实例被销毁，同时`渲染进程`同时被销毁。</div><div class="line">  `主进程`负责管理上面的所有操作。</div><div class="line">  TODO： 注意不允许管理原生资源的问题。</div><div class="line"></div><div class="line">### 最简结构</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>playcrab/<br>├── package.json<br>├── main.js<br>└── index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- package.json, 不做多解释，不懂的也就别看这个文章了；建议如下进行配置</div><div class="line">```javascript</div><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;playcrab&quot;,</div><div class="line">  &quot;version&quot;: &quot;0.1.0&quot; # 一定要写当前版本</div><div class="line">  &quot;main&quot;: &quot;main.js&quot; # 一定要写入口文件，如果没有这个，默认是index.js</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>main.js, 需要创建你需要的窗口，以及各种系统事件，比如:<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">const &#123;app, BrowserWindow&#125; = require('electron');</div><div class="line">const path = require('path');</div><div class="line">const url = require('url');</div><div class="line"></div><div class="line"># 为了保持窗口不会被关闭掉，请让窗口变量变成全局的。</div><div class="line">let win;</div><div class="line"></div><div class="line">function createWindow() &#123;</div><div class="line">  //新建一个窗口，并且初始化窗口大小</div><div class="line">  win = new BrowserWindow(&#123;</div><div class="line">    width: 800,</div><div class="line">    height: 600</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 加载系统的html</div><div class="line">  win.loadURL(url.format(&#123;</div><div class="line">    pathname: path.join(__dirname, 'index.html'),</div><div class="line">    protocol: 'file:',</div><div class="line">    slashes: true</div><div class="line">  &#125;));</div><div class="line"></div><div class="line">  // 打开调试窗口</div><div class="line">  win.webContent.openDevTools();</div><div class="line"></div><div class="line">  // 绑定关闭事件</div><div class="line"></div><div class="line">  win.on('close', () =&gt; &#123;</div><div class="line">    // 通常我们是会有很多窗口，也就是是一个数组，</div><div class="line">    // 你应该把那个窗口删掉</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    win = null;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 初始化之后，执行</div><div class="line">app.on('ready', createWindow);</div><div class="line"></div><div class="line">// 当所有窗口都关闭之后，程序退出</div><div class="line">app.on('window-all-closed', () =&gt; &#123;</div><div class="line">  // 在Mac中，之后执行 Cmd + Q 之后才算退出。</div><div class="line">  if (process.platform !== 'darwin') &#123;</div><div class="line">    app.quit()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.on('activate', () =&gt; &#123;</div><div class="line">  # 在Mac中，如果应用还在活跃中，但是已经没有窗口了，那么就需要重新调用 创建窗口</div><div class="line">  if (win === null) &#123;</div><div class="line">    createWindow()</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后，修改index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    Electron版本: <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.electron)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>.</div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>以上直接抄的官网的</strong></p>
+<p>暂时先这些,<br>未完，待续…..</p>
 
     
 
@@ -447,9 +459,9 @@
 <div id="comments">
     <!-- 多说评论框 start -->
     <div class="ds-thread"
-        data-thread-key="2017/03/07/python-ponyorm/"
-        data-url="https://www.heyyezi.com/2017/03/07/python-ponyorm/"
-        data-title="PonyOrm之初体验">
+        data-thread-key="2017/04/11/electron/"
+        data-url="https://www.heyyezi.com/2017/04/11/electron/"
+        data-title="Electron">
     </div>
     <!-- 多说评论框 end -->
 </div>
@@ -466,19 +478,19 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/12/gitintro/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/04/01/koa/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

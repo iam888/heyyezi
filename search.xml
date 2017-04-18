@@ -4,6 +4,61 @@
   
     
     <entry>
+      <title><![CDATA[Electron]]></title>
+      <url>https://www.heyyezi.com/2017/04/11/electron/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>简单介绍一个Node 工具<br><a id="more"></a></p>
+</blockquote>
+<p><img src="https://cloud.githubusercontent.com/assets/378023/15172388/b2b81950-1790-11e6-9a7c-ccc39912bb3a.png" alt="Electron"></p>
+<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>这货很厉害。</p>
+<h3 id="开发组件-Devtron"><a href="#开发组件-Devtron" class="headerlink" title="开发组件 Devtron"></a>开发组件 Devtron</h3><p>安装 <strong><em>npm install devtron –save</em></strong></p>
+<p>在console中，加载安装模块 <strong><em>require(‘devtron’).install()</em></strong></p>
+<p>它可以监控，每一个组件等等</p>
+<h3 id="测试组件-Spectron"><a href="#测试组件-Spectron" class="headerlink" title="测试组件 Spectron"></a>测试组件 Spectron</h3><p> 用来测试每一个窗口，以及webview</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.client.auditAccessibility().then(<span class="function"><span class="keyword">function</span> (<span class="params">audit</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (audit.failed) &#123;</div><div class="line">    <span class="built_in">console</span>.error(audit.message)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="应用的组成"><a href="#应用的组成" class="headerlink" title="应用的组成"></a>应用的组成</h3><ul>
+<li><p>Mac中</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+</li>
+<li><p>Windows 和 Linux</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/resources/app</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><p> 使用<strong>asar</strong>, 进行文件打包, 这样文件目录就变成了<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">└── app.asar</div></pre></td></tr></table></figure></p>
+<ul>
+<li>Windows 和 Linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> electron/resources/app</div><div class="line"> └── app.asar</div><div class="line"></div><div class="line">### 使用到的打包工具</div><div class="line"></div><div class="line">- [electron-builder](https://github.com/electron-userland/electron-builder)</div><div class="line">- [electron-packager](https://github.com/electron-userland/electron-packager)</div><div class="line"></div><div class="line">### 调试</div><div class="line">- 使用devtron工具调试</div><div class="line">-  --debug=[port], 设置调试端口</div><div class="line">-  --debug-brk=[port], 基本跟上面一样，但是它会暂停中断执行</div><div class="line"></div><div class="line">## 程序结构</div><div class="line"></div><div class="line">### 主进程</div><div class="line"> 入口主文件，负责创建界面，管理界面什么的。</div><div class="line"></div><div class="line">### 渲染进程</div><div class="line"> 负责渲染界面，并且可以访问系统资源。</div><div class="line"></div><div class="line">### 主进程 和 渲染进程 的区别</div><div class="line">  `主进程`负责创建窗口`实例什么的，同时每一个`窗口`实例的都会有自己的`渲染进程`. 那么，当`窗口`实例被销毁，同时`渲染进程`同时被销毁。</div><div class="line">  `主进程`负责管理上面的所有操作。</div><div class="line">  TODO： 注意不允许管理原生资源的问题。</div><div class="line"></div><div class="line">### 最简结构</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>playcrab/<br>├── package.json<br>├── main.js<br>└── index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- package.json, 不做多解释，不懂的也就别看这个文章了；建议如下进行配置</div><div class="line">```javascript</div><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;playcrab&quot;,</div><div class="line">  &quot;version&quot;: &quot;0.1.0&quot; # 一定要写当前版本</div><div class="line">  &quot;main&quot;: &quot;main.js&quot; # 一定要写入口文件，如果没有这个，默认是index.js</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<ul>
+<li>main.js, 需要创建你需要的窗口，以及各种系统事件，比如:<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">const &#123;app, BrowserWindow&#125; = require('electron');</div><div class="line">const path = require('path');</div><div class="line">const url = require('url');</div><div class="line"></div><div class="line"># 为了保持窗口不会被关闭掉，请让窗口变量变成全局的。</div><div class="line">let win;</div><div class="line"></div><div class="line">function createWindow() &#123;</div><div class="line">  //新建一个窗口，并且初始化窗口大小</div><div class="line">  win = new BrowserWindow(&#123;</div><div class="line">    width: 800,</div><div class="line">    height: 600</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 加载系统的html</div><div class="line">  win.loadURL(url.format(&#123;</div><div class="line">    pathname: path.join(__dirname, 'index.html'),</div><div class="line">    protocol: 'file:',</div><div class="line">    slashes: true</div><div class="line">  &#125;));</div><div class="line"></div><div class="line">  // 打开调试窗口</div><div class="line">  win.webContent.openDevTools();</div><div class="line"></div><div class="line">  // 绑定关闭事件</div><div class="line"></div><div class="line">  win.on('close', () =&gt; &#123;</div><div class="line">    // 通常我们是会有很多窗口，也就是是一个数组，</div><div class="line">    // 你应该把那个窗口删掉</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    win = null;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 初始化之后，执行</div><div class="line">app.on('ready', createWindow);</div><div class="line"></div><div class="line">// 当所有窗口都关闭之后，程序退出</div><div class="line">app.on('window-all-closed', () =&gt; &#123;</div><div class="line">  // 在Mac中，之后执行 Cmd + Q 之后才算退出。</div><div class="line">  if (process.platform !== 'darwin') &#123;</div><div class="line">    app.quit()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.on('activate', () =&gt; &#123;</div><div class="line">  # 在Mac中，如果应用还在活跃中，但是已经没有窗口了，那么就需要重新调用 创建窗口</div><div class="line">  if (win === null) &#123;</div><div class="line">    createWindow()</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>最后，修改index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    Electron版本: <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.electron)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>.</div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p><strong>以上直接抄的官网的</strong></p>
+<p>暂时先这些,<br>未完，待续…..</p>
+]]></content>
+      
+        <categories>
+            
+            <category> coding </category>
+            
+            <category> NodeJS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[koa]]></title>
       <url>https://www.heyyezi.com/2017/04/01/koa/</url>
       <content type="html"><![CDATA[<blockquote>
@@ -69,7 +124,9 @@
       
         <categories>
             
-            <category> coding Node </category>
+            <category> coding </category>
+            
+            <category> NodeJS </category>
             
         </categories>
         
@@ -77,6 +134,8 @@
         <tags>
             
             <tag> JavaScript </tag>
+            
+            <tag> NodeJS </tag>
             
         </tags>
         
@@ -252,7 +311,9 @@
       
         <categories>
             
-            <category> coding JavaScript </category>
+            <category> JavaScript </category>
+            
+            <category> Tools </category>
             
         </categories>
         
@@ -494,7 +555,7 @@
       
         <categories>
             
-            <category> coding </category>
+            <category> Git </category>
             
         </categories>
         
@@ -533,7 +594,9 @@
       
         <categories>
             
-            <category> coding Python </category>
+            <category> coding </category>
+            
+            <category> Python </category>
             
         </categories>
         
