@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+    <!--
+        © Material Theme
+        https://github.com/viosey/hexo-theme-material
+        Version: 1.3.4 -->
+
+    <!-- Title -->
+    
+    <title>
+        
+            Electron2 | 
+        
+        黑白之院
+    </title>
+
+    <!-- Meta & Info -->
+    <meta charset="utf-8">
+
+    <!-- dns prefetch -->
+    <meta http-equiv="x-dns-prefetch-control" content="on">
+    
+    
+    
+        <link rel="dns-prefetch" href="https://changyan.sohu.com"/>
+    
+    
+    
+    
+        <link rel="dns-prefetch" href="https://busuanzi.ibruce.info"/>
+    
+
+    <meta http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0097A7">
+    <meta name="author" content="A Man Has No Name">
+    <meta name="description" content="Valar Morghulis">
+    <meta name="keywords" content="null,JavaScript,NodeJS">
+
+    <!-- Favicons -->
+    <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
+    <link rel="icon" sizes="192x192" href="/img/favicon.png">
+    <link rel="apple-touch-icon" href="/img/favicon.png">
+
+    <!--iOS -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-title" content="Title">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="480">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="黑白之院">
+
+    <!-- The Open Graph protocol -->
+    <meta property="og:url" content="https://www.heyyezi.com">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Electron2 | 黑白之院">
+    <meta property="og:description" content="Valar Morghulis">
+    <meta property="og:article:tag" content="JavaScript"> <meta property="og:article:tag" content="NodeJS"> 
+
+    <!--[if lte IE 9]>
+        <link rel="stylesheet" href="/css/ie-blocker.css">
+
+        
+            <script src="/js/ie-blocker.zhCN.js"></script>
+        
+    <![endif]-->
+
+    <!-- Import CSS & jQuery -->
+    
+        <link rel="stylesheet" href="/css/material.min.css">
+        <link rel="stylesheet" href="/css/style.min.css">
+        <!-- Config CSS -->
+
+
+<!-- Other Styles -->
+<style>
+  body, html {
+    font-family: Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+  }
+
+  a {
+    color: #00838F;
+  }
+
+  .mdl-card__media,
+  #search-label,
+  #search-form-label:after,
+  #scheme-Paradox .hot_tags-count,
+  #scheme-Paradox .sidebar_archives-count,
+  #scheme-Paradox .sidebar-colored .sidebar-header,
+  #scheme-Paradox .sidebar-colored .sidebar-badge{
+    background-color: #0097A7 !important;
+  }
+
+  /* Sidebar User Drop Down Menu Text Color */
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:hover,
+  #scheme-Paradox .sidebar-colored .sidebar-nav>.dropdown>.dropdown-menu>li>a:focus {
+    color: #0097A7 !important;
+  }
+
+  #post_entry-right-info,
+  .sidebar-colored .sidebar-nav li:hover > a,
+  .sidebar-colored .sidebar-nav li:hover > a i,
+  .sidebar-colored .sidebar-nav li > a:hover,
+  .sidebar-colored .sidebar-nav li > a:hover i,
+  .sidebar-colored .sidebar-nav li > a:focus i,
+  .sidebar-colored .sidebar-nav > .open > a,
+  .sidebar-colored .sidebar-nav > .open > a:hover,
+  .sidebar-colored .sidebar-nav > .open > a:focus,
+  #ds-reset #ds-ctx .ds-ctx-entry .ds-ctx-head a {
+    color: #0097A7 !important;
+  }
+
+  .toTop {
+    background: #757575 !important;
+  }
+
+  .material-layout .material-post>.material-nav,
+  .material-layout .material-index>.material-nav,
+  .material-nav a {
+    color: #757575;
+  }
+
+  #scheme-Paradox .MD-burger-layer {
+    background-color: #757575;
+  }
+
+  #scheme-Paradox #post-toc-trigger-btn {
+    color: #757575;
+  }
+
+  .post-toc a:hover {
+    color: #00838F;
+    text-decoration: underline;
+  }
+
+</style>
+
+
+<!-- Theme Background Related-->
+
+    <style>
+      body{
+        background-color: #F5F5F5;
+      }
+
+      /* blog_info bottom background */
+      #scheme-Paradox .material-layout .something-else .mdl-card__supporting-text{
+        background-color: #fff;
+      }
+    </style>
+
+
+
+
+<!-- Fade Effect -->
+
+    <style>
+      .fade {
+        transition: all 800ms linear;
+        -webkit-transform: translate3d(0,0,0);
+        -moz-transform: translate3d(0,0,0);
+        -ms-transform: translate3d(0,0,0);
+        -o-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+        opacity: 1;
+      }
+
+      .fade.out{
+        opacity: 0;
+      }
+    </style>
+
+
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/queue.js"></script>
+    
+
+    <!-- UC Browser Compatible -->
+    <script>
+        var agent = navigator.userAgent.toLowerCase();
+        if(agent.indexOf('ucbrowser')>0) {
+            document.write("<link rel=\"stylesheet\" href=\"/css/uc.css\">");
+            alert('由于 UC 浏览器使用极旧的内核，而本网站使用了一些新的特性。\n为了您能更好的浏览，推荐使用 Chrome 或 Firefox 浏览器。');
+        }
+    </script>
+
+    
+
+    
+
+
+    <!-- Bing Background -->
+    
+
+    <!-- Custom Head -->
+    
+</head>
+
+
+    
+        <body id="scheme-Paradox" class="lazy">
+            <div class="material-layout  mdl-js-layout has-drawer is-upgraded">
+                
+
+                <!-- Main Container -->
+                <main class="material-layout__content" id="main">
+
+                    <!-- Top Anchor -->
+                    <div id="top"></div>
+
+                    
+                        <!-- Hamburger Button -->
+                        <button class="MD-burger-icon sidebar-toggle">
+                            <span class="MD-burger-layer"></span>
+                        </button>
+                    
+
+                    <!-- Post TOC -->
+
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#第二部分"><span class="post-toc-number">1.</span> <span class="post-toc-text">第二部分</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#App"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">App</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Events"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">Events</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#方法"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">方法</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#BrowserWindow"><span class="post-toc-number">2.</span> <span class="post-toc-text">BrowserWindow</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#漂亮的显示窗口"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">漂亮的显示窗口</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#父窗口等"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">父窗口等</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#parent"><span class="post-toc-number">2.2.1.</span> <span class="post-toc-text">parent</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Modal-windows"><span class="post-toc-number">2.2.2.</span> <span class="post-toc-text">Modal windows</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#注意"><span class="post-toc-number">2.2.3.</span> <span class="post-toc-text">注意</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Class-BrowserWindow"><span class="post-toc-number">3.</span> <span class="post-toc-text">Class: BrowserWindow</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#new-BrowserWindow-options"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">new BrowserWindow([options])</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Instance-Events"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">Instance Events</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#静态方法"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">静态方法</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例属性"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">实例属性</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实例方法"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">实例方法</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#菜单"><span class="post-toc-number">4.</span> <span class="post-toc-text">菜单</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#new-Menu"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">new Menu()</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Menu-setApplicationMenu-menu"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">Menu.setApplicationMenu(menu)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Menu-buildFromTemplate-template"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">Menu.buildFromTemplate(template)</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#其他页面的标签"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">其他页面的标签</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#MenuItem"><span class="post-toc-number">5.</span> <span class="post-toc-text">MenuItem</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#new-MenuItem-options"><span class="post-toc-number">5.1.</span> <span class="post-toc-text">new MenuItem(options)</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#ipcMain-ipcRenderer"><span class="post-toc-number">6.</span> <span class="post-toc-text">ipcMain, ipcRenderer</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#webview"><span class="post-toc-number">7.</span> <span class="post-toc-text">webview</span></a></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
+    
+        
+            <!-- Random Thumbnail -->
+            <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
+
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').addClass('lazy');
+</script>
+
+        
+    
+            <p class="article-headline-p">
+                Electron2
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>A Man Has No Name</strong>
+        <span>5月 26, 2017</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+        <button id="article-functions-qrcode-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+            <i class="material-icons" role="presentation">devices other</i>
+            <span class="visuallyhidden">devices other</span>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
+            <li class="mdl-menu__item">在其它设备中阅读本文章</li>
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXElEQVR42u3aQXKEMAwEwP3/p5MX4IwkbNhUc9raAqzmYLvG+vz86+uDh4eHh4eHh4f3Mt4nvgoDXNy/fufVP9Xa8PDw8M7wJuUmxeXPrt+Z1IaHh4d3knc14a7vWU/xV8+u/+nVhoeHh/ddvPUknnyC6rh4eHh438Wrhg7JR8HDw8P7Rl4yrSfxay/YfUXWgoeHhxfzqtP3yd9Hz/fw8PDwAl65pSk++E8m93mbwh9NV3h4eHgbeL2IthdP5JHuKDLGw8PD28yrHuonIWzeeJosNuXGBTw8PLwjvB41DzV6LQX50oKHh4d3klcNSefHY5M2gmbrAB4eHt4GXl50tbjqopKM2Ixx8fDw8G7i9QLceYnVwOK2rAUPDw9vA29dXL7BnYQRvWfx8PDwzvB6wWu1vWAeRhQaufDw8PA286oHYHl40dumz6l4eHh4u3nVF/UC1h7vhqYrPDw8vA286vH/fPjJiM0tNR4eHt6tvGp0mywY1QasSXhRXvfw8PDwbuVNJu7q1rm6DOQhBR4eHt5JXnUrnBc0CYLLiw0eHh7eQ7xkQs/vmfyf/MbDw8N7ilcdJt/4Vg/GqosNHh4e3tt45TigetgfX9EihIeHh7eZV716m91JLFseCw8PD28zrzop72s7WD81arrCw8PD28CbLAZ5Qcn9vQ+Bh4eH9xRvUkQhZo3fny8beHh4eO/n3RvX5nHG6AAMDw8P71HeZHKvhiD5thsPDw/vPC8JI9Yxwfqp5DNV27Pw8PDwnuLNI4D54dakmQAPDw/vJO//XXh4eHh4eHh4eC+4fgGoIHF9s5gNIQAAAABJRU5ErkJggg==">
+        </ul>
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/NodeJS/">NodeJS</a>
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Electron2&url=https://www.heyyezi.com//2017/05/26/Electron2/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Electron2&url=https://www.heyyezi.com//2017/05/26/Electron2/index.html&via=A Man Has No Name" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/05/26/Electron2/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/05/26/Electron2/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><h3 id="App"><a href="#App" class="headerlink" title="App"></a>App</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line">app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</div><div class="line">    app.quit()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="Events"><a href="#Events" class="headerlink" title="Events"></a>Events</h4><ul>
+<li><p>will-finish-launching<br>windows 和 linux中，与 ready 一样。</p>
+<p>在mac中，<code>NSApplication</code> 中的 <code>applicationWillFinishLaunching</code> 通知。一般此时可以创建open-file 和 open-url的监听事件，和开启 崩溃日志，以及自动更新。</p>
+<p>但是，大多数时候，你不需要管这一步, 也不需要做什么。</p>
+</li>
+<li><p>ready</p>
+<ul>
+<li>在mac中 会返回lanchInfo的信息<br>一切初始化完成之后，到这里。在mac中，如果是从消息中心打开的，那么可以调用,app.isReady()来检查是不是都已经准备好。</li>
+</ul>
+</li>
+<li><p>window-all-closed<br>  如果用户，执行<code>Cmd + Q</code>, 活着开发者直接调用<code>app.quit()</code>, 会直接出发<code>will-quit</code>, 但是，but，就不会不会触发这个事件</p>
+</li>
+<li><p>befor-quit</p>
+<ul>
+<li>返回 Event<br>触发关闭窗口之前执行。可以调用<code>event.preventDefault()</code>, 阻止默认事件的触发。</li>
+</ul>
+</li>
+<li><p>will-quit</p>
+<ul>
+<li>返回 Event<br><code>event.preventDefault()</code>, 可以阻止默认是事件发生。</li>
+</ul>
+</li>
+<li><p>quit</p>
+<ul>
+<li>返回 Event </li>
+<li>返回 exitCode 整数</li>
+</ul>
+</li>
+<li><p>open-file <strong>mac</strong></p>
+<ul>
+<li>Event</li>
+<li>String</li>
+</ul>
+</li>
+<li><p>open-url <strong>mac</strong></p>
+<ul>
+<li>Event</li>
+<li>String</li>
+</ul>
+</li>
+<li><p>activate <strong>mac</strong></p>
+<ul>
+<li>Event</li>
+<li>hasVisibleWindows, 布尔值类型<br>当程序被激活的时候，比如第一次打开软件，比如重新打开一个再运行的软件，或者点击边栏上的图表什么的。</li>
+</ul>
+</li>
+<li><p>continue-activity <strong>mac</strong></p>
+<ul>
+<li>event Event</li>
+<li>type String </li>
+<li>userInfo Object</li>
+</ul>
+</li>
+</ul>
+<p>擦，好多，这货一般没啥用。</p>
+<ul>
+<li>browser-window-blur<ul>
+<li>event Event</li>
+<li>window BrowserWindow<br>blur: 模糊</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>browser-window-focus<ul>
+<li>event Event</li>
+<li>window BrowserWindow</li>
+</ul>
+</li>
+</ul>
+<p>获取焦点的时候，巴拉巴拉….</p>
+<ul>
+<li>browser-window-created<ul>
+<li>event Event</li>
+<li>window BrowserWindow</li>
+</ul>
+</li>
+</ul>
+<p>被创建的时候</p>
+<ul>
+<li><p>web-contents-created</p>
+<ul>
+<li>event Event</li>
+<li>webContents WebContents</li>
+</ul>
+</li>
+<li><p>certificate-error</p>
+<ul>
+<li>event Event</li>
+<li>webContents WebContents</li>
+<li>url String</li>
+<li>error String - 错误码</li>
+<li>certificate Certificate 证书</li>
+<li>callback Function<ul>
+<li>isTrusted Boolean 证书是否被信任</li>
+</ul>
+</li>
+</ul>
+<p>当证书验证失败的时候。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line">app.on(<span class="string">'certificate-error'</span>, (event, webContents, url, error, certificate, callback) =&gt; &#123;</div><div class="line"> <span class="keyword">if</span> (url === <span class="string">'https://github.com'</span>) &#123;</div><div class="line">   <span class="comment">// Verification logic.</span></div><div class="line">   event.preventDefault()</div><div class="line">   callback(<span class="literal">true</span>)</div><div class="line"> &#125; <span class="keyword">else</span> &#123;</div><div class="line">   callback(<span class="literal">false</span>)</div><div class="line"> &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>select-client-certificate</p>
+<ul>
+<li>event Event</li>
+<li>webContents WebContents</li>
+<li>url URL</li>
+<li>certificateList Certificate[] 证书列表</li>
+<li>callback Function</li>
+<li>certificate <ul>
+<li>Certificate 选填<br>当客户端需要验证证书的时候，触发。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line">app.on(<span class="string">'select-client-certificate'</span>, (event, webContents, url, list, callback) =&gt; &#123;</div><div class="line">  event.preventDefault()</div><div class="line">  callback(list[<span class="number">0</span>])</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>login <strong>重要</strong></p>
+<ul>
+<li>Returns:<ul>
+<li>event Event</li>
+<li>webContents WebContents</li>
+<li>request Object<ul>
+<li>method String</li>
+<li>url URL</li>
+<li>referrer URL</li>
+</ul>
+</li>
+<li>authInfo Object<ul>
+<li>isProxy Boolean</li>
+<li>scheme String</li>
+<li>host String</li>
+<li>port Integer</li>
+<li>realm String</li>
+</ul>
+</li>
+<li>callback Function<ul>
+<li>username String</li>
+<li>password String</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>当<code>webContents</code> 想要做登录验证的时候。</p>
+<p>默认是取消所有的验证，你可以重载这个方法，阻止它默认的行文(event.preventDefault)，然后调用callback(username, password)去验证。</p>
+<h4 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h4><ul>
+<li>app.quit()</li>
+<li>app.exit([exitCode])</li>
+<li><p>app.relaunch([options])</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line">app.relaunch(&#123;<span class="attr">args</span>: process.argv.slice(<span class="number">1</span>).concat([<span class="string">'--relaunch'</span>])&#125;)</div><div class="line">app.exit(<span class="number">0</span>)</div></pre></td></tr></table></figure>
+</li>
+<li><p>app.isReady()</p>
+</li>
+<li>app.focus()</li>
+<li>app.hide() <strong>mac</strong></li>
+<li>app.show() <strong>mac</strong></li>
+<li>app.getAppPath(), 返回当前APP的路径</li>
+<li>app.getPath(name), name: String<br>返回<code>String</code>, 可选参数有 <code>console.log(app.getPath(&#39;home&#39;))</code><ul>
+<li>home 用户的家目录</li>
+<li>appData 每个用户的data目录<ul>
+<li><code>%APPDATA%</code> on Windows</li>
+<li><code>$XDG_CONFIG_HOME</code> or <code>~/.config</code> on Linux</li>
+<li><code>~/Library/Application</code> Support on macOS</li>
+</ul>
+</li>
+<li>userData, 用户的配置文件，默认是在<code>appData</code>目录后面加上你的app的名字</li>
+<li>temp， 临时目录地址</li>
+<li>exe 当前可执行文件</li>
+<li>module, <code>libchromiumcontent</code>, 目录地址</li>
+<li>desktop, 当前用户的桌面地址</li>
+<li>documents, 用户的的<code>My Documents</code></li>
+<li>downloads, 用户的用户下载路径</li>
+<li>music 用户的music地址</li>
+<li>pictures 用户的图片地址</li>
+<li>videos 用户的视频地址</li>
+<li>pepperFlashSystemPlugin, 呃，别用了，flash的</li>
+</ul>
+</li>
+<li>app.getFileIcon(path[, options], callback)<ul>
+<li>path String</li>
+<li>options <ul>
+<li>size String<ul>
+<li>small - 16x16</li>
+<li>normal - 32x32</li>
+<li>large - 48x48(Linux), 32x32(windows)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>callback Function<ul>
+<li>error</li>
+<li>icon</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>app.setPath(name, path)<ul>
+<li>name, 设置路径对应的别名</li>
+<li>path，真实路径<br>如果，path不存在，那么就会创建，如果报错，那么就会抛出错误。</li>
+</ul>
+</li>
+<li>app.getVersion()</li>
+<li>app.getName()，当前应用的名称</li>
+<li>app.setName(name)</li>
+<li>app.getLocale()，获取多语言环境</li>
+<li>app.addRecentDocument(path) <strong>mac*, </strong>windows**</li>
+<li>app.clearRecentDocuments() <strong>mac*, </strong>windows**</li>
+<li><p>app.makeSingleInstance(callback)</p>
+<ul>
+<li>callback Function<ul>
+<li>argv String[] - 第二个这个app实例所带的参数</li>
+<li>workingDirectory String - 第二个实例所在的目录地址<br>设置你的app只能打开一个，<br>callback，会在第二个实例启动的时候，被调用。一般这个时候，相应只是让当前的窗口获取焦点，不能被最小化。<br>如果你的窗口就是主窗口，那么method返回false<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"><span class="keyword">let</span> myWindow = <span class="literal">null</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> shouldQuit = app.makeSingleInstance(<span class="function">(<span class="params">commandLine, workingDirectory</span>) =&gt;</span> &#123;</div><div class="line">  <span class="comment">// 有人又点击你了，要注意啊，少年.</span></div><div class="line">  <span class="keyword">if</span> (myWindow) &#123;</div><div class="line">  <span class="comment">// 所以我判断一下是不是最小化的了</span></div><div class="line">    <span class="keyword">if</span> (myWindow.isMinimized()) myWindow.restore()</div><div class="line">    <span class="comment">// 所以我要获取焦点</span></div><div class="line">    myWindow.focus()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="keyword">if</span> (shouldQuit) &#123;</div><div class="line">  app.quit()</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Create myWindow, load the rest of the app, etc...</span></div><div class="line">app.on(<span class="string">'ready'</span>, () =&gt; &#123;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>app.releaseSingleInstance(), 释放所有的单例。这样会导致多个实例，一个接一个的运行。</p>
+</li>
+<li>app.setUserActivity(type, userInfo[, webpageURL]) <strong>mac</strong></li>
+<li>app.getCurrentActivityType(), 获取当前的。。。 <strong>mac</strong></li>
+<li>app.setLoginItemSettings(settings[, path, args]) <strong>mac</strong>, <strong>windows</strong></li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> appFolder = path.dirname(process.execPath)</div><div class="line"><span class="keyword">const</span> updateExe = path.resolve(appFolder, <span class="string">'..'</span>, <span class="string">'Update.exe'</span>)</div><div class="line"><span class="keyword">const</span> exeName = path.basename(process.execPath)</div><div class="line"></div><div class="line">app.setLoginItemSettings(&#123;</div><div class="line">  <span class="attr">openAtLogin</span>: <span class="literal">true</span>,</div><div class="line">  <span class="attr">path</span>: updateExe,</div><div class="line">  <span class="attr">args</span>: [</div><div class="line">    <span class="string">'--processStart'</span>, <span class="string">`"<span class="subst">$&#123;exeName&#125;</span>"`</span>,</div><div class="line">    <span class="string">'--process-start-args'</span>, <span class="string">`"--hidden"`</span></div><div class="line">  ]</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>app.dock.setIcon(image)<strong>mac</strong>, 设置icon图片</li>
+<li>app.dock.setMenu(menu)<strong>mac</strong>, 设置dock的menu</li>
+<li>app.dock.hide()<strong>mac</strong>, 隐藏dock</li>
+<li>app.dock.show()<strong>mac</strong>, 显示dock</li>
+<li>app.dock.getBadge()<strong>mac</strong></li>
+</ul>
+<h2 id="BrowserWindow"><a href="#BrowserWindow" class="headerlink" title="BrowserWindow"></a>BrowserWindow</h2><blockquote>
+<p>创建和控制窗口</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 在主进程里面</span></div><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 或者在其它进程中，从renderer 进程中创建`remote` </span></div><div class="line"><span class="comment">// const &#123;BrowserWindow&#125; = require('electron').remote</span></div><div class="line"></div><div class="line"><span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">width</span>: <span class="number">800</span>, <span class="attr">height</span>: <span class="number">600</span>&#125;)</div><div class="line">win.on(<span class="string">'closed'</span>, () =&gt; &#123;</div><div class="line">  win = <span class="literal">null</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line"><span class="comment">// 加载远程页面</span></div><div class="line">win.loadURL(<span class="string">'https://github.com'</span>)</div><div class="line"></div><div class="line"><span class="comment">// Or 加载本地文件</span></div><div class="line">win.loadURL(<span class="string">`file://<span class="subst">$&#123;__dirname&#125;</span>/app/index.html`</span>)</div></pre></td></tr></table></figure>
+<h3 id="漂亮的显示窗口"><a href="#漂亮的显示窗口" class="headerlink" title="漂亮的显示窗口"></a>漂亮的显示窗口</h3><ul>
+<li>ready-to-show事件, 加载期间会被调用，直到第一次加载成功</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"><span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">show</span>: <span class="literal">false</span>&#125;)</div><div class="line">win.once(<span class="string">'ready-to-show'</span>, () =&gt; &#123;</div><div class="line">  win.show()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>backgroundColor, 设置显示颜色</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">backgroundColor</span>: <span class="string">'#2e2c29'</span>&#125;)</div><div class="line">win.loadURL(<span class="string">'https://github.com'</span>)</div></pre></td></tr></table></figure>
+<h3 id="父窗口等"><a href="#父窗口等" class="headerlink" title="父窗口等"></a>父窗口等</h3><h4 id="parent"><a href="#parent" class="headerlink" title="parent"></a>parent</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> top = <span class="keyword">new</span> BrowserWindow()</div><div class="line"><span class="keyword">let</span> child = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">parent</span>: top&#125;)</div><div class="line">child.show()</div><div class="line">top.show()</div></pre></td></tr></table></figure>
+<h4 id="Modal-windows"><a href="#Modal-windows" class="headerlink" title="Modal windows"></a>Modal windows</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> child = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">parent</span>: top, <span class="attr">modal</span>: <span class="literal">true</span>, <span class="attr">show</span>: <span class="literal">false</span>&#125;)</div><div class="line">child.loadURL(<span class="string">'https://github.com'</span>)</div><div class="line">child.once(<span class="string">'ready-to-show'</span>, () =&gt; &#123;</div><div class="line">  child.show()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul>
+<li>mac中，modal窗口会向一个, 嗯显示效果，挺漂亮的哈</li>
+<li>mac中，子窗口会与主窗口保持一个位置，而Windows和Linux中不会。</li>
+</ul>
+<h2 id="Class-BrowserWindow"><a href="#Class-BrowserWindow" class="headerlink" title="Class: BrowserWindow"></a>Class: BrowserWindow</h2><h3 id="new-BrowserWindow-options"><a href="#new-BrowserWindow-options" class="headerlink" title="new BrowserWindow([options])"></a>new BrowserWindow([options])</h3><ul>
+<li>options Object(可选)<ul>
+<li>width Integer, 窗口宽度，默认是 800</li>
+<li>height Integer, 窗口高度, 默认是600</li>
+<li>x Integer, 距离屏幕举例左边的坐标，默认是中间</li>
+<li>y Integer, 距离上面的坐标，默认是中间</li>
+<li>useContentSize, Boolean, width 和 height是否用于Web页面的尺寸，意味着实际的窗口大小，将包含窗口框架大小，并且稍微大一谢谢。默认是 false</li>
+<li>center, Boolean, 显示在屏幕正中</li>
+<li>minWidth, Integer, 最小的width，默认是0</li>
+<li>minWidth Integer (optional) - Window’s minimum width. Default is 0.</li>
+<li>minHeight Integer (optional) - Window’s minimum height. Default is 0.</li>
+<li>maxWidth Integer (optional) - Window’s maximum width. Default is no limit.</li>
+<li>maxHeight Integer (optional) - Window’s maximum height. Default is no limit.</li>
+<li>resizable Boolean (optional) - 窗口是否可以调整大小. 默认是true</li>
+<li>closable Boolean (optional) - 是否可以关闭窗口. Linux中不能用. 默认是 true.</li>
+<li><code>&quot;node-integration&quot;</code>, 默认加载远程url的时候，是不会加载jquery等框架的，如果需要，请设置为false</li>
+</ul>
+</li>
+</ul>
+<h3 id="Instance-Events"><a href="#Instance-Events" class="headerlink" title="Instance Events"></a>Instance Events</h3><p> new一个实例之后，有这些事件, <code>close</code>等<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"> window.onbeforeunload = (e) =&gt; &#123;</div><div class="line">  console.log(&apos;I do not want to be closed&apos;)</div><div class="line"></div><div class="line">  // Unlike usual browsers that a message box will be prompted to users, returning</div><div class="line">  // a non-void value will silently cancel the close.</div><div class="line">  // It is recommended to use the dialog API to let the user confirm closing the</div><div class="line">  // application.</div><div class="line">  e.returnValue = false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h3 id="静态方法"><a href="#静态方法" class="headerlink" title="静态方法"></a>静态方法</h3><ul>
+<li>BrowserWindow.getAllWindows()<br>获取所有BrowserWindows的窗口数组。</li>
+<li>BrowserWindow.getFocusedWindow()<br>获取当前有焦点的窗口。</li>
+<li>BrowserWindow.fromWebContents(webContents)</li>
+<li>BrowserWindow.fromId(id)</li>
+</ul>
+<h3 id="实例属性"><a href="#实例属性" class="headerlink" title="实例属性"></a>实例属性</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;BrowserWindow&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"></div><div class="line"><span class="keyword">let</span> win = <span class="keyword">new</span> BrowserWindow(&#123;<span class="attr">width</span>: <span class="number">800</span>, <span class="attr">height</span>: <span class="number">600</span>&#125;)</div><div class="line">win.loadURL(<span class="string">'https://github.com'</span>)</div></pre></td></tr></table></figure>
+<ul>
+<li>win.webContent</li>
+<li>win.id</li>
+</ul>
+<h3 id="实例方法"><a href="#实例方法" class="headerlink" title="实例方法"></a>实例方法</h3><ul>
+<li>win.destroy()</li>
+<li>win.close()</li>
+<li>win.focus()</li>
+<li>win.blur()//模糊</li>
+<li>win.isFocused()</li>
+<li>win.isDestroyed()</li>
+<li>win.show()</li>
+<li>win.showInactive(), 显示窗口，但是放焦点</li>
+<li>win.hide()</li>
+<li>win.isVisible() , 返回Boolean值，是否用户可见</li>
+<li>win.isModal(), 当前的窗口是不是modal框</li>
+<li>win.maximize(), 最大化窗口</li>
+<li>win.unmaximize()</li>
+<li>win.restore(), 从最小化状态，重置会之前的状态</li>
+<li>win.isMinimized()</li>
+<li>win.setFullScreen(flag), flag: 布尔值，设置受否全屏</li>
+<li>win.previewFile(path[, displayName]), <strong>Mac</strong></li>
+<li>win.closeFilePreview(), <strong>Mac</strong></li>
+<li>win.setMinimumSize(width, height)</li>
+<li>win.getMinimumSize()</li>
+<li>win.setMaximumSize(width, height)</li>
+<li>win.getMaximumSize()</li>
+<li>win.setResizable(resizable)</li>
+<li>win.isMovable() <strong>Mac</strong> <strong>Window</strong></li>
+<li>win.isFullScreenable()</li>
+<li>win.isAlwaysOnTop()</li>
+<li>win.setTitle(title)</li>
+<li>win.setSheetOffset(offsetY[, offsetX]), <strong>Mac</strong></li>
+<li>win.loadURL(url[, options])<ul>
+<li>url </li>
+<li>options <ul>
+<li>httpReferrer</li>
+<li>userAgent</li>
+<li>extraHeaders</li>
+<li>postData (UploadRawData | UploadFile | UploadFileSystem | UploadBlob)[]</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> url = <span class="built_in">require</span>(<span class="string">'url'</span>).format(&#123;</div><div class="line">  <span class="attr">protocol</span>: <span class="string">'file'</span>,</div><div class="line">  <span class="attr">slashes</span>: <span class="literal">true</span>,</div><div class="line">  <span class="attr">pathname</span>: <span class="built_in">require</span>(<span class="string">'path'</span>).join(__dirname, <span class="string">'index.html'</span>)</div><div class="line">&#125;)</div><div class="line"></div><div class="line">win.loadURL(url)</div></pre></td></tr></table></figure>
+<p>POST: </p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">win.loadURL(<span class="string">'http://localhost:8000/post'</span>, &#123;</div><div class="line">  <span class="attr">postData</span>: [&#123;</div><div class="line">    <span class="attr">type</span>: <span class="string">'rawData'</span>,</div><div class="line">    <span class="attr">bytes</span>: Buffer.from(<span class="string">'hello=world'</span>)</div><div class="line">  &#125;],</div><div class="line">  <span class="attr">extraHeaders</span>: <span class="string">'Content-Type: application/x-www-form-urlencoded'</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<ul>
+<li>win.reload()</li>
+<li>win.setMenu(menu) <strong>Linux</strong> <strong>Windows</strong></li>
+<li>win.setProgressBar(progress[, options])<ul>
+<li>progress Double类型</li>
+</ul>
+</li>
+</ul>
+<h2 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h2><h3 id="new-Menu"><a href="#new-Menu" class="headerlink" title="new Menu()"></a>new Menu()</h3><p>创建一个菜单</p>
+<h3 id="Menu-setApplicationMenu-menu"><a href="#Menu-setApplicationMenu-menu" class="headerlink" title="Menu.setApplicationMenu(menu)"></a>Menu.setApplicationMenu(menu)</h3><p>给项目设置菜单</p>
+<h3 id="Menu-buildFromTemplate-template"><a href="#Menu-buildFromTemplate-template" class="headerlink" title="Menu.buildFromTemplate(template)"></a>Menu.buildFromTemplate(template)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> template = [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">label</span>: <span class="string">'修改'</span>,</div><div class="line">    <span class="attr">submenu</span>: [</div><div class="line">      &#123;</div><div class="line">        <span class="attr">role</span>: <span class="string">'pasteandmatchstyle'</span></div><div class="line">      &#125;</div><div class="line">    ]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+<h3 id="其他页面的标签"><a href="#其他页面的标签" class="headerlink" title="其他页面的标签"></a>其他页面的标签</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">&lt;!-- index.html --&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></div><div class="line"><span class="keyword">const</span> &#123;remote&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"><span class="keyword">const</span> &#123;Menu, MenuItem&#125; = remote</div><div class="line"></div><div class="line"><span class="keyword">const</span> menu = <span class="keyword">new</span> Menu()</div><div class="line">menu.append(<span class="keyword">new</span> MenuItem(&#123;<span class="attr">label</span>: <span class="string">'MenuItem1'</span>, click() &#123; <span class="built_in">console</span>.log(<span class="string">'item 1 clicked'</span>) &#125;&#125;))</div><div class="line">menu.append(<span class="keyword">new</span> MenuItem(&#123;<span class="attr">type</span>: <span class="string">'separator'</span>&#125;))</div><div class="line">menu.append(<span class="keyword">new</span> MenuItem(&#123;<span class="attr">label</span>: <span class="string">'MenuItem2'</span>, <span class="attr">type</span>: <span class="string">'checkbox'</span>, <span class="attr">checked</span>: <span class="literal">true</span>&#125;))</div><div class="line"></div><div class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'contextmenu'</span>, (e) =&gt; &#123;</div><div class="line">  e.preventDefault()</div><div class="line">  menu.popup(remote.getCurrentWindow())</div><div class="line">&#125;, <span class="literal">false</span>)</div><div class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></div></pre></td></tr></table></figure>
+<h2 id="MenuItem"><a href="#MenuItem" class="headerlink" title="MenuItem"></a>MenuItem</h2><p>添加item</p>
+<h3 id="new-MenuItem-options"><a href="#new-MenuItem-options" class="headerlink" title="new MenuItem(options)"></a>new MenuItem(options)</h3><ul>
+<li>options Object<ul>
+<li>click Function (optional) - 点击时触发.<ul>
+<li>menuItem MenuItem</li>
+<li>browserWindow BrowserWindow</li>
+<li>event Event</li>
+</ul>
+</li>
+<li>role String (optional) - 定义原生操作类，有(undo, redo, cut, copy, paste, selectall, delete, minimize, reload), 这些action可以提供原生的体验.</li>
+<li>type String (optional) - Can be normal, separator, submenu, checkbox or radio.</li>
+<li>label String - (optional)</li>
+<li>sublabel String - (optional)</li>
+<li>accelerator Accelerator (optional)</li>
+<li>icon (NativeImage | String) (optional)</li>
+<li>enabled Boolean (optional) - 如果是 false, 置灰，并且不可点击.</li>
+<li>visible Boolean (optional) - 如果是 false, 就隐藏.</li>
+<li>checked Boolean (optional) - 只对checkbox 和 radio button有效.</li>
+<li>submenu (MenuItemConstructorOptions[] | Menu) (optional) </li>
+<li>id String (optional) - 唯一属性ID.</li>
+<li>position String (optional) .</li>
+</ul>
+</li>
+</ul>
+<h2 id="ipcMain-ipcRenderer"><a href="#ipcMain-ipcRenderer" class="headerlink" title="ipcMain, ipcRenderer"></a>ipcMain, ipcRenderer</h2><ul>
+<li>ipcMain: 主进程与子进程进行通信，</li>
+<li>ipcRenderer: 子进程与主进程进行通信</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// main.js</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> &#123;ipcMain&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>);</div><div class="line"></div><div class="line">ipcMain.on(<span class="string">'asynchronous-message'</span>, (event, arg) =&gt; &#123;</div><div class="line">    <span class="built_in">console</span>.log(arg); <span class="comment">// 'ping'</span></div><div class="line">    <span class="comment">//中转一下，发给index.html</span></div><div class="line">    event.sender.send(<span class="string">'asynchronous-reply'</span>, <span class="string">'pong'</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ipcMain.on(<span class="string">'synchronous-message'</span>, (event, arg) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(arg)  <span class="comment">// prints "ping"</span></div><div class="line">  event.returnValue = <span class="string">'pong'</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// index.html.</span></div><div class="line"><span class="keyword">const</span> &#123;ipcRenderer&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line"><span class="built_in">console</span>.log(ipcRenderer.sendSync(<span class="string">'synchronous-message'</span>, <span class="string">'ping'</span>)) <span class="comment">// prints "pong"</span></div><div class="line"></div><div class="line">ipcRenderer.on(<span class="string">'asynchronous-reply'</span>, (event, arg) =&gt; &#123;</div><div class="line">  <span class="built_in">console</span>.log(arg) <span class="comment">// prints "pong"</span></div><div class="line">&#125;)</div><div class="line"></div><div class="line">ipcRenderer.send(<span class="string">'asynchronous-message'</span>, <span class="string">'ping'</span>)</div></pre></td></tr></table></figure>
+<h2 id="webview"><a href="#webview" class="headerlink" title="webview"></a>webview</h2><p>注意，如果需要隐藏webview，那么需要不能直接设置<code>style=&quot;display:none&quot;</code>, 这会导致，renderer 进程不能监控，是否加载完成等。</p>
+<p>如果，一定要隐藏，那么请独立写css 的属性，如:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="undefined"></span></div><div class="line">  webview &#123;</div><div class="line">    display:inline-flex;</div><div class="line">    width:640px;</div><div class="line">    height:480px;</div><div class="line">  &#125;</div><div class="line">  webview.hide &#123;</div><div class="line">    flex: 0 1;</div><div class="line">    width: 0px;</div><div class="line">    height: 0px;</div><div class="line">  &#125;</div><div class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></div><div class="line"><span class="comment">&lt;!-- 隐藏 webview--&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">webview</span> <span class="attr">class</span>=<span class="string">"hide"</span>&gt;</span><span class="tag">&lt;/<span class="name">webview</span>&gt;</span></div></pre></td></tr></table></figure>
+
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 changyan -->
+    <div id="changyan-comment">
+        <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2017/05/26/Electron2/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = 'undefined';
+var conf = 'undefined';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+    </div>
+    <style>
+        #changyan-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+
+
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2017/05/14/think/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
+
+
+                    
+                        <!-- Overlay For Active Sidebar -->
+<div class="sidebar-overlay"></div>
+
+<!-- Material sidebar -->
+<aside id="sidebar" class="sidebar sidebar-colored sidebar-fixed-left" role="navigation">
+    <div id="sidebar-main">
+        <!-- Sidebar Header -->
+        <div class="sidebar-header header-cover" style="background-image: url(/img/sidebar_header.png);">
+    <!-- Top bar -->
+    <div class="top-bar"></div>
+
+    <!-- Sidebar toggle button -->
+    <button type="button" class="sidebar-toggle mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" style="display: initial;" data-upgraded=",MaterialButton,MaterialRipple">
+        <i class="material-icons">clear_all</i>
+        <span class="mdl-button__ripple-container">
+            <span class="mdl-ripple">
+            </span>
+        </span>
+    </button>
+
+    <!-- Sidebar Avatar -->
+    <div class="sidebar-image">
+        <img src="/img/avatar.png" alt="A Man Has No Name's avatar">
+    </div>
+
+    <!-- Sidebar Email -->
+    <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+        hi@heyyezi.com
+        <b class="caret"></b>
+    </a>
+</div>
+
+
+        <!-- Sidebar Navigation  -->
+        <ul class="nav sidebar-nav">
+    <!-- User dropdown  -->
+    <li class="dropdown">
+        <ul id="settings-dropdown" class="dropdown-menu">
+            
+                <li>
+                    <a href="/links/" target="_blank" title="一群疯子">
+                        
+                            <i class="material-icons sidebar-material-icons sidebar-indent-left1pc-element">email</i>
+                        
+                        一群疯子
+                    </a>
+                </li>
+            
+        </ul>
+    </li>
+
+    <!-- Homepage -->
+    
+        <li id="sidebar-first-li">
+            <a href="/" target="_self">
+                
+                    <i class="material-icons sidebar-material-icons">home</i>
+                
+                主页
+            </a>
+        </li>
+        
+    
+
+    <!-- Archives  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">inbox</i>
+                
+                    归档
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+            <li>
+                <a class="sidebar_archives-link" href="/archives/2017/05/">五月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/04/">四月 2017<span class="sidebar_archives-count">2</span></a></li><li><a class="sidebar_archives-link" href="/archives/2017/03/">三月 2017<span class="sidebar_archives-count">3</span></a>
+            </ul>
+        </li>
+        
+    
+
+    <!-- Categories  -->
+    
+        <li class="dropdown">
+            <a href="#" class="ripple-effect dropdown-toggle" data-toggle="dropdown">
+                
+                    <i class="material-icons sidebar-material-icons">chrome_reader_mode</i>
+                
+                分类
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                <a class="sidebar_archives-link" href="/categories/Git/">Git<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/">JavaScript<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/JavaScript/Tools/">Tools<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding/">coding<span class="sidebar_archives-count">4</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding/NodeJS/">NodeJS<span class="sidebar_archives-count">3</span></a></li><li><a class="sidebar_archives-link" href="/categories/coding/Python/">Python<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/categories/随笔/">随笔<span class="sidebar_archives-count">1</span></a>
+            </ul>
+        </li>
+        
+            <li class="divider"></li>
+        
+    
+
+    <!-- Pages  -->
+    
+        <li>
+            <a href="/tags" title="Tags">
+                
+                    <i class="material-icons sidebar-material-icons">card_giftcard</i>
+                
+                Tags
+            </a>
+        </li>
+        
+    
+        <li>
+            <a href="/links" title="Links">
+                
+                    <i class="material-icons sidebar-material-icons">people</i>
+                
+                Links
+            </a>
+        </li>
+        
+    
+
+    <!-- Article Number  -->
+    
+        <li>
+            <a href="/archives">
+                文章总数
+                <span class="sidebar-badge">7</span>
+            </a>
+        </li>
+        
+    
+</ul>
+
+
+        <!-- Sidebar Footer -->
+        <!--
+I'm glad you use this theme, the development is no so easy, I hope you can keep the copyright, I will thank you so much.
+If you still want to delete the copyrights, could you still retain the first one? Which namely "Theme Material"
+It will not impact the appearance and can give developers a lot of support :)
+
+很高兴您使用并喜欢该主题，开发不易 十分谢谢与希望您可以保留一下版权声明。
+如果您仍然想删除的话 能否只保留第一项呢？即 "Theme Material"
+它不会影响美观并可以给开发者很大的支持和动力。 :)
+-->
+
+<!-- Sidebar Divider -->
+
+    <div class="sidebar-divider"></div>
+
+
+<!-- Theme Material -->
+
+
+<!-- Help & Support -->
+<!--
+
+-->
+
+<!-- Feedback -->
+<!--
+
+-->
+
+<!-- About Theme -->
+<!--
+
+-->
+
+    </div>
+
+    <!-- Sidebar Image -->
+    
+
+</aside>
+
+                    
+
+                    
+                        <!-- Footer Top Button -->
+                        <div class="toTop-wrap">
+    <a href="#top" class="toTop">
+        <i class="material-icons footer_top-i">expand_less</i>
+    </a>
+</div>
+
+                    
+
+                    <!--Footer-->
+<footer class="mdl-mini-footer" id="bottom">
+    
+        <!-- Paradox Footer Left Section -->
+        <div class="mdl-mini-footer--left-section sns-list">
+    <!-- Twitter -->
+    
+        <a href="https://twitter.com/twitter" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-twitter.svg);">
+                <span class="visuallyhidden">Twitter</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Facebook -->
+    
+        <a href="https://www.facebook.com/facebook" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-facebook.svg);">
+                <span class="visuallyhidden">Facebook</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Google + -->
+    
+        <a href="https://www.google.com/" target="_blank">
+            <button class="mdl-mini-footer--social-btn social-btn" style="background-image: url(/img/footer/footer_ico-gplus.svg);">
+                <span class="visuallyhidden">Google Plus</span>
+            </button><!--
+     --></a>
+    
+
+    <!-- Weibo -->
+    
+
+    <!-- Instagram -->
+    
+
+    <!-- Tumblr -->
+    
+
+    <!-- Github -->
+    
+
+    <!-- LinkedIn -->
+    
+
+    <!-- Zhihu -->
+    
+
+    <!-- Bilibili -->
+    
+
+    <!-- Telegram -->
+    
+</div>
+
+
+        <!--Copyright-->
+        <div id="copyright">
+            Copyright&nbsp;©&nbsp;
+            <script type="text/javascript">
+                var fd = new Date();
+                document.write(fd.getFullYear());
+            </script>
+            &nbsp;黑白之院
+        </div>
+
+        <!-- Paradox Footer Right Section -->
+
+        <!--
+        I am glad you use this theme, the development is no so easy, I hope you can keep the copyright.
+        It will not impact the appearance and can give developers a lot of support :)
+
+        很高兴您使用该主题，开发不易，希望您可以保留一下版权声明。
+        它不会影响美观并可以给开发者很大的支持。 :)
+        -->
+
+        <div class="mdl-mini-footer--right-section">
+            <div>
+                <div class="footer-develop-div">Powered by <a href="https://hexo.io" target="_blank" class="footer-develop-a">Hexo</a></div>
+                <div class="footer-develop-div">Theme - <a href="https://github.com/viosey/hexo-theme-material" target="_blank" class="footer-develop-a">Material</a></div>
+            </div>
+        </div>
+    
+</footer>
+
+
+                    <!-- Import File -->
+
+    <script src="/js/lazyload.min.js"></script>
+    <script src="/js/js.min.js"></script>
+
+
+
+    <script src="/js/nprogress.js"></script>
+
+
+<script type="text/javascript">
+    NProgress.configure({
+        showSpinner: true
+    });
+    NProgress.start();
+    $('#nprogress .bar').css({
+        'background': '#29d'
+    });
+    $('#nprogress .peg').css({
+        'box-shadow': '0 0 10px #29d, 0 0 15px #29d'
+    });
+    $('#nprogress .spinner-icon').css({
+        'border-top-color': '#29d',
+        'border-left-color': '#29d'
+    });
+    setTimeout(function() {
+        NProgress.done();
+        $('.fade').removeClass('out');
+    }, 800);
+</script>
+
+
+
+
+
+
+
+    <!-- Busuanzi -->
+    <script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+    <!-- 畅言公共 js 代码 start -->
+		<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=undefined">
+</script>
+    <!-- 畅言公共 js 代码 end -->
+
+
+
+
+
+
+
+<!-- Window Load-->
+<script>
+    $(window).load(function() {
+        // Post_Toc parent position fixed
+        $('.post-toc-wrap').parent('.mdl-menu__container').css('position', 'fixed');
+    });
+</script>
+
+<!-- MathJax Load-->
+
+<script>
+    <!-- Offer LazyLoad -->
+    queue.offer(function(){
+        $('.lazy').lazyload({
+            effect : 'show'
+        });
+    });
+
+    <!-- Start Queue -->
+    $(document).ready(function(){
+        setInterval(function(){
+            queue.execNext();
+        },200);
+    });
+</script>
+
+                </main>
+            </div>
+        </body>
+    
+</html>
