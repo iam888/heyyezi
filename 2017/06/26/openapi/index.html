@@ -10,7 +10,7 @@
     
     <title>
         
-            Electron | 
+            对于OpenApi的设计 | 
         
         黑白之院
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,JavaScript,NodeJS">
+    <meta name="keywords" content="null,API">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -62,9 +62,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="Electron | 黑白之院">
+    <meta property="og:title" content="对于OpenApi的设计 | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="JavaScript"> <meta property="og:article:tag" content="NodeJS"> 
+    <meta property="og:article:tag" content="API"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -251,7 +251,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#简单介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">简单介绍</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#开发组件-Devtron"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">开发组件 Devtron</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#测试组件-Spectron"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">测试组件 Spectron</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#应用的组成"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">应用的组成</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包文件"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">打包文件</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#他们的目标"><span class="post-toc-number">1.</span> <span class="post-toc-text">他们的目标</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#他们的结构"><span class="post-toc-number">2.</span> <span class="post-toc-text">他们的结构</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#经典结构"><span class="post-toc-number">2.1.</span> <span class="post-toc-text">经典结构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Mata数据"><span class="post-toc-number">2.2.</span> <span class="post-toc-text">Mata数据</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#URL配置"><span class="post-toc-number">2.3.</span> <span class="post-toc-text">URL配置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#路由设置"><span class="post-toc-number">2.4.</span> <span class="post-toc-text">路由设置</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数-Parmeters"><span class="post-toc-number">2.5.</span> <span class="post-toc-text">参数 Parmeters</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#返回信息Responses"><span class="post-toc-number">2.6.</span> <span class="post-toc-text">返回信息Responses</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Models模型的定义"><span class="post-toc-number">2.7.</span> <span class="post-toc-text">Models模型的定义</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#鉴权Auth"><span class="post-toc-number">2.8.</span> <span class="post-toc-text">鉴权Auth</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#参数"><span class="post-toc-number">2.9.</span> <span class="post-toc-text">参数</span></a></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swagger是一个工具"><span class="post-toc-number">3.</span> <span class="post-toc-text">Swagger是一个工具</span></a></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -288,7 +288,7 @@
         
     
             <p class="article-headline-p">
-                Electron
+                对于OpenApi的设计
             </p>
         </div>
 
@@ -307,7 +307,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>4月 11, 2017</span>
+        <span>6月 26, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -328,7 +328,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACXklEQVR42u3aQXLDIAwF0Nz/0u0BMqVfAitM5nnVSRObxwLwl14/X3298PDw8PDw8PDwLuO94mv9q/fPk6e8f+fA2PDw8PBGeP8stcsHJ0P5655rZHNseHh4eIO89XK/pib/XT9xfbdkbHh4eHg38/LD8Xp72HkuHh4e3jfx8l9Vtxw8PDy823jJC38vbqhGEh/LWvDw8PBiXl5kmv97tL6Hh4eHF/DKLU1BuJAs6/kGM9pThoeHhxfwzpb/87JZHuNWJwIPDw9vhnc2klg3aa0ZyfQ13xjw8PDwjvKS2+VFqf2J630HDw8Pb5JXXax3DtbVBoVy4Q0PDw/vYV7v1r3CfzV0yFsQ8PDw8D7FS2KFPMwtl/wPtXPh4eHhPc2rPjgvaOWNCIWh778x4OHh4W3zdqhPtF71Dut4eHh4k7xeW1US7+5M2VbkgYeHh/cwLw9zq1HsToDbC3zx8PDwZnjVkv86RDgVK1SfjoeHhzfJW8N2SmXVg3j1UF6u7+Hh4eEd5fWG3gsRettA4f54eHh4D/PyQLa6nZRDhO2pwcPDw/sUr1qaykl5E0AekRSyFjw8PLyHeb3iU7UdIT8uF6YYDw8Pb5x3tk1q5275ERwPDw9vkle98qiiFxbvHLLx8PDwZni9Rbk6oN4mVI0h8PDw8CZ5pwpdvYi2OpV4eHh49/DyBbr6Sd4QkG9R5awFDw8P7xpedRFvlrXyeBcPDw/vSl7vUL5f+ho6UuPh4eEdDSMOF6uC4Y5mLXh4eHgPFMDyI3J+FN5vJsDDw8Ob5H3fhYeHh4eHh4eHd8H1C0tPH+vT5fAbAAAAAElFTkSuQmCC">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACVUlEQVR42u3aQW7DMAwEwPz/0+0Dgji7oq04wehkpLXM0UEUKD7+fno88PDw8PDw8PDwbsZ7xOP5recZnv96/JVXc45iw8PDw9vCe7PVxqG8Cu54zuS5iA0PDw9vI+/VhruWBq57980MeHh4eF/CW9vE176Lh4eH93u8RznyJIGHh4d3N16yoSefzMsZecFiU60FDw8PL+atbd97nrfe7+Hh4eEFvLqlKU4G8wLECU1XeHh4eBfw8o04Dzo/lCfUJB48PDy8/bx2iiRtTA7ubYEYDw8P71O8NujkoJwUatcu4erEgIeHh3cBb36MXksJl7cO4OHh4W3hTYqt7TKtxTBKDHh4eHgDXntxlf9PXUQYLwQeHh7eHl67xZ98WRUXKYp38fDw8C7m5ZPmV2Jtafh4seqEhIeHh7eFNykuTK75r6Di4eHh7eHl4UYfGC9Be3DHw8PD+yxvct2Vz9MWLBabrvDw8PAu47VH2PZ43R7W2+SBh4eH9yneWsNTXj5oMXlseHh4eDt5kybUs8qyxaaf/IKHh4d3A17e/NTOkPyePOPh4eHdgbdWksgvw9YaDqK0hIeHh7ed1x5tT7jsLxsIRokBDw8Pb8xrR16uXXtrcsjGw8PD28Nb25TX0kO7WG0ZAg8PD28nr00Gxwmgvf4/ufyBh4eHt5E3CaJtvWobFIpkg4eHh/clvKQtIA93tHx4eHh4t+StlTPmV1/RsuLh4eFt5LVbfL6Jt60JeTECDw8P71O8dms+a9NPQm+vwfDw8PCu5v3ewMPDw8PDw8PDu8H4By8APtrZKuTgAAAAAElFTkSuQmCC">
         </ul>
     
 
@@ -340,7 +340,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/JavaScript/">JavaScript</a></li><li class="mdl-menu__item"><a class="post_tag-link" href="/tags/NodeJS/">NodeJS</a>
+        <a class="post_tag-link" href="/tags/API/">API</a>
     </ul>
     
 
@@ -367,7 +367,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Electron&url=https://www.heyyezi.com//2017/04/11/electron/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=对于OpenApi的设计&url=https://www.heyyezi.com//2017/06/26/openapi/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Electron&url=https://www.heyyezi.com//2017/04/11/electron/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=对于OpenApi的设计&url=https://www.heyyezi.com//2017/06/26/openapi/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -385,7 +385,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/04/11/electron/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/06/26/openapi/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -394,7 +394,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/04/11/electron/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/06/26/openapi/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -419,36 +419,85 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>简单介绍一个Node 工具<br><a id="more"></a></p>
+<p>是不是能够统一API的设计，建立一个契约，然后各自开发呢？</p>
+<blockquote>
+<p>一个开源的API定义</p>
 </blockquote>
-<p><img src="https://cloud.githubusercontent.com/assets/378023/15172388/b2b81950-1790-11e6-9a7c-ccc39912bb3a.png" alt="Electron"></p>
-<h2 id="简单介绍"><a href="#简单介绍" class="headerlink" title="简单介绍"></a>简单介绍</h2><p>这货很厉害。</p>
-<h3 id="开发组件-Devtron"><a href="#开发组件-Devtron" class="headerlink" title="开发组件 Devtron"></a>开发组件 Devtron</h3><p>安装 <strong><em>npm install devtron –save</em></strong></p>
-<p>在console中，加载安装模块 <strong><em>require(‘devtron’).install()</em></strong></p>
-<p>它可以监控，每一个组件等等</p>
-<h3 id="测试组件-Spectron"><a href="#测试组件-Spectron" class="headerlink" title="测试组件 Spectron"></a>测试组件 Spectron</h3><p> 用来测试每一个窗口，以及webview</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">app.client.auditAccessibility().then(<span class="function"><span class="keyword">function</span> (<span class="params">audit</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (audit.failed) &#123;</div><div class="line">    <span class="built_in">console</span>.error(audit.message)</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<h3 id="应用的组成"><a href="#应用的组成" class="headerlink" title="应用的组成"></a>应用的组成</h3><ul>
-<li><p>Mac中</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
-</li>
-<li><p>Windows 和 Linux</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">electron/resources/app</div><div class="line">├── package.json</div><div class="line">├── main.js</div><div class="line">└── index.html</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="打包文件"><a href="#打包文件" class="headerlink" title="打包文件"></a>打包文件</h3><p> 使用<strong>asar</strong>, 进行文件打包, 这样文件目录就变成了<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">electron/Electron.app/Contents/Resources/app/</div><div class="line">└── app.asar</div></pre></td></tr></table></figure></p>
+</blockquote>
+<h2 id="他们的目标"><a href="#他们的目标" class="headerlink" title="他们的目标"></a>他们的目标</h2><blockquote>
+<p>定义标准的、独立于语言的指向 REST API 的接口，使得服务能力无需访问源代码、文档，或是借助于网络流量检查，就可被人类和计算机发现并理解。通过对 OpenAPI 做适当定义后，消费者可使用最小数量的实现逻辑理解远程服务，并与远程服务交互。</p>
+</blockquote>
+<h2 id="他们的结构"><a href="#他们的结构" class="headerlink" title="他们的结构"></a>他们的结构</h2><p><img src="https://cdn.infoq.com/statics_s2_20170613-0338/resource/news/2017/01/openapi-3/en/resources/openapi-2-3.png" alt="对比"></p>
+<h3 id="经典结构"><a href="#经典结构" class="headerlink" title="经典结构"></a>经典结构</h3><p>创建一个测试的API <code>test_api.yml</code><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="attr">swagger:</span> <span class="string">"2.0"</span></div><div class="line"><span class="attr">info:</span></div><div class="line"><span class="attr">  title:</span> <span class="string">"测试API"</span></div><div class="line"><span class="attr">  description:</span> <span class="string">&gt;</span></div><div class="line">     这里是markdown 语法</div><div class="line">    *这是用来演示基础结构的数据*</div><div class="line">    `这是`第二条 等</div><div class="line"></div><div class="line"><span class="attr">  version:</span> <span class="number">1.0</span><span class="number">.0</span></div><div class="line"></div><div class="line"><span class="attr">host:</span> api.example.com</div><div class="line"><span class="attr">basePath:</span> /v1</div><div class="line"><span class="attr">schemes:</span></div><div class="line"><span class="bullet">  -</span> https</div><div class="line"><span class="bullet">  -</span> http</div><div class="line"></div><div class="line"><span class="attr">paths:</span></div><div class="line">  /users:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 返回一个用户列表</div><div class="line"><span class="attr">      description:</span> 哈哈哈哈哈，看不懂</div><div class="line"><span class="attr">      produces:</span></div><div class="line"><span class="bullet">        -</span> application/json</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div><div class="line">        <span class="number">404</span>:</div><div class="line"><span class="attr">          description:</span> 找不到呗</div></pre></td></tr></table></figure></p>
+<h3 id="Mata数据"><a href="#Mata数据" class="headerlink" title="Mata数据"></a>Mata数据</h3><ul>
+<li><code>swagger: &quot;2.0&quot;</code> , 固定的声明</li>
+<li><p><code>info</code>, 接口介绍，描述</p>
 <ul>
-<li>Windows 和 Linux<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"> electron/resources/app</div><div class="line"> └── app.asar</div><div class="line"></div><div class="line">### 使用到的打包工具</div><div class="line"></div><div class="line">- [electron-builder](https://github.com/electron-userland/electron-builder)</div><div class="line">- [electron-packager](https://github.com/electron-userland/electron-packager)</div><div class="line"></div><div class="line">### 调试</div><div class="line">- 使用devtron工具调试</div><div class="line">-  --debug=[port], 设置调试端口</div><div class="line">-  --debug-brk=[port], 基本跟上面一样，但是它会暂停中断执行</div><div class="line"></div><div class="line">## 程序结构</div><div class="line"></div><div class="line">### 主进程</div><div class="line"> 入口主文件，负责创建界面，管理界面什么的。</div><div class="line"></div><div class="line">### 渲染进程</div><div class="line"> 负责渲染界面，并且可以访问系统资源。</div><div class="line"></div><div class="line">### 主进程 和 渲染进程 的区别</div><div class="line">  `主进程`负责创建窗口`实例什么的，同时每一个`窗口`实例的都会有自己的`渲染进程`. 那么，当`窗口`实例被销毁，同时`渲染进程`同时被销毁。</div><div class="line">  `主进程`负责管理上面的所有操作。</div><div class="line">  TODO： 注意不允许管理原生资源的问题。</div><div class="line"></div><div class="line">### 最简结构</div></pre></td></tr></table></figure>
+<li><code>title</code>: 接口名称</li>
+<li><code>description</code>: 接口描述，可以使用markdown语法</li>
+<li><code>version</code>: 接口版本，</li>
+<li><code>contact</code>: 联系人<ul>
+<li><code>name</code>: 姓名</li>
+<li><code>url</code>: 网址</li>
+<li><code>email</code>: 邮箱<h3 id="URL配置"><a href="#URL配置" class="headerlink" title="URL配置"></a>URL配置</h3></li>
+</ul>
 </li>
 </ul>
-<p>playcrab/<br>├── package.json<br>├── main.js<br>└── index.html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">- package.json, 不做多解释，不懂的也就别看这个文章了；建议如下进行配置</div><div class="line">```javascript</div><div class="line">&#123;</div><div class="line">  &quot;name&quot;: &quot;playcrab&quot;,</div><div class="line">  &quot;version&quot;: &quot;0.1.0&quot; # 一定要写当前版本</div><div class="line">  &quot;main&quot;: &quot;main.js&quot; # 一定要写入口文件，如果没有这个，默认是index.js</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<ul>
-<li>main.js, 需要创建你需要的窗口，以及各种系统事件，比如:<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">const &#123;app, BrowserWindow&#125; = require('electron');</div><div class="line">const path = require('path');</div><div class="line">const url = require('url');</div><div class="line"></div><div class="line"># 为了保持窗口不会被关闭掉，请让窗口变量变成全局的。</div><div class="line">let win;</div><div class="line"></div><div class="line">function createWindow() &#123;</div><div class="line">  //新建一个窗口，并且初始化窗口大小</div><div class="line">  win = new BrowserWindow(&#123;</div><div class="line">    width: 800,</div><div class="line">    height: 600</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  // 加载系统的html</div><div class="line">  win.loadURL(url.format(&#123;</div><div class="line">    pathname: path.join(__dirname, 'index.html'),</div><div class="line">    protocol: 'file:',</div><div class="line">    slashes: true</div><div class="line">  &#125;));</div><div class="line"></div><div class="line">  // 打开调试窗口</div><div class="line">  win.webContent.openDevTools();</div><div class="line"></div><div class="line">  // 绑定关闭事件</div><div class="line"></div><div class="line">  win.on('close', () =&gt; &#123;</div><div class="line">    // 通常我们是会有很多窗口，也就是是一个数组，</div><div class="line">    // 你应该把那个窗口删掉</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    // !!!而不是把所有窗口关闭</div><div class="line">    win = null;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 初始化之后，执行</div><div class="line">app.on('ready', createWindow);</div><div class="line"></div><div class="line">// 当所有窗口都关闭之后，程序退出</div><div class="line">app.on('window-all-closed', () =&gt; &#123;</div><div class="line">  // 在Mac中，之后执行 Cmd + Q 之后才算退出。</div><div class="line">  if (process.platform !== 'darwin') &#123;</div><div class="line">    app.quit()</div><div class="line">  &#125;</div><div class="line">&#125;)</div><div class="line"></div><div class="line">app.on('activate', () =&gt; &#123;</div><div class="line">  # 在Mac中，如果应用还在活跃中，但是已经没有窗口了，那么就需要重新调用 创建窗口</div><div class="line">  if (win === null) &#123;</div><div class="line">    createWindow()</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>host: api.example.com</code>, 配置域名</p>
+</li>
+<li><code>basePath: /v1</code>, 配置路由</li>
+<li><code>schemes</code>:<ul>
+<li><code>https</code>, <code>http</code>, <code>ws</code>, 配置http，scheme，可以是数组</li>
+</ul>
 </li>
 </ul>
-<p>最后，修改index.html<br><figure class="highlight html"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">title</span>&gt;</span></div><div class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></div><div class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></div><div class="line">    Electron版本: <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"><span class="built_in">document</span>.write(process.versions.electron)</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>.</div><div class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></div></pre></td></tr></table></figure></p>
-<p><strong>以上直接抄的官网的</strong></p>
-<p>暂时先这些,<br>未完，待续…..</p>
+<h3 id="路由设置"><a href="#路由设置" class="headerlink" title="路由设置"></a>路由设置</h3><ul>
+<li><code>paths</code>:<ul>
+<li><code>/users</code>, <code>/actions</code> 等等<ul>
+<li><code>get</code>, <code>post</code>, <code>put</code>等 HTTP Methods<ul>
+<li><code>summary</code>: 对这个接口，这个method的一个总结</li>
+<li><code>description</code>: 描述</li>
+<li><code>produces</code>:<ul>
+<li><code>application/json</code>, <code>application/xml</code>等</li>
+</ul>
+</li>
+<li><code>responses:</code><br>200:<ul>
+<li><code>description: OK</code><h3 id="参数-Parmeters"><a href="#参数-Parmeters" class="headerlink" title="参数 Parmeters"></a>参数 Parmeters</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>{}</code> 可以设置参数:<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 通过uid返回一个用户信息</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">          minimum:</span> <span class="number">1</span></div><div class="line"><span class="attr">          description:</span> 这个参数很吊</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div></pre></td></tr></table></figure></p>
+<h3 id="返回信息Responses"><a href="#返回信息Responses" class="headerlink" title="返回信息Responses"></a>返回信息Responses</h3><p>你可以根据HTTP状态码，定义信息格式。比如 <code>200: ok</code>； <code>404: Not Found</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 返回</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">          minimum:</span> <span class="number">1</span></div><div class="line"><span class="attr">          description:</span> 哈哈哈</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> 返回一个用户的类, 下面是描述类的结构</div><div class="line"><span class="attr">          schema:</span></div><div class="line"><span class="attr">            type:</span> object</div><div class="line"><span class="attr">            properties:</span></div><div class="line"><span class="attr">              id:</span></div><div class="line"><span class="attr">                type:</span> integer</div><div class="line"><span class="attr">                example:</span> <span class="number">4</span></div><div class="line"><span class="attr">              name:</span></div><div class="line"><span class="attr">                type:</span> string</div><div class="line"><span class="attr">                example:</span> 那谁</div><div class="line">        <span class="number">400</span>:</div><div class="line"><span class="attr">          description:</span> 呵呵</div><div class="line">        <span class="number">404</span>:</div><div class="line"><span class="attr">          description:</span> 哈哈哈</div><div class="line"><span class="attr">        default:</span></div><div class="line"><span class="attr">          description:</span> 哟哟哟哟哟</div></pre></td></tr></table></figure>
+<h3 id="Models模型的定义"><a href="#Models模型的定义" class="headerlink" title="Models模型的定义"></a>Models模型的定义</h3><p><code>$ref</code>: 可以定义一些类型，用来描述一些数据结构。</p>
+<p>比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;id&quot;: 4,</div><div class="line">    &quot;name&quot;: &quot;你大爷&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以定义为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">definitions:</div><div class="line">  User:</div><div class="line">    properties:</div><div class="line">      id:</div><div class="line">        type: integer</div><div class="line">      name:</div><div class="line">        type: string</div><div class="line">    required:</div><div class="line">      - id</div><div class="line">      - name:</div></pre></td></tr></table></figure>
+<p>然后，引用:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> Returns a user by ID.</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div><div class="line"><span class="attr">          schema:</span></div><div class="line">            $ref: <span class="string">'#/definitions/User'</span></div></pre></td></tr></table></figure>
+<h3 id="鉴权Auth"><a href="#鉴权Auth" class="headerlink" title="鉴权Auth"></a>鉴权Auth</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">securityDefinitions:</div><div class="line">  BasicAuth:</div><div class="line">    type: basic</div><div class="line"></div><div class="line">security:</div><div class="line">  - BaseicAuth: []</div></pre></td></tr></table></figure>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>query 参数，比如 <code>/users?role={admin}</code></li>
+<li>path 参数，比如 <code>/users/{id}</code></li>
+<li>header 参数，比如 <code>X-MyHeader: {Value}</code></li>
+<li>form 参数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /pets/findByStatus?status=available</div><div class="line">GET /notes?offset=100&amp;limit=50</div></pre></td></tr></table></figure>
+<p>使用<code>in: query</code> 来定义query</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">parameters:</div><div class="line">   - in: query</div><div class="line">     name: offset</div><div class="line">     type: integer</div><div class="line">     description: 返回数据的位移.</div><div class="line">   - in: query</div><div class="line">     name: limit</div><div class="line">     type: integer</div><div class="line">     description: 返回多少条数据.</div></pre></td></tr></table></figure>
+<hr>
+<p>Header Parameters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /ping HTTP/1.1</div><div class="line">Host: example.com</div><div class="line">X-Request-ID: 77e1c83b-7bb0-437b-bc50-a7a58e5660ac</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">paths:</div><div class="line">  /ping:</div><div class="line">    get:</div><div class="line">      summary: 检查服务是否存活.</div><div class="line">      parameters:</div><div class="line">        - in: header</div><div class="line">          name: X-Request-ID</div><div class="line">          type: string</div><div class="line">          required: true</div></pre></td></tr></table></figure>
+<h2 id="Swagger是一个工具"><a href="#Swagger是一个工具" class="headerlink" title="Swagger是一个工具"></a>Swagger是一个工具</h2><p>我们可以使用他来解析配置，设计我们的API.</p>
 
     
 
@@ -466,7 +515,7 @@
     <!-- 使用 changyan -->
     <div id="changyan-comment">
         <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2017/04/11/electron/"  ></div>
+<div id="SOHUCS" sid="2017/06/26/openapi/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'undefined';
@@ -495,21 +544,13 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/05/14/think/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/04/01/koa/" id="post_nav-older" class="next-content">
+        <a href="/2017/06/08/sign/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">

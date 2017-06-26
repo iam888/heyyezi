@@ -4,6 +4,106 @@
   
     
     <entry>
+      <title><![CDATA[对于OpenApi的设计]]></title>
+      <url>https://www.heyyezi.com/2017/06/26/openapi/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>是不是能够统一API的设计，建立一个契约，然后各自开发呢？</p>
+<blockquote>
+<p>一个开源的API定义</p>
+</blockquote>
+</blockquote>
+<h2 id="他们的目标"><a href="#他们的目标" class="headerlink" title="他们的目标"></a>他们的目标</h2><blockquote>
+<p>定义标准的、独立于语言的指向 REST API 的接口，使得服务能力无需访问源代码、文档，或是借助于网络流量检查，就可被人类和计算机发现并理解。通过对 OpenAPI 做适当定义后，消费者可使用最小数量的实现逻辑理解远程服务，并与远程服务交互。</p>
+</blockquote>
+<h2 id="他们的结构"><a href="#他们的结构" class="headerlink" title="他们的结构"></a>他们的结构</h2><p><img src="https://cdn.infoq.com/statics_s2_20170613-0338/resource/news/2017/01/openapi-3/en/resources/openapi-2-3.png" alt="对比"></p>
+<h3 id="经典结构"><a href="#经典结构" class="headerlink" title="经典结构"></a>经典结构</h3><p>创建一个测试的API <code>test_api.yml</code><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="attr">swagger:</span> <span class="string">"2.0"</span></div><div class="line"><span class="attr">info:</span></div><div class="line"><span class="attr">  title:</span> <span class="string">"测试API"</span></div><div class="line"><span class="attr">  description:</span> <span class="string">&gt;</span></div><div class="line">     这里是markdown 语法</div><div class="line">    *这是用来演示基础结构的数据*</div><div class="line">    `这是`第二条 等</div><div class="line"></div><div class="line"><span class="attr">  version:</span> <span class="number">1.0</span><span class="number">.0</span></div><div class="line"></div><div class="line"><span class="attr">host:</span> api.example.com</div><div class="line"><span class="attr">basePath:</span> /v1</div><div class="line"><span class="attr">schemes:</span></div><div class="line"><span class="bullet">  -</span> https</div><div class="line"><span class="bullet">  -</span> http</div><div class="line"></div><div class="line"><span class="attr">paths:</span></div><div class="line">  /users:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 返回一个用户列表</div><div class="line"><span class="attr">      description:</span> 哈哈哈哈哈，看不懂</div><div class="line"><span class="attr">      produces:</span></div><div class="line"><span class="bullet">        -</span> application/json</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div><div class="line">        <span class="number">404</span>:</div><div class="line"><span class="attr">          description:</span> 找不到呗</div></pre></td></tr></table></figure></p>
+<h3 id="Mata数据"><a href="#Mata数据" class="headerlink" title="Mata数据"></a>Mata数据</h3><ul>
+<li><code>swagger: &quot;2.0&quot;</code> , 固定的声明</li>
+<li><p><code>info</code>, 接口介绍，描述</p>
+<ul>
+<li><code>title</code>: 接口名称</li>
+<li><code>description</code>: 接口描述，可以使用markdown语法</li>
+<li><code>version</code>: 接口版本，</li>
+<li><code>contact</code>: 联系人<ul>
+<li><code>name</code>: 姓名</li>
+<li><code>url</code>: 网址</li>
+<li><code>email</code>: 邮箱<h3 id="URL配置"><a href="#URL配置" class="headerlink" title="URL配置"></a>URL配置</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>host: api.example.com</code>, 配置域名</p>
+</li>
+<li><code>basePath: /v1</code>, 配置路由</li>
+<li><code>schemes</code>:<ul>
+<li><code>https</code>, <code>http</code>, <code>ws</code>, 配置http，scheme，可以是数组</li>
+</ul>
+</li>
+</ul>
+<h3 id="路由设置"><a href="#路由设置" class="headerlink" title="路由设置"></a>路由设置</h3><ul>
+<li><code>paths</code>:<ul>
+<li><code>/users</code>, <code>/actions</code> 等等<ul>
+<li><code>get</code>, <code>post</code>, <code>put</code>等 HTTP Methods<ul>
+<li><code>summary</code>: 对这个接口，这个method的一个总结</li>
+<li><code>description</code>: 描述</li>
+<li><code>produces</code>:<ul>
+<li><code>application/json</code>, <code>application/xml</code>等</li>
+</ul>
+</li>
+<li><code>responses:</code><br>200:<ul>
+<li><code>description: OK</code><h3 id="参数-Parmeters"><a href="#参数-Parmeters" class="headerlink" title="参数 Parmeters"></a>参数 Parmeters</h3></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><code>{}</code> 可以设置参数:<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 通过uid返回一个用户信息</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">          minimum:</span> <span class="number">1</span></div><div class="line"><span class="attr">          description:</span> 这个参数很吊</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div></pre></td></tr></table></figure></p>
+<h3 id="返回信息Responses"><a href="#返回信息Responses" class="headerlink" title="返回信息Responses"></a>返回信息Responses</h3><p>你可以根据HTTP状态码，定义信息格式。比如 <code>200: ok</code>； <code>404: Not Found</code>。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> 返回</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">          minimum:</span> <span class="number">1</span></div><div class="line"><span class="attr">          description:</span> 哈哈哈</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> 返回一个用户的类, 下面是描述类的结构</div><div class="line"><span class="attr">          schema:</span></div><div class="line"><span class="attr">            type:</span> object</div><div class="line"><span class="attr">            properties:</span></div><div class="line"><span class="attr">              id:</span></div><div class="line"><span class="attr">                type:</span> integer</div><div class="line"><span class="attr">                example:</span> <span class="number">4</span></div><div class="line"><span class="attr">              name:</span></div><div class="line"><span class="attr">                type:</span> string</div><div class="line"><span class="attr">                example:</span> 那谁</div><div class="line">        <span class="number">400</span>:</div><div class="line"><span class="attr">          description:</span> 呵呵</div><div class="line">        <span class="number">404</span>:</div><div class="line"><span class="attr">          description:</span> 哈哈哈</div><div class="line"><span class="attr">        default:</span></div><div class="line"><span class="attr">          description:</span> 哟哟哟哟哟</div></pre></td></tr></table></figure>
+<h3 id="Models模型的定义"><a href="#Models模型的定义" class="headerlink" title="Models模型的定义"></a>Models模型的定义</h3><p><code>$ref</code>: 可以定义一些类型，用来描述一些数据结构。</p>
+<p>比如:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;id&quot;: 4,</div><div class="line">    &quot;name&quot;: &quot;你大爷&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>可以定义为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">definitions:</div><div class="line">  User:</div><div class="line">    properties:</div><div class="line">      id:</div><div class="line">        type: integer</div><div class="line">      name:</div><div class="line">        type: string</div><div class="line">    required:</div><div class="line">      - id</div><div class="line">      - name:</div></pre></td></tr></table></figure>
+<p>然后，引用:</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="attr">paths:</span></div><div class="line">  /users/&#123;userId&#125;:</div><div class="line"><span class="attr">    get:</span></div><div class="line"><span class="attr">      summary:</span> Returns a user by ID.</div><div class="line"><span class="attr">      parameters:</span></div><div class="line"><span class="attr">        - in:</span> path</div><div class="line"><span class="attr">          name:</span> userId</div><div class="line"><span class="attr">          required:</span> <span class="literal">true</span></div><div class="line"><span class="attr">          type:</span> integer</div><div class="line"><span class="attr">      responses:</span></div><div class="line">        <span class="number">200</span>:</div><div class="line"><span class="attr">          description:</span> OK</div><div class="line"><span class="attr">          schema:</span></div><div class="line">            $ref: <span class="string">'#/definitions/User'</span></div></pre></td></tr></table></figure>
+<h3 id="鉴权Auth"><a href="#鉴权Auth" class="headerlink" title="鉴权Auth"></a>鉴权Auth</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">securityDefinitions:</div><div class="line">  BasicAuth:</div><div class="line">    type: basic</div><div class="line"></div><div class="line">security:</div><div class="line">  - BaseicAuth: []</div></pre></td></tr></table></figure>
+<h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><ul>
+<li>query 参数，比如 <code>/users?role={admin}</code></li>
+<li>path 参数，比如 <code>/users/{id}</code></li>
+<li>header 参数，比如 <code>X-MyHeader: {Value}</code></li>
+<li>form 参数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">GET /pets/findByStatus?status=available</div><div class="line">GET /notes?offset=100&amp;limit=50</div></pre></td></tr></table></figure>
+<p>使用<code>in: query</code> 来定义query</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">parameters:</div><div class="line">   - in: query</div><div class="line">     name: offset</div><div class="line">     type: integer</div><div class="line">     description: 返回数据的位移.</div><div class="line">   - in: query</div><div class="line">     name: limit</div><div class="line">     type: integer</div><div class="line">     description: 返回多少条数据.</div></pre></td></tr></table></figure>
+<hr>
+<p>Header Parameters</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">GET /ping HTTP/1.1</div><div class="line">Host: example.com</div><div class="line">X-Request-ID: 77e1c83b-7bb0-437b-bc50-a7a58e5660ac</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">paths:</div><div class="line">  /ping:</div><div class="line">    get:</div><div class="line">      summary: 检查服务是否存活.</div><div class="line">      parameters:</div><div class="line">        - in: header</div><div class="line">          name: X-Request-ID</div><div class="line">          type: string</div><div class="line">          required: true</div></pre></td></tr></table></figure>
+<h2 id="Swagger是一个工具"><a href="#Swagger是一个工具" class="headerlink" title="Swagger是一个工具"></a>Swagger是一个工具</h2><p>我们可以使用他来解析配置，设计我们的API.</p>
+]]></content>
+      
+        <categories>
+            
+            <category> API </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> API </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[关于重新签名]]></title>
       <url>https://www.heyyezi.com/2017/06/08/sign/</url>
       <content type="html"><![CDATA[<h2 id="IOS签名"><a href="#IOS签名" class="headerlink" title="IOS签名"></a>IOS签名</h2><h3 id="证书和密钥"><a href="#证书和密钥" class="headerlink" title="证书和密钥"></a>证书和密钥</h3><blockquote>
