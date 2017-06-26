@@ -10,7 +10,7 @@
     
     <title>
         
-            PonyOrm之初体验 | 
+            关于重新签名 | 
         
         黑白之院
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,Python">
+    <meta name="keywords" content="null,NodeJS">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -62,9 +62,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="PonyOrm之初体验 | 黑白之院">
+    <meta property="og:title" content="关于重新签名 | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="Python"> 
+    <meta property="og:article:tag" content="NodeJS"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -251,7 +251,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先来安利一个工具Pipenv"><span class="post-toc-number">1.</span> <span class="post-toc-text">先来安利一个工具Pipenv</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#切入正题-PonyOrm"><span class="post-toc-number">2.</span> <span class="post-toc-text">切入正题, PonyOrm</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IOS签名"><span class="post-toc-number">1.</span> <span class="post-toc-text">IOS签名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#证书和密钥"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">证书和密钥</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#p12是什么"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">p12是什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#security命令是什么"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">security命令是什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签名工具-codesign"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">签名工具 codesign</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Entitlements-和-Provisioning"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Entitlements 和 Provisioning</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#沙盒"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">沙盒</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#授权机制"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">授权机制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Provisioning-配置文件"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Provisioning 配置文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#签名步骤"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">签名步骤:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#苹果的-Info-plist"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">苹果的 Info.plist</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建keychain"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">创建keychain</span></a></li></ol></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -288,7 +288,7 @@
         
     
             <p class="article-headline-p">
-                PonyOrm之初体验
+                关于重新签名
             </p>
         </div>
 
@@ -307,7 +307,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>3月 07, 2017</span>
+        <span>6月 08, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -328,7 +328,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aMXLDMAwEQP//00mbIlIOAEk5nlXl0cgylwUJH/H6+ujrhYeHh4eHh4eH92a8V3z98qIf9/Pnr565ulMdGx4eHt4Z3h9L7e0z98h8au4/52PDw8PDO8m7GtbVM8mA8u8m1OgNeHh4eP+Kl99JSm08PDy8T+JdUauldh5P4OHh4b0nL48berz7LaEaguDh4eE9y8uX7POfj57v4eHh4QW8cktTsSCuNgQsbrrCw8PD28DLF+Jq8JqX1/dvq04EHh4e3m7e7gC3yrjfWpolNR4eHt5SXn74lMDyiDZpMshbu/Dw8PCe5VUHNC+g84lo/mPAw8PDW8rrhQI5YwKuwvDw8PDO8HoRbS8+yIv43kTg4eHhneRVA9PetyaNBXkkgYeHh7ebly/K1UOsasSQF9DN1gE8PDy8RbxqW1Xv8Cxp4epN06h1AA8PD2/MywOIPLTNv5scjC0II/Dw8PAW8apRbG9TWXsktuAADA8PD2/AS47ke4v45LAtv/Dw8PBO8vKh5yHvpBxfsF3h4eHhbeb1lvUkeM2nbM7Gw8PDO8/Lt4rJ/byUr248eHh4eE/xepFE3gRQbSbIS3w8PDy8p3jVRqhqAT3BjMIIPDw8vKW86pVTk8lKhltuO8DDw8PbzJsv5RN2b+KaTVd4eHh4S3nJDyfLdx5DVN886inDw8PD28ZLjq/mwWse/lYDXDw8PLz35+WbxLxoTsaJh4eH9395eVQxiUIe2xjw8PDwimFEtQhuLu7BdODh4eE9y+tFCXnTwOSd5V/Ew8PD28z7vAsPDw8PDw8PD+8Nrm9Z/CnFDcWO6wAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACdElEQVR42u3aQXIcIRBFQd3/0vYFPKNXQOORInulUKCmkwWFPvX151c/X3h4eHh4eHh4eB/G+8rPP16Ux/cx+9+Gh4eHd4f3zVa7MXEBv5pr8dvw8PDwLvJefdCrMeWD3lM7b/AGPDw8vI/krY0vxWbn2/Dw8PB+Lq+Uk15U8PDw8D6ZV/7h72HBNNgtxePxrAUPDw8v83oIe//nq/d7eHh4eIE3bmkaFobytjLyUk8ZHh4eXuD1jfhUhDE9svcmMDw8PLz7vLWYoFxllYUojVkH2lXx8PDwjvJ2WqnKcbkv1laZwcPDw3uY1ycu5WRnadYO7nh4eHj3eWX6Hkz0N59tMsDDw8O7z+uMaaNVX5S+cN8sFh4eHt7DvB6b9uurteuuaRjxsiDh4eHhPcxba1SdxrJlxl6ExmEEHh4e3mO8UxdXa5i14jT4jwEPDw/vKK8cf08FBzvB8YGeMjw8PLxt3s70ZSvfOTT3wz0eHh7efd5a5Pp+TD9wvx8/bmXAw8PDe5jXr5pKw1O62t8II9KS4eHh4V3kTSeebvrlAD2NPPDw8PD+F698VikhfeHKXy0e8fHw8PCu86ZBQ9/o16LhcSsYHh4e3kVe2aYH0/TgdSO0HRQGPDw8vEO86bMf8k5j2WmJwsPDw3uat3g9XzboHMJOw45B0xUeHh7eY7y1YtB/07f43sB6IGvBw8PDO5Rz9jasndBheuVWYHh4eHifzOtbfG8pKKFwej8eHh7ex/PWSsLapdeB+z08PDy8o7xpINuD2rXLs7XLNjw8PLw7vOnW3K/Epu8chA49jMDDw8M7yvt9Dx4eHh4eHh4e3gc8fwEwKoaSjq55ywAAAABJRU5ErkJggg==">
         </ul>
     
 
@@ -340,7 +340,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Python/">Python</a>
+        <a class="post_tag-link" href="/tags/NodeJS/">NodeJS</a>
     </ul>
     
 
@@ -367,7 +367,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=关于重新签名&url=https://www.heyyezi.com//2017/06/08/sign/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=关于重新签名&url=https://www.heyyezi.com//2017/06/08/sign/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -385,7 +385,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/06/08/sign/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -394,7 +394,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/06/08/sign/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -418,25 +418,85 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <blockquote>
-<p>这是一个很好用的python ORM库所以推荐一下,顺便安利一个工具<br><a id="more"></a></p>
+        <h2 id="IOS签名"><a href="#IOS签名" class="headerlink" title="IOS签名"></a>IOS签名</h2><h3 id="证书和密钥"><a href="#证书和密钥" class="headerlink" title="证书和密钥"></a>证书和密钥</h3><blockquote>
+<blockquote>
+<p>苹果的证书都是由苹果签发的，一般都会带有一个有效期。</p>
 </blockquote>
-<h3 id="先来安利一个工具Pipenv"><a href="#先来安利一个工具Pipenv" class="headerlink" title="先来安利一个工具Pipenv"></a>先来安利一个工具Pipenv</h3><p>  大家都用过virtualenv吧，这货把Pipfile, pip, virtualenv这三个工具集合到了一起，完美的结合到了一起。</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pipenv</div></pre></td></tr></table></figure>
-<p>  警告⚠️:<br>    <strong>如果你的默认环境小于版本python2.7.10，安装的时候出现任何问题，概不负责</strong></p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  初始化python2.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --two # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python2)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化python3.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --three # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python3)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化完成后，如果并不想进入虚拟环境, 执行python命令，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pipenv run python # 这个时候python，是虚拟环境中的python</div><div class="line">$ pienv run pip install ansible # 此时是向虚拟环境中安装ansible</div></pre></td></tr></table></figure></p>
-<p>  创建自己的依赖文件, 下次你只要把Pipfile文件，拿到别的地方，执行pipenv install 那么机会自动把环境包装好<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pipenv shell</div><div class="line">(your_dir)(your_dir) pipenv install requests # 这时候，你会发现你的Pipfile中多了一个包的</div><div class="line">(your_dir)(your_dir) pipenv lock --dev # 锁定版本</div></pre></td></tr></table></figure></p>
-<p>  如果你当前环境已经有一个虚拟环境，那么再创建一个的时候，会覆盖之前的。</p>
-<p><img src="https://camo.githubusercontent.com/2287c881cb3a045f4f70f20f0326ec4ef1474ccd/687474703a2f2f6d656469612e6b656e6e657468726569747a2e636f6d2e73332e616d617a6f6e6177732e636f6d2f706970656e762e676966" alt="Pipenv图片"></p>
-<h3 id="切入正题-PonyOrm"><a href="#切入正题-PonyOrm" class="headerlink" title="切入正题, PonyOrm"></a>切入正题, PonyOrm</h3><p>  <a href="https://ponyorm.com/" target="_blank" rel="external">PonyOrm</a>, 它是一个关系型数据库对象ROM工具(mysql,sqlit),可以方便的写做表的联合等，尤其是数据导入，导出的时候很方便。<br>特点：</p>
+</blockquote>
+<h4 id="p12是什么"><a href="#p12是什么" class="headerlink" title="p12是什么"></a>p12是什么</h4><p>查找自己拥有的证书以及私钥</p>
 <ul>
-<li>简单的查询语法</li>
-<li>自动优化查询</li>
-<li>对于N+1的问题解决方案(orm总会多查询一次，用来缓存数据，具体请自行百度)</li>
-<li>又一个在线编辑工具 <a href="https://editor.ponyorm.com/" target="_blank" rel="external">查看</a>（不好用）</li>
+<li>打开Mac种的 <code>钥匙串</code></li>
 </ul>
+<p><img src="https://objccn.io/images/issues/issue-17/iphone-developer-keychain.png" alt="查找自己的证书"></p>
+<ul>
+<li>全选，然后右键导出，这时候，需要你输入密码，最后，你就可以到处一个<code>XX.p12</code>的证书文件</li>
+</ul>
+<h4 id="security命令是什么"><a href="#security命令是什么" class="headerlink" title="security命令是什么"></a>security命令是什么</h4><p> 这个命令，可以查找显示系统中用来签名认证的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ security find-identity -v -p codesigning</div><div class="line">   1) 01C8E9712E9632E6D84EC533827B4478938A3B15 &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot;</div></pre></td></tr></table></figure>
+<p> 对于IOs开发者来说，一般会涉及到两个证书，前缀含有</p>
+<ul>
+<li>iPhone Developer, 可以使设备在你的测试设备上运行。</li>
+<li>iPhone Distribution，提交APP Store时使用。</li>
+</ul>
+<p>在<code>钥匙串</code> 中打开其中一个证书，在最后下面一条中有标记 <code>Apple Developer Certificate (Submission)</code>, 或者 <code>Apple Developer Certificate (Development)</code>, IOS系统会通过这些判断，你到底运行在哪一个模式中。用来判断运行规则。</p>
+<p>我们签名时候，需要用到<code>私钥</code>(于<code>公钥</code>成对)。</p>
+<h4 id="签名工具-codesign"><a href="#签名工具-codesign" class="headerlink" title="签名工具 codesign"></a>签名工具 codesign</h4><p><strong>codesign</strong> 对APP进行重新签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -fs  &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot; --no-strict XXX.app</div></pre></td></tr></table></figure>
+<p><strong>codesign</strong> 也可以查看文件签名状态信息，用来定位错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ codesign -vvv -d X.app</div><div class="line"></div><div class="line">Executable=/Users/toto/Library/Developer/Xcode/DerivedData/Example-cfsbhbvmswdivqhekxfykvkpngkg/Build/Products/Debug-iphoneos/Example.app/Example</div><div class="line">Identifier=ch.kollba.example</div><div class="line"></div><div class="line"></div><div class="line">### 支持的格式，比如arm64</div><div class="line">Format=bundle with Mach-O thin (arm64)</div><div class="line">CodeDirectory v=20200 size=26663 flags=0x0(none) hashes=1324+5 location=embedded</div><div class="line">Signature size=4336</div><div class="line"></div><div class="line">### 注意这一行，它表示签名证书</div><div class="line">Authority=iPhone Developer: Thomas Kollbach (7TPNXN7G6K)</div><div class="line">### 被谁设置了签名</div><div class="line">Authority=Apple Worldwide Developer Relations Certification Authority</div><div class="line">### 上面那个证书的 根证书</div><div class="line">Authority=Apple Root CA</div><div class="line"></div><div class="line">Signed Time=29.09.2014 22:29:07</div><div class="line">Info.plist entries=33</div><div class="line">TeamIdentifier=DZM8538E3E</div><div class="line">Sealed Resources version=2 rules=4 files=120</div><div class="line">Internal requirements count=1 size=184</div></pre></td></tr></table></figure>
+<p><strong>codesign</strong> 验证签名是否完善</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 如果验证失败，那么就会输出stderr哦</div><div class="line"></div><div class="line">$ codesign --verify XX.app</div></pre></td></tr></table></figure>
+<h3 id="Entitlements-和-Provisioning"><a href="#Entitlements-和-Provisioning" class="headerlink" title="Entitlements 和 Provisioning"></a>Entitlements 和 Provisioning</h3><h4 id="沙盒"><a href="#沙盒" class="headerlink" title="沙盒"></a>沙盒</h4><p>  IOS中，无论用户和开发者不能允许改变应用的开启策略，也就是你必须有对应的发布证书才能在IOS上运行。</p>
+<p>  你的应用可以做的事情，是受到<code>沙盒</code> 管理的。而，代码<code>沙盒</code> 和 <code>签名</code>机制是不同的。</p>
+<p>  代码签名，保证APP内容完整，没有被篡改。<br>  沙盒，限制APP能访问哪些资源。听说，沙盒的授权机制是开发中，经常出问题的。</p>
+<h4 id="授权机制"><a href="#授权机制" class="headerlink" title="授权机制"></a>授权机制</h4><p>查看授权信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -d --entitlements -  XX.app</div></pre></td></tr></table></figure>
+<h4 id="Provisioning-配置文件"><a href="#Provisioning-配置文件" class="headerlink" title="Provisioning 配置文件"></a>Provisioning 配置文件</h4><p>用来联系，代码签名，沙盒机制。</p>
+<p>这个配置文件是一个使用<a href="http://tools.ietf.org/html/rfc3852" target="_blank" rel="external">CMS</a>(Cryptographic Message Syntax)的一个加密文件。</p>
+<p>于是，你一旦从品过开发者中心得到这个文件，那么这个文件，你是不能改的。<strong>注意，这个签名，和我们对应用的签名是不一样的</strong> 。</p>
+<p><strong>security</strong> 可以用来查看配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ security cms -D -i embedded.mobileprovision</div></pre></td></tr></table></figure>
+<ol>
+<li>配置文件中的内容，用语判断一个APP是否可以运行在某个设备上，每一个配置文件都有自己的UUID，</li>
+<li>DeveloperCertificates, 这时一个列表。包含了，可以使用这个配置文件的应用红的签名的所有证书。那么，如果你的签名证书不在列表中，那么这个应用就不能运行。</li>
+<li>所有的证书都是基于 Base64的<a href="http://tools.ietf.org/html/rfc1848" target="_blank" rel="external">PEM</a>格式。</li>
+<li><p>如果需要查看证书内容，那么就需要把内容复制出来，然后改名成<strong>a.pem</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl x509 -text -in a.pem</div></pre></td></tr></table></figure>
+</li>
+<li><p>在这个文件中，<strong>Entitlements</strong>, 也包含了授权信息。</p>
+</li>
+<li>如果，你的开发证书，那么，你会看到一项 <strong>ProvisionedDevices</strong>，这里面又所有用语测试的设备列表。因为配置文件需要被苹果，签名。所以，每次需要重新下载。</li>
+</ol>
+<h3 id="签名步骤"><a href="#签名步骤" class="headerlink" title="签名步骤:"></a>签名步骤:</h3><ol>
+<li><code>rm -r ./Payload/xxxx.app/_CodeSignature/*</code></li>
+<li><code>cp /data/work/keychains/profile/13b42794011c.mobileprovision ./Payload/xxxx.app/embedded.mobileprovision</code></li>
+<li><code>/usr/bin/codesign -f -s &quot;iPhone Distribution: XXXXX.&quot; --entitlements /data/work/keychains/keychain/xxxx.demo_entitlements.plist ./Payload/xxxx.app</code></li>
+<li>搞定</li>
+</ol>
+<h3 id="苹果的-Info-plist"><a href="#苹果的-Info-plist" class="headerlink" title="苹果的 Info.plist"></a>苹果的 Info.plist</h3><p>苹果的Plist有两种格式，一种是XML格式，还有一种是 二进制格式(bplist, Binary Plist)。</p>
+<p>一般来讲,文件头:</p>
+<table>
+<thead>
+<tr>
+<th>文件头</th>
+<th>对象表</th>
+<th>偏移表</th>
+<th>文件尾</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开头8字节</td>
+<td>8~K字节</td>
+<td>K+L*N字节</td>
+<td>最后32字节</td>
+</tr>
+</tbody>
+</table>
+<p>固定文件都是:</p>
+<p>格式: 6 ， 定值:<code>62 70 6C 69 73 74</code> 表示: <code>bplist</code><br>版本: 2 ，定值: <code>30 30</code> 表示:<code>00</code></p>
+<p>所以固定是: <code>62 70 6C 69 73 74 30 30</code></p>
+<h3 id="创建keychain"><a href="#创建keychain" class="headerlink" title="创建keychain"></a>创建keychain</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">security create-keychain -p mysecretpassword build.keychain</div></pre></td></tr></table></figure>
 
     
 
@@ -454,7 +514,7 @@
     <!-- 使用 changyan -->
     <div id="changyan-comment">
         <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2017/03/07/python-ponyorm/"  ></div>
+<div id="SOHUCS" sid="2017/06/08/sign/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'undefined';
@@ -483,19 +543,19 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/12/gitintro/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/05/26/Electron2/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

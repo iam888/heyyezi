@@ -4,6 +4,105 @@
   
     
     <entry>
+      <title><![CDATA[关于重新签名]]></title>
+      <url>https://www.heyyezi.com/2017/06/08/sign/</url>
+      <content type="html"><![CDATA[<h2 id="IOS签名"><a href="#IOS签名" class="headerlink" title="IOS签名"></a>IOS签名</h2><h3 id="证书和密钥"><a href="#证书和密钥" class="headerlink" title="证书和密钥"></a>证书和密钥</h3><blockquote>
+<blockquote>
+<p>苹果的证书都是由苹果签发的，一般都会带有一个有效期。</p>
+</blockquote>
+</blockquote>
+<h4 id="p12是什么"><a href="#p12是什么" class="headerlink" title="p12是什么"></a>p12是什么</h4><p>查找自己拥有的证书以及私钥</p>
+<ul>
+<li>打开Mac种的 <code>钥匙串</code></li>
+</ul>
+<p><img src="https://objccn.io/images/issues/issue-17/iphone-developer-keychain.png" alt="查找自己的证书"></p>
+<ul>
+<li>全选，然后右键导出，这时候，需要你输入密码，最后，你就可以到处一个<code>XX.p12</code>的证书文件</li>
+</ul>
+<h4 id="security命令是什么"><a href="#security命令是什么" class="headerlink" title="security命令是什么"></a>security命令是什么</h4><p> 这个命令，可以查找显示系统中用来签名认证的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ security find-identity -v -p codesigning</div><div class="line">   1) 01C8E9712E9632E6D84EC533827B4478938A3B15 &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot;</div></pre></td></tr></table></figure>
+<p> 对于IOs开发者来说，一般会涉及到两个证书，前缀含有</p>
+<ul>
+<li>iPhone Developer, 可以使设备在你的测试设备上运行。</li>
+<li>iPhone Distribution，提交APP Store时使用。</li>
+</ul>
+<p>在<code>钥匙串</code> 中打开其中一个证书，在最后下面一条中有标记 <code>Apple Developer Certificate (Submission)</code>, 或者 <code>Apple Developer Certificate (Development)</code>, IOS系统会通过这些判断，你到底运行在哪一个模式中。用来判断运行规则。</p>
+<p>我们签名时候，需要用到<code>私钥</code>(于<code>公钥</code>成对)。</p>
+<h4 id="签名工具-codesign"><a href="#签名工具-codesign" class="headerlink" title="签名工具 codesign"></a>签名工具 codesign</h4><p><strong>codesign</strong> 对APP进行重新签名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -fs  &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot; --no-strict XXX.app</div></pre></td></tr></table></figure>
+<p><strong>codesign</strong> 也可以查看文件签名状态信息，用来定位错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ codesign -vvv -d X.app</div><div class="line"></div><div class="line">Executable=/Users/toto/Library/Developer/Xcode/DerivedData/Example-cfsbhbvmswdivqhekxfykvkpngkg/Build/Products/Debug-iphoneos/Example.app/Example</div><div class="line">Identifier=ch.kollba.example</div><div class="line"></div><div class="line"></div><div class="line">### 支持的格式，比如arm64</div><div class="line">Format=bundle with Mach-O thin (arm64)</div><div class="line">CodeDirectory v=20200 size=26663 flags=0x0(none) hashes=1324+5 location=embedded</div><div class="line">Signature size=4336</div><div class="line"></div><div class="line">### 注意这一行，它表示签名证书</div><div class="line">Authority=iPhone Developer: Thomas Kollbach (7TPNXN7G6K)</div><div class="line">### 被谁设置了签名</div><div class="line">Authority=Apple Worldwide Developer Relations Certification Authority</div><div class="line">### 上面那个证书的 根证书</div><div class="line">Authority=Apple Root CA</div><div class="line"></div><div class="line">Signed Time=29.09.2014 22:29:07</div><div class="line">Info.plist entries=33</div><div class="line">TeamIdentifier=DZM8538E3E</div><div class="line">Sealed Resources version=2 rules=4 files=120</div><div class="line">Internal requirements count=1 size=184</div></pre></td></tr></table></figure>
+<p><strong>codesign</strong> 验证签名是否完善</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 如果验证失败，那么就会输出stderr哦</div><div class="line"></div><div class="line">$ codesign --verify XX.app</div></pre></td></tr></table></figure>
+<h3 id="Entitlements-和-Provisioning"><a href="#Entitlements-和-Provisioning" class="headerlink" title="Entitlements 和 Provisioning"></a>Entitlements 和 Provisioning</h3><h4 id="沙盒"><a href="#沙盒" class="headerlink" title="沙盒"></a>沙盒</h4><p>  IOS中，无论用户和开发者不能允许改变应用的开启策略，也就是你必须有对应的发布证书才能在IOS上运行。</p>
+<p>  你的应用可以做的事情，是受到<code>沙盒</code> 管理的。而，代码<code>沙盒</code> 和 <code>签名</code>机制是不同的。</p>
+<p>  代码签名，保证APP内容完整，没有被篡改。<br>  沙盒，限制APP能访问哪些资源。听说，沙盒的授权机制是开发中，经常出问题的。</p>
+<h4 id="授权机制"><a href="#授权机制" class="headerlink" title="授权机制"></a>授权机制</h4><p>查看授权信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -d --entitlements -  XX.app</div></pre></td></tr></table></figure>
+<h4 id="Provisioning-配置文件"><a href="#Provisioning-配置文件" class="headerlink" title="Provisioning 配置文件"></a>Provisioning 配置文件</h4><p>用来联系，代码签名，沙盒机制。</p>
+<p>这个配置文件是一个使用<a href="http://tools.ietf.org/html/rfc3852" target="_blank" rel="external">CMS</a>(Cryptographic Message Syntax)的一个加密文件。</p>
+<p>于是，你一旦从品过开发者中心得到这个文件，那么这个文件，你是不能改的。<strong>注意，这个签名，和我们对应用的签名是不一样的</strong> 。</p>
+<p><strong>security</strong> 可以用来查看配置文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ security cms -D -i embedded.mobileprovision</div></pre></td></tr></table></figure>
+<ol>
+<li>配置文件中的内容，用语判断一个APP是否可以运行在某个设备上，每一个配置文件都有自己的UUID，</li>
+<li>DeveloperCertificates, 这时一个列表。包含了，可以使用这个配置文件的应用红的签名的所有证书。那么，如果你的签名证书不在列表中，那么这个应用就不能运行。</li>
+<li>所有的证书都是基于 Base64的<a href="http://tools.ietf.org/html/rfc1848" target="_blank" rel="external">PEM</a>格式。</li>
+<li><p>如果需要查看证书内容，那么就需要把内容复制出来，然后改名成<strong>a.pem</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl x509 -text -in a.pem</div></pre></td></tr></table></figure>
+</li>
+<li><p>在这个文件中，<strong>Entitlements</strong>, 也包含了授权信息。</p>
+</li>
+<li>如果，你的开发证书，那么，你会看到一项 <strong>ProvisionedDevices</strong>，这里面又所有用语测试的设备列表。因为配置文件需要被苹果，签名。所以，每次需要重新下载。</li>
+</ol>
+<h3 id="签名步骤"><a href="#签名步骤" class="headerlink" title="签名步骤:"></a>签名步骤:</h3><ol>
+<li><code>rm -r ./Payload/xxxx.app/_CodeSignature/*</code></li>
+<li><code>cp /data/work/keychains/profile/13b42794011c.mobileprovision ./Payload/xxxx.app/embedded.mobileprovision</code></li>
+<li><code>/usr/bin/codesign -f -s &quot;iPhone Distribution: XXXXX.&quot; --entitlements /data/work/keychains/keychain/xxxx.demo_entitlements.plist ./Payload/xxxx.app</code></li>
+<li>搞定</li>
+</ol>
+<h3 id="苹果的-Info-plist"><a href="#苹果的-Info-plist" class="headerlink" title="苹果的 Info.plist"></a>苹果的 Info.plist</h3><p>苹果的Plist有两种格式，一种是XML格式，还有一种是 二进制格式(bplist, Binary Plist)。</p>
+<p>一般来讲,文件头:</p>
+<table>
+<thead>
+<tr>
+<th>文件头</th>
+<th>对象表</th>
+<th>偏移表</th>
+<th>文件尾</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>开头8字节</td>
+<td>8~K字节</td>
+<td>K+L*N字节</td>
+<td>最后32字节</td>
+</tr>
+</tbody>
+</table>
+<p>固定文件都是:</p>
+<p>格式: 6 ， 定值:<code>62 70 6C 69 73 74</code> 表示: <code>bplist</code><br>版本: 2 ，定值: <code>30 30</code> 表示:<code>00</code></p>
+<p>所以固定是: <code>62 70 6C 69 73 74 30 30</code></p>
+<h3 id="创建keychain"><a href="#创建keychain" class="headerlink" title="创建keychain"></a>创建keychain</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">security create-keychain -p mysecretpassword build.keychain</div></pre></td></tr></table></figure>
+]]></content>
+      
+        <categories>
+            
+            <category> NodeJS </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> NodeJS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Electron2]]></title>
       <url>https://www.heyyezi.com/2017/05/26/Electron2/</url>
       <content type="html"><![CDATA[<h2 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h2><h3 id="App"><a href="#App" class="headerlink" title="App"></a>App</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> &#123;app&#125; = <span class="built_in">require</span>(<span class="string">'electron'</span>)</div><div class="line">app.on(<span class="string">'window-all-closed'</span>, () =&gt; &#123;</div><div class="line">    app.quit()</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
