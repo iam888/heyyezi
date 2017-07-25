@@ -9,9 +9,7 @@
       <content type="html"><![CDATA[<blockquote>
 <p>应该深入理解。</p>
 </blockquote>
-<p>####</p>
-<p>小技巧</p>
-<ul>
+<h4 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h4><ul>
 <li><p>不需要使用gii界面</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 创建controller</div><div class="line">./yii gii/controller  --controllerClass=&quot;backend\controllers\BaseController&quot;</div></pre></td></tr></table></figure>
 </li>
