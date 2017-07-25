@@ -4,6 +4,73 @@
   
     
     <entry>
+      <title><![CDATA[php]]></title>
+      <url>https://www.heyyezi.com/2017/07/25/php/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>应该深入理解。</p>
+</blockquote>
+<p>####</p>
+<p>小技巧</p>
+<ul>
+<li><p>不需要使用gii界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 创建controller</div><div class="line">./yii gii/controller  --controllerClass=&quot;backend\controllers\BaseController&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>不需要启动nginx</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./yii serve/index -t=&apos;@backend/web&apos; -p=8888 0.0.0.0</div></pre></td></tr></table></figure>
+<ul>
+<li>创建一个extension</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./yii gii/extension --vendorName=ttt --namespace=&apos;Tes\\T\\&apos; --title=zzzz --description=aaaa --authorName=zq@zq.com --authorEmail=t@ttt.com --license=MIT</div></pre></td></tr></table></figure>
+<h2 id="Yii2的深入分析"><a href="#Yii2的深入分析" class="headerlink" title="Yii2的深入分析"></a>Yii2的深入分析</h2><h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>初始化的 <code>Application</code>, 继承自 <code>\yii\base\Application</code>。</p>
+<p><code>\yii\base\Application</code> 继承自 <code>\yii\base\Module</code>。</p>
+<p>也就是说， 主体框架<code>Application</code> 与 <code>Module</code> 都是继承自 <code>Module</code>。</p>
+<p><code>Module</code> 相当于一个二级的<code>Application</code>, 自己包含一套<code>MVC</code>,</p>
+<p><code>Application</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public function __construct($config = [])</div><div class="line">&#123;</div><div class="line">    // 初始化Application</div><div class="line">    Yii::$app = $this;</div><div class="line">    static::setInstance($this);</div><div class="line"></div><div class="line">    $this-&gt;state = self::STATE_BEGIN;</div><div class="line"></div><div class="line">    // 初始化配置参数</div><div class="line">    $this-&gt;preInit($config);</div><div class="line"></div><div class="line">    // 初始化错误处理类</div><div class="line">    $this-&gt;registerErrorHandler($config);</div><div class="line"></div><div class="line">    // 加载Components</div><div class="line">    Component::__construct($config);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>核心components</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public function coreComponents()</div><div class="line">&#123;</div><div class="line">    return [</div><div class="line">        &apos;log&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\log\Dispatcher&apos;],</div><div class="line">        &apos;view&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\View&apos;],</div><div class="line">        &apos;formatter&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\i18n\Formatter&apos;],</div><div class="line">        &apos;i18n&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\i18n\I18N&apos;],</div><div class="line">        &apos;mailer&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\swiftmailer\Mailer&apos;],</div><div class="line">        &apos;urlManager&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\UrlManager&apos;],</div><div class="line">        &apos;assetManager&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\AssetManager&apos;],</div><div class="line">        &apos;security&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\base\Security&apos;],</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="psr4-和-psr0"><a href="#psr4-和-psr0" class="headerlink" title="psr4 和 psr0"></a>psr4 和 psr0</h3><p>psr0是自动加载的标准，psr4是对psr0的补充。</p>
+<ol>
+<li>必须符合<code>\&lt;Vendor Name&gt;&lt;Namespace&gt;*&lt;Class Name&gt;</code></li>
+<li>每个NameSpace必须有一个顶层的NameSpace(‘/yii/….’)</li>
+<li>可以多个NameSpace</li>
+<li>文件系统加载的时候，每一个NameSpace都需要转成分隔符</li>
+<li>类名必须以.php结尾</li>
+<li>Class Name中，下划线，要转换成分隔符</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">\Doctrine\Common\IsolatedClassLoader =&gt; /path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php</div><div class="line">\Symfony\Core\Request =&gt; /path/to/project/lib/vendor/Symfony/Core/Request.php</div><div class="line"></div><div class="line"># 注意类名含有下划线的特殊情况</div><div class="line">\namespace\package\Class_Name =&gt; /path/to/project/lib/vendor/namespace/package/Class/Name.php</div><div class="line">\namespace\package_name\Class_Name =&gt; /path/to/project/lib/vendor/namespace/package_name/Class/Name.php</div></pre></td></tr></table></figure>
+<p>Composer中两个不同的规范</p>
+<p>psr0<br>目录结构很深</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">vendor/</div><div class="line">    vendor_name/</div><div class="line">        package_name/</div><div class="line">            src/</div><div class="line">                Vendor_Name/</div><div class="line">                    Package_Name/</div><div class="line">                        ClassName.php       # Vendor_Name\Package_Name\ClassName</div><div class="line">            tests/</div><div class="line">                Vendor_Name/</div><div class="line">                    Package_Name/</div><div class="line">                        ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest</div></pre></td></tr></table></figure>
+<p>psr4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vendor/  </div><div class="line">    vendor_name/  </div><div class="line">        package_name/  </div><div class="line">            src/  </div><div class="line">                ClassName.php       # Vendor_Name\Package_Name\ClassName  </div><div class="line">            tests/  </div><div class="line">                ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest</div></pre></td></tr></table></figure>
+<p>在PSR-0中目录结构要与命名空间层层对应，无法插入一个单独的目录。Vendor\Package\Class在psr-0会里被直接转换成同样的路径，而PSR-4则没有这样的强制要求。</p>
+<p>对比PSR-0，除了PSR-4可以更简洁外，需要注意PSR-0中对下划线(_)是有特殊的处理的，下划线会转换成DIRECTORY_SEPARATOR，这是出于对PHP5.3以前版本兼容的考虑，而PSR-4中是没有这个处理的，这也是两者比较大的一个区别。</p>
+<p>此外，PSR-4要求在autoloader中不允许抛出exceptions以及引发任何级别的errors，也不应该有返回值。这是因为可能注册了多个autoloaders，如果一个autoloader没有找到对应的class，应该交给下一个来处理，而不是去阻断这个通道。</p>
+<p><code>\Acme\Log\Writer\File_Writer</code>  =&gt;     <code>Acme\Log\Writer</code> =&gt;     <code>./acme-log-writer/lib/</code> =&gt; <code>/acme-log-writer/lib/File_Writer.php</code></p>
+<p><code>\Aura\Web\Response\Status</code> =&gt;     <code>Aura\Web</code> =&gt;    <code>/path/to/aura-web/src/</code> =&gt;  <code>/path/to/aura-web/src/Response/Status.php</code></p>
+<p><code>\Symfony\Core\Request</code> =&gt;     <code>Symfony\Core</code> =&gt;    <code>./vendor/Symfony/Core/</code> =&gt;     <code>./vendor/Symfony/Core/Request.php</code></p>
+<p><code>\Zend\Acl</code>     =&gt;  <code>Zend</code>     =&gt; <code>/usr/includes/Zend/</code> =&gt;    <code>/usr/includes/Zend/Acl.php</code></p>
+<h3 id="关于PHP的测试-Codeception"><a href="#关于PHP的测试-Codeception" class="headerlink" title="关于PHP的测试(Codeception)"></a>关于PHP的测试(Codeception)</h3>]]></content>
+      
+        <categories>
+            
+            <category> PHP </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Yii2 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[对于OpenApi的设计]]></title>
       <url>https://www.heyyezi.com/2017/06/26/openapi/</url>
       <content type="html"><![CDATA[<blockquote>

@@ -10,7 +10,7 @@
     
     <title>
         
-            关于重新签名 | 
+            php | 
         
         黑白之院
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,NodeJS">
+    <meta name="keywords" content="null,Yii2">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -62,9 +62,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="关于重新签名 | 黑白之院">
+    <meta property="og:title" content="php | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="NodeJS"> 
+    <meta property="og:article:tag" content="Yii2"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -251,7 +251,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#IOS签名"><span class="post-toc-number">1.</span> <span class="post-toc-text">IOS签名</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#证书和密钥"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">证书和密钥</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#p12是什么"><span class="post-toc-number">1.1.1.</span> <span class="post-toc-text">p12是什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#security命令是什么"><span class="post-toc-number">1.1.2.</span> <span class="post-toc-text">security命令是什么</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#签名工具-codesign"><span class="post-toc-number">1.1.3.</span> <span class="post-toc-text">签名工具 codesign</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Entitlements-和-Provisioning"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Entitlements 和 Provisioning</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#沙盒"><span class="post-toc-number">1.2.1.</span> <span class="post-toc-text">沙盒</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#授权机制"><span class="post-toc-number">1.2.2.</span> <span class="post-toc-text">授权机制</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#Provisioning-配置文件"><span class="post-toc-number">1.2.3.</span> <span class="post-toc-text">Provisioning 配置文件</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#签名步骤"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">签名步骤:</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#苹果的-Info-plist"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">苹果的 Info.plist</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建keychain"><span class="post-toc-number">1.5.</span> <span class="post-toc-text">创建keychain</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Yii2的深入分析"><span class="post-toc-number">1.</span> <span class="post-toc-text">Yii2的深入分析</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Web"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">Web</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#psr4-和-psr0"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">psr4 和 psr0</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#关于PHP的测试-Codeception"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">关于PHP的测试(Codeception)</span></a></li></ol></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -288,7 +288,7 @@
         
     
             <p class="article-headline-p">
-                关于重新签名
+                php
             </p>
         </div>
 
@@ -307,7 +307,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>6月 08, 2017</span>
+        <span>7月 25, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -328,7 +328,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACdElEQVR42u3aQXIcIRBFQd3/0vYFPKNXQOORInulUKCmkwWFPvX151c/X3h4eHh4eHh4eB/G+8rPP16Ux/cx+9+Gh4eHd4f3zVa7MXEBv5pr8dvw8PDwLvJefdCrMeWD3lM7b/AGPDw8vI/krY0vxWbn2/Dw8PB+Lq+Uk15U8PDw8D6ZV/7h72HBNNgtxePxrAUPDw8v83oIe//nq/d7eHh4eIE3bmkaFobytjLyUk8ZHh4eXuD1jfhUhDE9svcmMDw8PLz7vLWYoFxllYUojVkH2lXx8PDwjvJ2WqnKcbkv1laZwcPDw3uY1ycu5WRnadYO7nh4eHj3eWX6Hkz0N59tMsDDw8O7z+uMaaNVX5S+cN8sFh4eHt7DvB6b9uurteuuaRjxsiDh4eHhPcxba1SdxrJlxl6ExmEEHh4e3mO8UxdXa5i14jT4jwEPDw/vKK8cf08FBzvB8YGeMjw8PLxt3s70ZSvfOTT3wz0eHh7efd5a5Pp+TD9wvx8/bmXAw8PDe5jXr5pKw1O62t8II9KS4eHh4V3kTSeebvrlAD2NPPDw8PD+F698VikhfeHKXy0e8fHw8PCu86ZBQ9/o16LhcSsYHh4e3kVe2aYH0/TgdSO0HRQGPDw8vEO86bMf8k5j2WmJwsPDw3uat3g9XzboHMJOw45B0xUeHh7eY7y1YtB/07f43sB6IGvBw8PDO5Rz9jasndBheuVWYHh4eHifzOtbfG8pKKFwej8eHh7ex/PWSsLapdeB+z08PDy8o7xpINuD2rXLs7XLNjw8PLw7vOnW3K/Epu8chA49jMDDw8M7yvt9Dx4eHh4eHh4e3gc8fwEwKoaSjq55ywAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACZklEQVR42u3aYU7DMAwG0N7/0nAAoPtsL2k0Xn+hrUvzihRbtq+vj74uPDw8PDw8PDy8w3hXfN3/6pfH/Pj2/pPkKdHe8PDw8LbwXhy1t4DkV39tvfpJsgc8PDy8nby/Dtwq736FPMz09oaHh4d3Ji9JlydBAg8PD+8/8KovohdO8PDw8E7j5WWFpPCaB5JesQMPDw/vWV7eZNr/99b+Hh4eHl7AG403BYlystE8DES7wsPDw1vMuy8oTAankoLFpHiBh4eH9xQvaV8lB/28wHEfQprFCDw8PLwFvORY7w0E5KGl10Jr1lrw8PDwxrwcU23zVzHJndELxcPDw1vMS5r91WbYJJnOCxnllBoPDw/vTby8BFAtDVQLHElhIvrH4OHh4T3Ky0NC0taat9mi5BsPDw9vC6/QXoqP6ep4QQ+Jh4eH9ywv39Ac0Fs/GVDAw8PDW82rNvLzTecttPmAAh4eHt5OXpIW59ud3zNpoeHh4eHt4fWa9HkzrNrEKgxXVadx8fDw8JbxJtR8eKtX/sDDw8M7gZcz8uJFXtJNVqjeg4eHh7eaV02OE3Yv2PSaXnh4eHj7edV0Nn8d+XarLw4PDw/vWV51QKr622TlJMDg4eHhncPrte0TRq9QWy7a4uHh4W3nXfGVl3erA6Z5Oh4l9Hh4eHhbeNVHJsd6vnIeGKKmHR4eHt5G3ryY2xuZeldBBA8PD+9MXq/1VYX1wgweHh7embx8IGDdiMCLdfDw8PA28pLjvhpCqsl3Xq5dUsbFw8PDW9AAu39w/m0vAEQpOx4eHt5i3uddeHh4eHh4eHh4B1zfNym6llX7ksQAAAAASUVORK5CYII=">
         </ul>
     
 
@@ -340,7 +340,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/NodeJS/">NodeJS</a>
+        <a class="post_tag-link" href="/tags/Yii2/">Yii2</a>
     </ul>
     
 
@@ -367,7 +367,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=关于重新签名&url=https://www.heyyezi.com//2017/06/08/sign/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=php&url=https://www.heyyezi.com//2017/07/25/php/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=关于重新签名&url=https://www.heyyezi.com//2017/06/08/sign/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=php&url=https://www.heyyezi.com//2017/07/25/php/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -385,7 +385,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/06/08/sign/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/07/25/php/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -394,7 +394,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/06/08/sign/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/07/25/php/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -418,86 +418,54 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <h2 id="IOS签名"><a href="#IOS签名" class="headerlink" title="IOS签名"></a>IOS签名</h2><h3 id="证书和密钥"><a href="#证书和密钥" class="headerlink" title="证书和密钥"></a>证书和密钥</h3><blockquote>
-<blockquote>
-<p>苹果的证书都是由苹果签发的，一般都会带有一个有效期。</p>
+        <blockquote>
+<p>应该深入理解。</p>
 </blockquote>
-</blockquote>
-<h4 id="p12是什么"><a href="#p12是什么" class="headerlink" title="p12是什么"></a>p12是什么</h4><p>查找自己拥有的证书以及私钥</p>
+<p>####</p>
+<p>小技巧</p>
 <ul>
-<li>打开Mac种的 <code>钥匙串</code></li>
+<li><p>不需要使用gii界面</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 创建controller</div><div class="line">./yii gii/controller  --controllerClass=&quot;backend\controllers\BaseController&quot;</div></pre></td></tr></table></figure>
+</li>
+<li><p>不需要启动nginx</p>
+</li>
 </ul>
-<p><img src="https://objccn.io/images/issues/issue-17/iphone-developer-keychain.png" alt="查找自己的证书"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./yii serve/index -t=&apos;@backend/web&apos; -p=8888 0.0.0.0</div></pre></td></tr></table></figure>
 <ul>
-<li>全选，然后右键导出，这时候，需要你输入密码，最后，你就可以到处一个<code>XX.p12</code>的证书文件</li>
+<li>创建一个extension</li>
 </ul>
-<h4 id="security命令是什么"><a href="#security命令是什么" class="headerlink" title="security命令是什么"></a>security命令是什么</h4><p> 这个命令，可以查找显示系统中用来签名认证的方法。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$ security find-identity -v -p codesigning</div><div class="line">   1) 01C8E9712E9632E6D84EC533827B4478938A3B15 &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot;</div></pre></td></tr></table></figure>
-<p> 对于IOs开发者来说，一般会涉及到两个证书，前缀含有</p>
-<ul>
-<li>iPhone Developer, 可以使设备在你的测试设备上运行。</li>
-<li>iPhone Distribution，提交APP Store时使用。</li>
-</ul>
-<p>在<code>钥匙串</code> 中打开其中一个证书，在最后下面一条中有标记 <code>Apple Developer Certificate (Submission)</code>, 或者 <code>Apple Developer Certificate (Development)</code>, IOS系统会通过这些判断，你到底运行在哪一个模式中。用来判断运行规则。</p>
-<p>我们签名时候，需要用到<code>私钥</code>(于<code>公钥</code>成对)。</p>
-<h4 id="签名工具-codesign"><a href="#签名工具-codesign" class="headerlink" title="签名工具 codesign"></a>签名工具 codesign</h4><p><strong>codesign</strong> 对APP进行重新签名</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -fs  &quot;iPhone Developer: Thomas Kollbach (7TPNXN7G6K)&quot; --no-strict XXX.app</div></pre></td></tr></table></figure>
-<p><strong>codesign</strong> 也可以查看文件签名状态信息，用来定位错误。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">$ codesign -vvv -d X.app</div><div class="line"></div><div class="line">Executable=/Users/toto/Library/Developer/Xcode/DerivedData/Example-cfsbhbvmswdivqhekxfykvkpngkg/Build/Products/Debug-iphoneos/Example.app/Example</div><div class="line">Identifier=ch.kollba.example</div><div class="line"></div><div class="line"></div><div class="line">### 支持的格式，比如arm64</div><div class="line">Format=bundle with Mach-O thin (arm64)</div><div class="line">CodeDirectory v=20200 size=26663 flags=0x0(none) hashes=1324+5 location=embedded</div><div class="line">Signature size=4336</div><div class="line"></div><div class="line">### 注意这一行，它表示签名证书</div><div class="line">Authority=iPhone Developer: Thomas Kollbach (7TPNXN7G6K)</div><div class="line">### 被谁设置了签名</div><div class="line">Authority=Apple Worldwide Developer Relations Certification Authority</div><div class="line">### 上面那个证书的 根证书</div><div class="line">Authority=Apple Root CA</div><div class="line"></div><div class="line">Signed Time=29.09.2014 22:29:07</div><div class="line">Info.plist entries=33</div><div class="line">TeamIdentifier=DZM8538E3E</div><div class="line">Sealed Resources version=2 rules=4 files=120</div><div class="line">Internal requirements count=1 size=184</div></pre></td></tr></table></figure>
-<p><strong>codesign</strong> 验证签名是否完善</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># 如果验证失败，那么就会输出stderr哦</div><div class="line"></div><div class="line">$ codesign --verify XX.app</div></pre></td></tr></table></figure>
-<h3 id="Entitlements-和-Provisioning"><a href="#Entitlements-和-Provisioning" class="headerlink" title="Entitlements 和 Provisioning"></a>Entitlements 和 Provisioning</h3><h4 id="沙盒"><a href="#沙盒" class="headerlink" title="沙盒"></a>沙盒</h4><p>  IOS中，无论用户和开发者不能允许改变应用的开启策略，也就是你必须有对应的发布证书才能在IOS上运行。</p>
-<p>  你的应用可以做的事情，是受到<code>沙盒</code> 管理的。而，代码<code>沙盒</code> 和 <code>签名</code>机制是不同的。</p>
-<p>  代码签名，保证APP内容完整，没有被篡改。<br>  沙盒，限制APP能访问哪些资源。听说，沙盒的授权机制是开发中，经常出问题的。</p>
-<h4 id="授权机制"><a href="#授权机制" class="headerlink" title="授权机制"></a>授权机制</h4><p>查看授权信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ codesign -d --entitlements -  XX.app</div></pre></td></tr></table></figure>
-<h4 id="Provisioning-配置文件"><a href="#Provisioning-配置文件" class="headerlink" title="Provisioning 配置文件"></a>Provisioning 配置文件</h4><p>用来联系，代码签名，沙盒机制。</p>
-<p>这个配置文件是一个使用<a href="http://tools.ietf.org/html/rfc3852" target="_blank" rel="external">CMS</a>(Cryptographic Message Syntax)的一个加密文件。</p>
-<p>于是，你一旦从品过开发者中心得到这个文件，那么这个文件，你是不能改的。<strong>注意，这个签名，和我们对应用的签名是不一样的</strong> 。</p>
-<p><strong>security</strong> 可以用来查看配置文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ security cms -D -i embedded.mobileprovision</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">./yii gii/extension --vendorName=ttt --namespace=&apos;Tes\\T\\&apos; --title=zzzz --description=aaaa --authorName=zq@zq.com --authorEmail=t@ttt.com --license=MIT</div></pre></td></tr></table></figure>
+<h2 id="Yii2的深入分析"><a href="#Yii2的深入分析" class="headerlink" title="Yii2的深入分析"></a>Yii2的深入分析</h2><h3 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h3><p>初始化的 <code>Application</code>, 继承自 <code>\yii\base\Application</code>。</p>
+<p><code>\yii\base\Application</code> 继承自 <code>\yii\base\Module</code>。</p>
+<p>也就是说， 主体框架<code>Application</code> 与 <code>Module</code> 都是继承自 <code>Module</code>。</p>
+<p><code>Module</code> 相当于一个二级的<code>Application</code>, 自己包含一套<code>MVC</code>,</p>
+<p><code>Application</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">public function __construct($config = [])</div><div class="line">&#123;</div><div class="line">    // 初始化Application</div><div class="line">    Yii::$app = $this;</div><div class="line">    static::setInstance($this);</div><div class="line"></div><div class="line">    $this-&gt;state = self::STATE_BEGIN;</div><div class="line"></div><div class="line">    // 初始化配置参数</div><div class="line">    $this-&gt;preInit($config);</div><div class="line"></div><div class="line">    // 初始化错误处理类</div><div class="line">    $this-&gt;registerErrorHandler($config);</div><div class="line"></div><div class="line">    // 加载Components</div><div class="line">    Component::__construct($config);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>核心components</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">public function coreComponents()</div><div class="line">&#123;</div><div class="line">    return [</div><div class="line">        &apos;log&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\log\Dispatcher&apos;],</div><div class="line">        &apos;view&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\View&apos;],</div><div class="line">        &apos;formatter&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\i18n\Formatter&apos;],</div><div class="line">        &apos;i18n&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\i18n\I18N&apos;],</div><div class="line">        &apos;mailer&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\swiftmailer\Mailer&apos;],</div><div class="line">        &apos;urlManager&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\UrlManager&apos;],</div><div class="line">        &apos;assetManager&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\web\AssetManager&apos;],</div><div class="line">        &apos;security&apos; =&gt; [&apos;class&apos; =&gt; &apos;yii\base\Security&apos;],</div><div class="line">    ];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="psr4-和-psr0"><a href="#psr4-和-psr0" class="headerlink" title="psr4 和 psr0"></a>psr4 和 psr0</h3><p>psr0是自动加载的标准，psr4是对psr0的补充。</p>
 <ol>
-<li>配置文件中的内容，用语判断一个APP是否可以运行在某个设备上，每一个配置文件都有自己的UUID，</li>
-<li>DeveloperCertificates, 这时一个列表。包含了，可以使用这个配置文件的应用红的签名的所有证书。那么，如果你的签名证书不在列表中，那么这个应用就不能运行。</li>
-<li>所有的证书都是基于 Base64的<a href="http://tools.ietf.org/html/rfc1848" target="_blank" rel="external">PEM</a>格式。</li>
-<li><p>如果需要查看证书内容，那么就需要把内容复制出来，然后改名成<strong>a.pem</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ openssl x509 -text -in a.pem</div></pre></td></tr></table></figure>
-</li>
-<li><p>在这个文件中，<strong>Entitlements</strong>, 也包含了授权信息。</p>
-</li>
-<li>如果，你的开发证书，那么，你会看到一项 <strong>ProvisionedDevices</strong>，这里面又所有用语测试的设备列表。因为配置文件需要被苹果，签名。所以，每次需要重新下载。</li>
+<li>必须符合<code>\&lt;Vendor Name&gt;&lt;Namespace&gt;*&lt;Class Name&gt;</code></li>
+<li>每个NameSpace必须有一个顶层的NameSpace(‘/yii/….’)</li>
+<li>可以多个NameSpace</li>
+<li>文件系统加载的时候，每一个NameSpace都需要转成分隔符</li>
+<li>类名必须以.php结尾</li>
+<li>Class Name中，下划线，要转换成分隔符</li>
 </ol>
-<h3 id="签名步骤"><a href="#签名步骤" class="headerlink" title="签名步骤:"></a>签名步骤:</h3><ol>
-<li><code>rm -r ./Payload/xxxx.app/_CodeSignature/*</code></li>
-<li><code>cp /data/work/keychains/profile/13b42794011c.mobileprovision ./Payload/xxxx.app/embedded.mobileprovision</code></li>
-<li><code>/usr/bin/codesign -f -s &quot;iPhone Distribution: XXXXX.&quot; --entitlements /data/work/keychains/keychain/xxxx.demo_entitlements.plist ./Payload/xxxx.app</code></li>
-<li>搞定</li>
-</ol>
-<h3 id="苹果的-Info-plist"><a href="#苹果的-Info-plist" class="headerlink" title="苹果的 Info.plist"></a>苹果的 Info.plist</h3><p>苹果的Plist有两种格式，一种是XML格式，还有一种是 二进制格式(bplist, Binary Plist)。</p>
-<p>一般来讲,文件头:</p>
-<table>
-<thead>
-<tr>
-<th>文件头</th>
-<th>对象表</th>
-<th>偏移表</th>
-<th>文件尾</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>开头8字节</td>
-<td>8~K字节</td>
-<td>K+L*N字节</td>
-<td>最后32字节</td>
-</tr>
-</tbody>
-</table>
-<p>固定文件都是:</p>
-<p>格式: 6 ， 定值:<code>62 70 6C 69 73 74</code> 表示: <code>bplist</code><br>版本: 2 ，定值: <code>30 30</code> 表示:<code>00</code></p>
-<p>所以固定是: <code>62 70 6C 69 73 74 30 30</code></p>
-<h3 id="创建keychain"><a href="#创建keychain" class="headerlink" title="创建keychain"></a>创建keychain</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">security create-keychain -p mysecretpassword build.keychain</div></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">\Doctrine\Common\IsolatedClassLoader =&gt; /path/to/project/lib/vendor/Doctrine/Common/IsolatedClassLoader.php</div><div class="line">\Symfony\Core\Request =&gt; /path/to/project/lib/vendor/Symfony/Core/Request.php</div><div class="line"></div><div class="line"># 注意类名含有下划线的特殊情况</div><div class="line">\namespace\package\Class_Name =&gt; /path/to/project/lib/vendor/namespace/package/Class/Name.php</div><div class="line">\namespace\package_name\Class_Name =&gt; /path/to/project/lib/vendor/namespace/package_name/Class/Name.php</div></pre></td></tr></table></figure>
+<p>Composer中两个不同的规范</p>
+<p>psr0<br>目录结构很深</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">vendor/</div><div class="line">    vendor_name/</div><div class="line">        package_name/</div><div class="line">            src/</div><div class="line">                Vendor_Name/</div><div class="line">                    Package_Name/</div><div class="line">                        ClassName.php       # Vendor_Name\Package_Name\ClassName</div><div class="line">            tests/</div><div class="line">                Vendor_Name/</div><div class="line">                    Package_Name/</div><div class="line">                        ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest</div></pre></td></tr></table></figure>
+<p>psr4</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">vendor/  </div><div class="line">    vendor_name/  </div><div class="line">        package_name/  </div><div class="line">            src/  </div><div class="line">                ClassName.php       # Vendor_Name\Package_Name\ClassName  </div><div class="line">            tests/  </div><div class="line">                ClassNameTest.php   # Vendor_Name\Package_Name\ClassNameTest</div></pre></td></tr></table></figure>
+<p>在PSR-0中目录结构要与命名空间层层对应，无法插入一个单独的目录。Vendor\Package\Class在psr-0会里被直接转换成同样的路径，而PSR-4则没有这样的强制要求。</p>
+<p>对比PSR-0，除了PSR-4可以更简洁外，需要注意PSR-0中对下划线(_)是有特殊的处理的，下划线会转换成DIRECTORY_SEPARATOR，这是出于对PHP5.3以前版本兼容的考虑，而PSR-4中是没有这个处理的，这也是两者比较大的一个区别。</p>
+<p>此外，PSR-4要求在autoloader中不允许抛出exceptions以及引发任何级别的errors，也不应该有返回值。这是因为可能注册了多个autoloaders，如果一个autoloader没有找到对应的class，应该交给下一个来处理，而不是去阻断这个通道。</p>
+<p><code>\Acme\Log\Writer\File_Writer</code>  =&gt;     <code>Acme\Log\Writer</code> =&gt;     <code>./acme-log-writer/lib/</code> =&gt; <code>/acme-log-writer/lib/File_Writer.php</code></p>
+<p><code>\Aura\Web\Response\Status</code> =&gt;     <code>Aura\Web</code> =&gt;    <code>/path/to/aura-web/src/</code> =&gt;  <code>/path/to/aura-web/src/Response/Status.php</code></p>
+<p><code>\Symfony\Core\Request</code> =&gt;     <code>Symfony\Core</code> =&gt;    <code>./vendor/Symfony/Core/</code> =&gt;     <code>./vendor/Symfony/Core/Request.php</code></p>
+<p><code>\Zend\Acl</code>     =&gt;  <code>Zend</code>     =&gt; <code>/usr/includes/Zend/</code> =&gt;    <code>/usr/includes/Zend/Acl.php</code></p>
+<h3 id="关于PHP的测试-Codeception"><a href="#关于PHP的测试-Codeception" class="headerlink" title="关于PHP的测试(Codeception)"></a>关于PHP的测试(Codeception)</h3>
     
 
     
@@ -514,7 +482,7 @@
     <!-- 使用 changyan -->
     <div id="changyan-comment">
         <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2017/06/08/sign/"  ></div>
+<div id="SOHUCS" sid="2017/07/25/php/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'undefined';
@@ -543,21 +511,13 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/06/26/openapi/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2017/05/26/Electron2/" id="post_nav-older" class="next-content">
+        <a href="/2017/06/26/openapi/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
