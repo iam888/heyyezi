@@ -10,7 +10,7 @@
     
     <title>
         
-            PonyOrm之初体验 | 
+            Swoole | 
         
         黑白之院
     </title>
@@ -36,7 +36,7 @@
     <meta name="theme-color" content="#0097A7">
     <meta name="author" content="A Man Has No Name">
     <meta name="description" content="Valar Morghulis">
-    <meta name="keywords" content="null,Python">
+    <meta name="keywords" content="null,PHP">
 
     <!-- Favicons -->
     <link rel="icon shortcut" type="image/ico" href="/img/favicon.png">
@@ -62,9 +62,9 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="https://www.heyyezi.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="PonyOrm之初体验 | 黑白之院">
+    <meta property="og:title" content="Swoole | 黑白之院">
     <meta property="og:description" content="Valar Morghulis">
-    <meta property="og:article:tag" content="Python"> 
+    <meta property="og:article:tag" content="PHP"> 
 
     <!--[if lte IE 9]>
         <link rel="stylesheet" href="/css/ie-blocker.css">
@@ -251,7 +251,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#先来安利一个工具Pipenv"><span class="post-toc-number">1.</span> <span class="post-toc-text">先来安利一个工具Pipenv</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#使用"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">使用</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#切入正题-PonyOrm"><span class="post-toc-number">2.</span> <span class="post-toc-text">切入正题, PonyOrm</span></a></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于几个概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">关于几个概念</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于使用场景"><span class="post-toc-number">2.</span> <span class="post-toc-text">关于使用场景</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关于namespace的使用"><span class="post-toc-number">3.</span> <span class="post-toc-text">关于namespace的使用</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#多进程模型"><span class="post-toc-number">4.</span> <span class="post-toc-text">多进程模型</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swoole-Server"><span class="post-toc-number">5.</span> <span class="post-toc-text">Swoole\Server</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Swoole-Worker进程模式"><span class="post-toc-number">6.</span> <span class="post-toc-text">Swoole Worker进程模式</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Reactor线程"><span class="post-toc-number">7.</span> <span class="post-toc-text">Reactor线程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Worker进程"><span class="post-toc-number">8.</span> <span class="post-toc-text">Worker进程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Task进程"><span class="post-toc-number">9.</span> <span class="post-toc-text">Task进程</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#关系"><span class="post-toc-number">10.</span> <span class="post-toc-text">关系</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引申的PHP知识"><span class="post-toc-number">11.</span> <span class="post-toc-text">引申的PHP知识</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#闭包"><span class="post-toc-number">11.1.</span> <span class="post-toc-text">闭包</span></a></li></ol></li></ol>
 
         <!--
         <li class="mdl-menu__item">
@@ -288,7 +288,7 @@
         
     
             <p class="article-headline-p">
-                PonyOrm之初体验
+                Swoole
             </p>
         </div>
 
@@ -307,7 +307,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>A Man Has No Name</strong>
-        <span>3月 07, 2017</span>
+        <span>8月 18, 2017</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -328,7 +328,7 @@
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-qrcode-button">
             <li class="mdl-menu__item">在其它设备中阅读本文章</li>
-            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aMXLDMAwEQP//00mbIlIOAEk5nlXl0cgylwUJH/H6+ujrhYeHh4eHh4eH92a8V3z98qIf9/Pnr565ulMdGx4eHt4Z3h9L7e0z98h8au4/52PDw8PDO8m7GtbVM8mA8u8m1OgNeHh4eP+Kl99JSm08PDy8T+JdUauldh5P4OHh4b0nL48berz7LaEaguDh4eE9y8uX7POfj57v4eHh4QW8cktTsSCuNgQsbrrCw8PD28DLF+Jq8JqX1/dvq04EHh4e3m7e7gC3yrjfWpolNR4eHt5SXn74lMDyiDZpMshbu/Dw8PCe5VUHNC+g84lo/mPAw8PDW8rrhQI5YwKuwvDw8PDO8HoRbS8+yIv43kTg4eHhneRVA9PetyaNBXkkgYeHh7ebly/K1UOsasSQF9DN1gE8PDy8RbxqW1Xv8Cxp4epN06h1AA8PD2/MywOIPLTNv5scjC0II/Dw8PAW8apRbG9TWXsktuAADA8PD2/AS47ke4v45LAtv/Dw8PBO8vKh5yHvpBxfsF3h4eHhbeb1lvUkeM2nbM7Gw8PDO8/Lt4rJ/byUr248eHh4eE/xepFE3gRQbSbIS3w8PDy8p3jVRqhqAT3BjMIIPDw8vKW86pVTk8lKhltuO8DDw8PbzJsv5RN2b+KaTVd4eHh4S3nJDyfLdx5DVN886inDw8PD28ZLjq/mwWse/lYDXDw8PLz35+WbxLxoTsaJh4eH9395eVQxiUIe2xjw8PDwimFEtQhuLu7BdODh4eE9y+tFCXnTwOSd5V/Ew8PD28z7vAsPDw8PDw8PD+8Nrm9Z/CnFDcWO6wAAAABJRU5ErkJggg==">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACYklEQVR42u3aMXLDMAwEQP//00mbIrHvQFJWPKvK45EoLgsSAvD4+ujrgYeHh4eHh4eHdzPeI75+GejH/8/vT0Zun/rzXXh4eHiX8F5stfE9xSQC5GxueHh4eFfyZq+cbe7taMUIeHh4eP+Kt7K5J+/Fw8PD+wxeEuw+D6zzZcLDw8O7G2820edJ3iQRfKNcCx4eHl7My5Ow1/++tL6Hh4eHF/DqlqayxNWOs7npCg8PD+8AL9+Io3C23PqTREO7EHh4eHjX8GaNp3lJLA+R27kVXwx4eHh4m3jrxbBZirZd3Dy9i4eHh3eal4Sz7bbeBtArb8fDw8N7Fy8JhesNOjgGkqm3qV48PDy807z11qtZ80ESmuclNDw8PLzreW1RP09JtJNLEhlFSI2Hh4d3gDcrPq2H3W0AvSGNi4eHh7eV1xb41xunZsmIKOWBh4eH9ybe19ZrxtvWU4aHh4d3gDdrFMjTrHkxLD8q6i8GPDw8vE28/JDIf89KXC21LoDh4eHhHeDtahTY2xBQj4+Hh4d3mJcMlCcC8ikm7OE/eHh4eG/i7UoZtOWrpCz34lk8PDy8G/BWjoc8yZuH48OmKzw8PLxjvHY7btMWs0TttoMBDw8Pb5m30j6Vh87J5p4fMy+WGw8PD+8wb9Zc1bYUtM0B7ch4eHh41/NmbQT5RPOlWRkZDw8P73peu0HnT7Xjz44oPDw8vP/CS6a1EkDn88TDw8O7M2+lPWslFRJ9AODh4eFdyEuSEeuJjJz9hlwLHh4e3oEC2N77k2RuHdzj4eHhHeZ93oWHh4eHh4eHh3eD6xuwx0i0N2bX1wAAAABJRU5ErkJggg==">
         </ul>
     
 
@@ -340,7 +340,7 @@
     </button>
     <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
         <li class="mdl-menu__item">
-        <a class="post_tag-link" href="/tags/Python/">Python</a>
+        <a class="post_tag-link" href="/tags/PHP/">PHP</a>
     </ul>
     
 
@@ -367,7 +367,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&pic=&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Swoole&url=https://www.heyyezi.com//2017/08/18/swoole/index.html&pic=&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -376,7 +376,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=PonyOrm之初体验&url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html&via=A Man Has No Name" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Swoole&url=https://www.heyyezi.com//2017/08/18/swoole/index.html&via=A Man Has No Name" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -385,7 +385,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=https://www.heyyezi.com//2017/08/18/swoole/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -394,7 +394,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/03/07/python-ponyorm/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=https://www.heyyezi.com//2017/08/18/swoole/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -419,24 +419,160 @@
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
         <blockquote>
-<p>这是一个很好用的python ORM库所以推荐一下,顺便安利一个工具<br><a id="more"></a></p>
+<p>关于PHP处理多进程的一个模块</p>
 </blockquote>
-<h3 id="先来安利一个工具Pipenv"><a href="#先来安利一个工具Pipenv" class="headerlink" title="先来安利一个工具Pipenv"></a>先来安利一个工具Pipenv</h3><p>  大家都用过virtualenv吧，这货把Pipfile, pip, virtualenv这三个工具集合到了一起，完美的结合到了一起。</p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ pip install pipenv</div></pre></td></tr></table></figure>
-<p>  警告⚠️:<br>    <strong>如果你的默认环境小于版本python2.7.10，安装的时候出现任何问题，概不负责</strong></p>
-<h4 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h4><p>  初始化python2.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --two # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python2)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化python3.*的环境<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ mkdir your_dir</div><div class="line">$ cd your_dir</div><div class="line">$ pipenv install --three # 此处会有很多输出，请忽略</div><div class="line">$ pipenv shell # 进入虚拟环境(python3)</div><div class="line">(your_dir)(your_dir) exit # 离开虚拟环境</div></pre></td></tr></table></figure></p>
-<p>  初始化完成后，如果并不想进入虚拟环境, 执行python命令，<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ pipenv run python # 这个时候python，是虚拟环境中的python</div><div class="line">$ pienv run pip install ansible # 此时是向虚拟环境中安装ansible</div></pre></td></tr></table></figure></p>
-<p>  创建自己的依赖文件, 下次你只要把Pipfile文件，拿到别的地方，执行pipenv install 那么机会自动把环境包装好<br>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ pipenv shell</div><div class="line">(your_dir)(your_dir) pipenv install requests # 这时候，你会发现你的Pipfile中多了一个包的</div><div class="line">(your_dir)(your_dir) pipenv lock --dev # 锁定版本</div></pre></td></tr></table></figure></p>
-<p>  如果你当前环境已经有一个虚拟环境，那么再创建一个的时候，会覆盖之前的。</p>
-<p><img src="https://camo.githubusercontent.com/2287c881cb3a045f4f70f20f0326ec4ef1474ccd/687474703a2f2f6d656469612e6b656e6e657468726569747a2e636f6d2e73332e616d617a6f6e6177732e636f6d2f706970656e762e676966" alt="Pipenv图片"></p>
-<h3 id="切入正题-PonyOrm"><a href="#切入正题-PonyOrm" class="headerlink" title="切入正题, PonyOrm"></a>切入正题, PonyOrm</h3><p>  <a href="https://ponyorm.com/" target="_blank" rel="external">PonyOrm</a>, 它是一个关系型数据库对象ROM工具(mysql,sqlit),可以方便的写做表的联合等，尤其是数据导入，导出的时候很方便。<br>特点：</p>
+<h2 id="关于几个概念"><a href="#关于几个概念" class="headerlink" title="关于几个概念"></a>关于几个概念</h2><ol>
+<li>进程: 是正在运行的程序的实例。</li>
+<li>线程: 调度进程的资源的东西，几乎不占有资源。</li>
+</ol>
+<h2 id="关于使用场景"><a href="#关于使用场景" class="headerlink" title="关于使用场景"></a>关于使用场景</h2><ol>
+<li>希望解决，GM并发大量的发送操作</li>
+<li>希望解决，定时执行</li>
+<li>提供PHP的多进程解决方案。</li>
+</ol>
+<p>思考点:<br>关于分布式部署，提供高可用支持。</p>
+<h2 id="关于namespace的使用"><a href="#关于namespace的使用" class="headerlink" title="关于namespace的使用"></a>关于namespace的使用</h2><table>
+<thead>
+<tr>
+<th>namespace</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swoole\Server</td>
+<td>swoole_server</td>
+</tr>
+<tr>
+<td>Swoole\Client</td>
+<td>swoole_client</td>
+</tr>
+<tr>
+<td>Swoole\Process</td>
+<td>swoole_process</td>
+</tr>
+<tr>
+<td>Swoole\Timer</td>
+<td>swoole_timer</td>
+</tr>
+<tr>
+<td>Swoole\Table</td>
+<td>swoole_table</td>
+</tr>
+<tr>
+<td>Swoole\Lock</td>
+<td>swoole_lock</td>
+</tr>
+<tr>
+<td>Swoole\Atomic</td>
+<td>swoole_atomic</td>
+</tr>
+<tr>
+<td>Swoole\Buffer</td>
+<td>swoole_buffer</td>
+</tr>
+<tr>
+<td>Swoole\Redis</td>
+<td>swoole_redis</td>
+</tr>
+<tr>
+<td>Swoole\Event</td>
+<td>swoole_event</td>
+</tr>
+<tr>
+<td>Swoole\MySQL</td>
+<td>swoole_mysql</td>
+</tr>
+<tr>
+<td>Swoole\Channel</td>
+<td>swoole_channel</td>
+</tr>
+<tr>
+<td>Swoole\Http\Server</td>
+<td>swoole_http_server</td>
+</tr>
+<tr>
+<td>Swoole\Http\Client</td>
+<td>swoole_http_client</td>
+</tr>
+<tr>
+<td>Swoole\Http\Request</td>
+<td>swoole_http_request</td>
+</tr>
+<tr>
+<td>Swoole\Http\Response</td>
+<td>swoole_http_response</td>
+</tr>
+<tr>
+<td>Swoole\WebSocket\Server</td>
+<td>swoole_websocket_server</td>
+</tr>
+</tbody>
+</table>
+<h2 id="多进程模型"><a href="#多进程模型" class="headerlink" title="多进程模型"></a>多进程模型</h2><p><img src="https://wiki.swoole.com/static/uploads/swoole.jpg" alt=""></p>
+<p>进程和线程模式</p>
+<p><img src="https://wiki.swoole.com/static/image/process.jpg" alt=""></p>
+<h2 id="Swoole-Server"><a href="#Swoole-Server" class="headerlink" title="Swoole\Server"></a>Swoole\Server</h2><p>配置参数:</p>
 <ul>
-<li>简单的查询语法</li>
-<li>自动优化查询</li>
-<li>对于N+1的问题解决方案(orm总会多查询一次，用来缓存数据，具体请自行百度)</li>
-<li>又一个在线编辑工具 <a href="https://editor.ponyorm.com/" target="_blank" rel="external">查看</a>（不好用）</li>
+<li>max_conn, 此参数设置Server最大允许维持的tcp连接数，超过这个限制，服务器会拒绝（不要设置的过大）</li>
+<li>max_request, 表示worker进程做多接受多少个请求，如果超过这个数值，manager进程负责回收，并且新建一个worker进程。<ul>
+<li>0 表示永远不重启(不建议)</li>
 </ul>
+</li>
+<li>worker_num， worker进程数</li>
+<li>task_worker_num， task进程数</li>
+<li>daemonize，是否启用后台处理</li>
+<li><p>dispatch_mode, 1平均分配，2按FD取模固定分配，3抢占式分配，默认为取模(dispatch=2)</p>
+</li>
+<li><p>log_file</p>
+</li>
+</ul>
+<h2 id="Swoole-Worker进程模式"><a href="#Swoole-Worker进程模式" class="headerlink" title="Swoole Worker进程模式"></a>Swoole Worker进程模式</h2><ol>
+<li>dispatch_mode = 1: 轮询方式处理</li>
+<li>dispatch_mode = 1(默认): 数据包根据<code>fd</code> 的值%worker_num来分, 这样可以保证每次TCP连接，都会被同一个worker连接。</li>
+<li>dispatch_mode = 3: 争抢模式，只有空闲的进程可以获取处理权限。</li>
+</ol>
+<h2 id="Reactor线程"><a href="#Reactor线程" class="headerlink" title="Reactor线程"></a>Reactor线程</h2><ul>
+<li>负责维护客户端机器的TCP连接、处理网络IO、收发数据完全是异步非阻塞的模式</li>
+<li>全部为C代码，除Start/Shudown事件回调外，不执行任何PHP代码</li>
+<li>将TCP客户端发来的数据缓冲、拼接、拆分成完整的一个请求数据包</li>
+<li>Reactor以多线程的方式运行</li>
+</ul>
+<h2 id="Worker进程"><a href="#Worker进程" class="headerlink" title="Worker进程"></a>Worker进程</h2><ul>
+<li>接受由Reactor线程投递的请求数据包，并执行PHP回调函数处理数据</li>
+<li>生成响应数据并发给Reactor线程，由Reactor线程发送给TCP客户端</li>
+<li>可以是异步非阻塞模式，也可以是同步阻塞模式</li>
+<li>Worker以多进程的方式运行</li>
+</ul>
+<h2 id="Task进程"><a href="#Task进程" class="headerlink" title="Task进程"></a>Task进程</h2><ul>
+<li>接受由Worker进程通过swoole_server-&gt;task/taskwait方法投递的任务</li>
+<li>处理任务，并将结果数据返回给Worker进程</li>
+<li>完全是同步阻塞模式</li>
+<li>Task以多进程的方式运行</li>
+</ul>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><ul>
+<li><p>可以理解为reactor就是nginx，worker就是php-fpm。reactor线程异步并行地处理网络请求，然后再转发给worker进程中去处理。reactor和worker间通过IPC方式通信。</p>
+</li>
+<li><p>swoole的reactor，worker，task_worker之间可以紧密的结合起来，提供更高级的使用方式。</p>
+</li>
+<li><p>一个更通俗的比喻，假设Server就是一个工厂，那reactor就是销售，帮你接项目订单。而worker就是工人，当销售接到订单后，worker去工作生产出客户要的东西。而task_worker可以理解为行政人员，可以帮助worker干些杂事，让worker专心工作。</p>
+</li>
+<li><p>底层会为Worker进程、Task进程分配一个唯一的ID</p>
+</li>
+<li>不同的task/worker进程之间可以通过sendMessage接口进行通信</li>
+</ul>
+<h2 id="引申的PHP知识"><a href="#引申的PHP知识" class="headerlink" title="引申的PHP知识"></a>引申的PHP知识</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<blockquote>
+<p>只是了解一下，别用它（其实你可以写一个类实现）</p>
+</blockquote>
+</blockquote>
+<p>匿名函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$func = <span class="function"><span class="keyword">function</span><span class="params">($params)</span></span>&#123;  </div><div class="line"></div><div class="line">    <span class="keyword">echo</span> $params;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">$func(<span class="string">'ok'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line"></div><div class="line"><span class="comment">// ok</span></div></pre></td></tr></table></figure></p>
+<p>声明变量，返回一个匿名函数，此变量可以被调用。</p>
+<p>那么我们就可以实现PHP闭包</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 第一种</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printStr</span><span class="params">()</span> </span>&#123;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $str;</div><div class="line">    &#125;</div><div class="line">    $func(<span class="string">'ok'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">printStr();</div><div class="line"></div><div class="line"><span class="comment">// 第二种</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tF</span><span class="params">()</span> </span>&#123;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $str;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> $func;</div><div class="line">&#125;</div><div class="line">$f = tF();</div><div class="line">$f(<span class="string">'ok'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 第三种</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callFunc</span><span class="params">( $func )</span> </span>&#123;</div><div class="line">    $func(<span class="string">'ok'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">$func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span></span>;</div><div class="line"></div><div class="line">callFunc( func );</div></pre></td></tr></table></figure>
+<p>闭包可以保存所有代码块上下文的一些变量。PHP在默认情况下，匿名函数不允许调用代码块的上下文变量， 而需要使用<code>use</code>关键字</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</div><div class="line">    $rmb = <span class="number">1</span>;</div><div class="line">    $dollar = <span class="number">6</span>;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span> <span class="params">( $rmb )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $rmb;</div><div class="line">        <span class="keyword">echo</span> $dollar;</div><div class="line">    &#125;;</div><div class="line">    $func();</div><div class="line">&#125;</div><div class="line">getMoney();</div><div class="line"><span class="comment">//输出：</span></div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="comment">//报错，找不到dorllar变量</span></div></pre></td></tr></table></figure>
+<p>那么问题来了，能不能改变上下文的变量呢（答案是不能，如果我们想改变呢，答案是换一种写法&amp;)</p>
 
     
 
@@ -454,7 +590,7 @@
     <!-- 使用 changyan -->
     <div id="changyan-comment">
         <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2017/03/07/python-ponyorm/"  ></div>
+<div id="SOHUCS" sid="2017/08/18/swoole/"  ></div>
 <script type="text/javascript">
 (function(){
 var appid = 'undefined';
@@ -483,19 +619,19 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2017/03/12/gitintro/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
+    
+        <a href="/2017/08/09/gitflow/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
     
 </nav>
 

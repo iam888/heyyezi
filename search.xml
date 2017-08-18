@@ -4,6 +4,242 @@
   
     
     <entry>
+      <title><![CDATA[Swoole]]></title>
+      <url>https://www.heyyezi.com/2017/08/18/swoole/</url>
+      <content type="html"><![CDATA[<blockquote>
+<p>关于PHP处理多进程的一个模块</p>
+</blockquote>
+<h2 id="关于几个概念"><a href="#关于几个概念" class="headerlink" title="关于几个概念"></a>关于几个概念</h2><ol>
+<li>进程: 是正在运行的程序的实例。</li>
+<li>线程: 调度进程的资源的东西，几乎不占有资源。</li>
+</ol>
+<h2 id="关于使用场景"><a href="#关于使用场景" class="headerlink" title="关于使用场景"></a>关于使用场景</h2><ol>
+<li>希望解决，GM并发大量的发送操作</li>
+<li>希望解决，定时执行</li>
+<li>提供PHP的多进程解决方案。</li>
+</ol>
+<p>思考点:<br>关于分布式部署，提供高可用支持。</p>
+<h2 id="关于namespace的使用"><a href="#关于namespace的使用" class="headerlink" title="关于namespace的使用"></a>关于namespace的使用</h2><table>
+<thead>
+<tr>
+<th>namespace</th>
+<th>函数名</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Swoole\Server</td>
+<td>swoole_server</td>
+</tr>
+<tr>
+<td>Swoole\Client</td>
+<td>swoole_client</td>
+</tr>
+<tr>
+<td>Swoole\Process</td>
+<td>swoole_process</td>
+</tr>
+<tr>
+<td>Swoole\Timer</td>
+<td>swoole_timer</td>
+</tr>
+<tr>
+<td>Swoole\Table</td>
+<td>swoole_table</td>
+</tr>
+<tr>
+<td>Swoole\Lock</td>
+<td>swoole_lock</td>
+</tr>
+<tr>
+<td>Swoole\Atomic</td>
+<td>swoole_atomic</td>
+</tr>
+<tr>
+<td>Swoole\Buffer</td>
+<td>swoole_buffer</td>
+</tr>
+<tr>
+<td>Swoole\Redis</td>
+<td>swoole_redis</td>
+</tr>
+<tr>
+<td>Swoole\Event</td>
+<td>swoole_event</td>
+</tr>
+<tr>
+<td>Swoole\MySQL</td>
+<td>swoole_mysql</td>
+</tr>
+<tr>
+<td>Swoole\Channel</td>
+<td>swoole_channel</td>
+</tr>
+<tr>
+<td>Swoole\Http\Server</td>
+<td>swoole_http_server</td>
+</tr>
+<tr>
+<td>Swoole\Http\Client</td>
+<td>swoole_http_client</td>
+</tr>
+<tr>
+<td>Swoole\Http\Request</td>
+<td>swoole_http_request</td>
+</tr>
+<tr>
+<td>Swoole\Http\Response</td>
+<td>swoole_http_response</td>
+</tr>
+<tr>
+<td>Swoole\WebSocket\Server</td>
+<td>swoole_websocket_server</td>
+</tr>
+</tbody>
+</table>
+<h2 id="多进程模型"><a href="#多进程模型" class="headerlink" title="多进程模型"></a>多进程模型</h2><p><img src="https://wiki.swoole.com/static/uploads/swoole.jpg" alt=""></p>
+<p>进程和线程模式</p>
+<p><img src="https://wiki.swoole.com/static/image/process.jpg" alt=""></p>
+<h2 id="Swoole-Server"><a href="#Swoole-Server" class="headerlink" title="Swoole\Server"></a>Swoole\Server</h2><p>配置参数:</p>
+<ul>
+<li>max_conn, 此参数设置Server最大允许维持的tcp连接数，超过这个限制，服务器会拒绝（不要设置的过大）</li>
+<li>max_request, 表示worker进程做多接受多少个请求，如果超过这个数值，manager进程负责回收，并且新建一个worker进程。<ul>
+<li>0 表示永远不重启(不建议)</li>
+</ul>
+</li>
+<li>worker_num， worker进程数</li>
+<li>task_worker_num， task进程数</li>
+<li>daemonize，是否启用后台处理</li>
+<li><p>dispatch_mode, 1平均分配，2按FD取模固定分配，3抢占式分配，默认为取模(dispatch=2)</p>
+</li>
+<li><p>log_file</p>
+</li>
+</ul>
+<h2 id="Swoole-Worker进程模式"><a href="#Swoole-Worker进程模式" class="headerlink" title="Swoole Worker进程模式"></a>Swoole Worker进程模式</h2><ol>
+<li>dispatch_mode = 1: 轮询方式处理</li>
+<li>dispatch_mode = 1(默认): 数据包根据<code>fd</code> 的值%worker_num来分, 这样可以保证每次TCP连接，都会被同一个worker连接。</li>
+<li>dispatch_mode = 3: 争抢模式，只有空闲的进程可以获取处理权限。</li>
+</ol>
+<h2 id="Reactor线程"><a href="#Reactor线程" class="headerlink" title="Reactor线程"></a>Reactor线程</h2><ul>
+<li>负责维护客户端机器的TCP连接、处理网络IO、收发数据完全是异步非阻塞的模式</li>
+<li>全部为C代码，除Start/Shudown事件回调外，不执行任何PHP代码</li>
+<li>将TCP客户端发来的数据缓冲、拼接、拆分成完整的一个请求数据包</li>
+<li>Reactor以多线程的方式运行</li>
+</ul>
+<h2 id="Worker进程"><a href="#Worker进程" class="headerlink" title="Worker进程"></a>Worker进程</h2><ul>
+<li>接受由Reactor线程投递的请求数据包，并执行PHP回调函数处理数据</li>
+<li>生成响应数据并发给Reactor线程，由Reactor线程发送给TCP客户端</li>
+<li>可以是异步非阻塞模式，也可以是同步阻塞模式</li>
+<li>Worker以多进程的方式运行</li>
+</ul>
+<h2 id="Task进程"><a href="#Task进程" class="headerlink" title="Task进程"></a>Task进程</h2><ul>
+<li>接受由Worker进程通过swoole_server-&gt;task/taskwait方法投递的任务</li>
+<li>处理任务，并将结果数据返回给Worker进程</li>
+<li>完全是同步阻塞模式</li>
+<li>Task以多进程的方式运行</li>
+</ul>
+<h2 id="关系"><a href="#关系" class="headerlink" title="关系"></a>关系</h2><ul>
+<li><p>可以理解为reactor就是nginx，worker就是php-fpm。reactor线程异步并行地处理网络请求，然后再转发给worker进程中去处理。reactor和worker间通过IPC方式通信。</p>
+</li>
+<li><p>swoole的reactor，worker，task_worker之间可以紧密的结合起来，提供更高级的使用方式。</p>
+</li>
+<li><p>一个更通俗的比喻，假设Server就是一个工厂，那reactor就是销售，帮你接项目订单。而worker就是工人，当销售接到订单后，worker去工作生产出客户要的东西。而task_worker可以理解为行政人员，可以帮助worker干些杂事，让worker专心工作。</p>
+</li>
+<li><p>底层会为Worker进程、Task进程分配一个唯一的ID</p>
+</li>
+<li>不同的task/worker进程之间可以通过sendMessage接口进行通信</li>
+</ul>
+<h2 id="引申的PHP知识"><a href="#引申的PHP知识" class="headerlink" title="引申的PHP知识"></a>引申的PHP知识</h2><h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><blockquote>
+<blockquote>
+<p>只是了解一下，别用它（其实你可以写一个类实现）</p>
+</blockquote>
+</blockquote>
+<p>匿名函数<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$func = <span class="function"><span class="keyword">function</span><span class="params">($params)</span></span>&#123;  </div><div class="line"></div><div class="line">    <span class="keyword">echo</span> $params;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">$func(<span class="string">'ok'</span>)</div><div class="line"></div><div class="line"><span class="comment">// 输出</span></div><div class="line"></div><div class="line"><span class="comment">// ok</span></div></pre></td></tr></table></figure></p>
+<p>声明变量，返回一个匿名函数，此变量可以被调用。</p>
+<p>那么我们就可以实现PHP闭包</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 第一种</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">printStr</span><span class="params">()</span> </span>&#123;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $str;</div><div class="line">    &#125;</div><div class="line">    $func(<span class="string">'ok'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">printStr();</div><div class="line"></div><div class="line"><span class="comment">// 第二种</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">tF</span><span class="params">()</span> </span>&#123;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $str;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> $func;</div><div class="line">&#125;</div><div class="line">$f = tF();</div><div class="line">$f(<span class="string">'ok'</span>);</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">// 第三种</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">callFunc</span><span class="params">( $func )</span> </span>&#123;</div><div class="line">    $func(<span class="string">'ok'</span>);</div><div class="line">&#125;</div><div class="line"></div><div class="line">$func = <span class="function"><span class="keyword">function</span><span class="params">( $str )</span></span>;</div><div class="line"></div><div class="line">callFunc( func );</div></pre></td></tr></table></figure>
+<p>闭包可以保存所有代码块上下文的一些变量。PHP在默认情况下，匿名函数不允许调用代码块的上下文变量， 而需要使用<code>use</code>关键字</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">getMoney</span><span class="params">()</span> </span>&#123;</div><div class="line">    $rmb = <span class="number">1</span>;</div><div class="line">    $dollar = <span class="number">6</span>;</div><div class="line">    $func = <span class="function"><span class="keyword">function</span><span class="params">()</span> <span class="title">use</span> <span class="params">( $rmb )</span> </span>&#123;</div><div class="line">        <span class="keyword">echo</span> $rmb;</div><div class="line">        <span class="keyword">echo</span> $dollar;</div><div class="line">    &#125;;</div><div class="line">    $func();</div><div class="line">&#125;</div><div class="line">getMoney();</div><div class="line"><span class="comment">//输出：</span></div><div class="line"><span class="comment">//1</span></div><div class="line"><span class="comment">//报错，找不到dorllar变量</span></div></pre></td></tr></table></figure>
+<p>那么问题来了，能不能改变上下文的变量呢（答案是不能，如果我们想改变呢，答案是换一种写法&amp;)</p>
+]]></content>
+      
+        <categories>
+            
+            <category> PHP </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> PHP </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Gitflow以及分支管理]]></title>
+      <url>https://www.heyyezi.com/2017/08/09/gitflow/</url>
+      <content type="html"><![CDATA[<h2 id="Git-Flow使用介绍"><a href="#Git-Flow使用介绍" class="headerlink" title="Git Flow使用介绍"></a>Git Flow使用介绍</h2><p><img src="http://nvie.com/img/git-model@2x.png" alt="流程图"></p>
+<ul>
+<li>feature（多个、玫红）。主要是自己玩了，差不多的时候要合并回develop去。从不与master交互</li>
+<li>develop（1个、黄色）。主要是和feature以及release交互</li>
+<li>release（同一时间1个、绿色）。总是基于develop，最后又合并回develop。当然对应的tag跑到master这边去了。生命周期很短，只是为了发布</li>
+<li>hotfix（同一时间1个、红色）。总是基于master，并最后合并到master和develop。生命周期较短，用了修复bug或小粒度修改发布</li>
+<li>master（1个蓝色）。没有什么东西，仅是一些关联的tag，因从不在master上开发</li>
+</ul>
+<h2 id="分支定义"><a href="#分支定义" class="headerlink" title="分支定义"></a>分支定义</h2><h3 id="master"><a href="#master" class="headerlink" title="master"></a>master</h3><p>此分支不允许直接修改，而且此分支上的代码，所有的代码，必须随时可以发布到线上。</p>
+<h3 id="Develop"><a href="#Develop" class="headerlink" title="Develop"></a>Develop</h3><p>同样，此分支代码不允许直接修改。同时这个分支，随时准备发布测试，release。</p>
+<h3 id="Feature"><a href="#Feature" class="headerlink" title="Feature"></a>Feature</h3><ol>
+<li>来源自<code>develop</code>分支，开发新功能都是在这个分支上。</li>
+<li>坚决不建议两个人一起开发一个feature</li>
+<li>开发完成，合并回<code>develope</code>分支。</li>
+<li>命名: <code>feature-*</code></li>
+<li>此分支不需要保留</li>
+</ol>
+<h3 id="Release"><a href="#Release" class="headerlink" title="Release"></a>Release</h3><ol>
+<li>此分支来自于develop分支, 准备测试，并且等待发布。</li>
+<li>最终合并会develop和master</li>
+<li>命名: <code>release-*</code></li>
+<li>注意，这个分支是给QA测试的分支, QA提出的bug要在这里进行修复。</li>
+<li>发布到master的时候，需要按照<code>版本号管理</code>打tag。</li>
+</ol>
+<p>注意, 一旦进行Release之后，非本次迭代的的功能Feature，不允许混合到这里。</p>
+<h3 id="Hotfix"><a href="#Hotfix" class="headerlink" title="Hotfix"></a>Hotfix</h3><ol>
+<li>来自于master分支</li>
+<li>合并会master和develop分支</li>
+<li>命名: <code>hotfix-*</code></li>
+</ol>
+<p>仅用于修复紧急的线上bug，并且注意打，正确的版本号tag。</p>
+<p><img src="https://segmentfault.com/image?src=http://static.ixirong.com/pic/gitflow/git-workflow-release-cycle-4maintenance.png&amp;objectId=1190000002918123&amp;token=0e0a4f43571b068d4b141e11b4bff4de" alt=""></p>
+<h2 id="软件版本管理"><a href="#软件版本管理" class="headerlink" title="软件版本管理"></a>软件版本管理</h2><p>命名规则: <code>主版本号.子版本号.修正版本号 (beta, demo.. 选填简短描述)</code></p>
+<ul>
+<li>主版本号(master): 此版本号，除非重大重构，否则不需要更改。初始版本为0.<br>比如，我们开发一个新项目，那么就是版本 <code>v0.1.0</code>； 如果我们开第二次大版本演进，底层进行了大变动，向后不再兼容，那么可以依次递增，比如 <code>v1.1.0</code></li>
+<li>子版本号(release)：迭代版本号, 比如本次开发的第二个迭代: <code>v0.2.0 v1.2.0</code>, 这次的修改，一定是向后兼容的</li>
+<li><p>修正版本号(hotfix): 修正bug的的<code>v0.2.1, v1.2.2</code></p>
+</li>
+<li><p>一旦release开发完成，合并到主分支上，如果本次开发，涉及到底层重构，一定要再大版本上加一；若果只是完成了一次迭代, 则只是在小版本更新加一。</p>
+</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> GIT </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> GIT </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Sails库]]></title>
       <url>https://www.heyyezi.com/2017/07/31/sails/</url>
       <content type="html"><![CDATA[<blockquote>
